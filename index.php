@@ -15,9 +15,6 @@
  */
 
 get_header(); ?>
-<div id="container">
-	<div id="primary" class="site-content">
-		<div id="content" role="main">
 		<?php if ( have_posts() ) : ?>
 
 			<?php /* Start the Loop */ ?>
@@ -65,24 +62,10 @@ get_header(); ?>
 </ul>
 
 
-		</div><!-- #content -->
-	</div><!-- #primary -->
-</div> <!-- end #container -->
-
-<?php get_sidebar(); ?>
 
 
 
-<div id="nav">
-    <div id="logo" role="logo">
-        <h1><a href='/'>
-            <img id="logo" src="/wp-content/themes/acsr/images/logos/acsr_logo-web.png" alt="l'atelier de création sonore radiophonique" border="0" />
-        </a></h1>
-    </div>
-    <nav id="menu" class="main-navigation" role="navigation">
-        <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
-    </nav><!-- #site-navigation -->
-</div> <!-- end div#nav -->
+
 
 
 <?php get_footer(); ?>

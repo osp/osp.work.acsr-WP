@@ -188,3 +188,7 @@
 
 
 	<div id="main">
+
+<div id="container">
+	<div id="primary" class="site-content">
+		<div id="content" role="main">
