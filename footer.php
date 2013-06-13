@@ -19,7 +19,7 @@
 <div id="nav">
     <div id="logo" role="logo">
         <h1><a href='/'>
-            <img id="logo" src="/wp-content/themes/acsr/images/logos/acsr_logo-web.png" alt="l'atelier de création sonore radiophonique" border="0" />
+            <img id="logo" src="<?php echo get_template_directory_uri(); ?>/images/logos/acsr_logo-web.png" alt="l'atelier de création sonore radiophonique" border="0" />
         </a></h1>
     </div>
     <nav id="menu" class="main-navigation" role="navigation">

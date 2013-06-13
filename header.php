@@ -95,18 +95,18 @@
 
 	?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="stylesheet" type="text/css" media="all" href="/wp-content/themes/acsr/reset.css" />
-<link rel="stylesheet" type="text/css" media="all" href="/wp-content/themes/acsr/UniversElse/stylesheet.css" />
-<link rel="stylesheet" type="text/css" media="all" href="/wp-content/themes/acsr/style.css" />
-<link rel="stylesheet" type="text/css" media="screen and (max-height: 600px)" href="/wp-content/themes/acsr/netbook.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/reset.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/UniversElse/stylesheet.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/style.css" />
+<link rel="stylesheet" type="text/css" media="screen and (max-height: 600px)" href="<?php echo get_template_directory_uri(); ?>/netbook.css" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-<script src="/wp-content/themes/acsr/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/wp-content/themes/acsr/js/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/wp-content/themes/acsr/js/flowplayer.old/flowplayer-3.2.4.min.js" type="text/javascript" charset="utf-8"></script>
-<!--<script src="/wp-content/themes/acsr/js/flowplayer/example/flowplayer-3.2.6.min.js" type="text/javascript" charset="utf-8"></script>-->
-<!--<script src="/wp-content/themes/acsr/js/flowplayer/flowplayer.playlist-3.0.8.min.js" type="text/javascript" charset="utf-8"></script>-->
-<script src="/wp-content/themes/acsr/js/acsr.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/flowplayer.old/flowplayer-3.2.4.min.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="<?php echo get_template_directory_uri(); ?>/js/flowplayer/example/flowplayer-3.2.6.min.js" type="text/javascript" charset="utf-8"></script>-->
+<!--<script src="<?php echo get_template_directory_uri(); ?>/js/flowplayer/flowplayer.playlist-3.0.8.min.js" type="text/javascript" charset="utf-8"></script>-->
+<script src="<?php echo get_template_directory_uri(); ?>/js/acsr.js" type="text/javascript" charset="utf-8"></script>
 
 
 <?php // Loads HTML5 JavaScript file to add support for HTML5 elements in older IE versions. ?>
@@ -150,7 +150,7 @@
          $texture = $texturelist[$random];
 
         //display image
-         echo '<img id="texture" src="'.$texture_folder.$texture.'" border=0>';
+         echo '<img id="texture" src="'. get_template_directory_uri().'/images/textures/' .$texture.'" border=0>';
 
 
 
@@ -181,7 +181,7 @@
          $dessin = $dessinlist[$random];
 
         //display image
-         echo '<img id="dessin" src="'.$dessin_folder.$dessin.'" border=0>';
+         echo '<img id="dessin" src="'. get_template_directory_uri() .'/images/dessins/'.$dessin.'" border=0>';
          ?>
 
 	</div>
