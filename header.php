@@ -4,9 +4,6 @@
  *
  * Displays all of the <head> section and everything up till <div id="main">
  *
- * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
  */
 ?><!DOCTYPE html>
 
@@ -79,21 +76,21 @@
 
 
 <title><?php
-	/*
-	 * Print the <title> tag based on what is being viewed.
-	 */
-	global $page, $paged;
+    /*
+     * Print the <title> tag based on what is being viewed.
+     */
+    global $page, $paged;
 
-	// Add the blog name.
-	bloginfo( 'name' );
+    // Add the blog name.
+    bloginfo( 'name' );
 
-	wp_title( '|', true, 'left' );
+    wp_title( '|', true, 'left' );
 
-	// Add a page number if necessary:
-	if ( $paged >= 2 || $page >= 2 )
-		echo ' | ' . sprintf( __( 'Page %s', 'acsr' ), max( $paged, $page ) );
+    // Add a page number if necessary:
+    if ( $paged >= 2 || $page >= 2 )
+        echo ' | ' . sprintf( __( 'Page %s', 'acsr' ), max( $paged, $page ) );
 
-	?></title>
+    ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/reset.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/UniversElse/stylesheet.css" />
@@ -122,7 +119,7 @@
 
 
 <div id="wrapper" class="hfeed">
-	<div id="header">
+    <div id="header">
         <?php
          $texturelist='';
           //$img_folder is the variable that holds the path to the banner images. Mine is images/tutorials/
@@ -184,11 +181,11 @@
          echo '<img id="dessin" src="'. get_template_directory_uri() .'/images/dessins/'.$dessin.'" border=0>';
          ?>
 
-	</div>
+    </div>
 
 
-	<div id="main">
+    <div id="main">
 
 <div id="container">
-	<div id="primary" class="site-content">
-		<div id="content" role="main">
+    <div id="primary" class="site-content">
+        <div id="content" role="main">

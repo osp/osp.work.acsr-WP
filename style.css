@@ -1,3 +1,19 @@
+/*
+Theme Name: ACSR
+Theme URI: http://osp.constantvzw.org/work/acsr-WP/
+Author: OSP (http://osp.constantvzw.org) and Jérôme Degive (http://picapica.be)
+Author URI: http://osp.constantvzw.org/
+Description: Designed and developed by OSP with illustrations by Jérôme Degive. The typeface is Univers Else
+http://ospublish.constantvzw.org/foundry/univers-else/
+The ACSR (Atelier de Création Sonore Radiophonique) is a centre that pushes for the production of sound
+and radio creations, and is located in Brussels, Belgium.
+Version: 2.0
+License: GNU Affero General Public License v3
+License URI: http://www.gnu.org/licenses/agpl-3.0.html
+Tags: 
+Text Domain: acsr
+*/
+
 body, input {
     font-family: "UniversElseRegular", "DejaVu Sans", Helvetica, Arial, Sans-Serif;
     font-size: 13px;
