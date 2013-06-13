@@ -22,6 +22,26 @@
  * @since Twenty Twelve 1.0
  */
 
+
+/** TODO: remove the most possible of the 2010 cruft
+ */
+
+/**
+ * Don’t show the long text that instructs the commenter about available HTML tags:
+ */
+
+function acsr_init() {
+    add_filter('comment_form_defaults','acsr_comments_form_defaults');
+}
+add_action('after_setup_theme','acsr_init');
+
+function acsr_comments_form_defaults($default) {
+    unset($default['comment_notes_after']);
+    return $default;
+}
+
+
+ 
 /**
  * Sets up the content width value based on the theme's design and stylesheet.
  */
