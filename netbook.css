@@ -1,0 +1,12 @@
+div#nav div#logo img {
+    /*height: 190px;*/
+    margin-left: 14px;
+}
+div#nav div#menu {
+    position: relative;
+    top: -44px;
+}
+div#nav div#menu img#launcher {
+    width: 40px;
+    margin-top: 13px;
+}
