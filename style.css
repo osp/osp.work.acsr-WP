@@ -293,6 +293,11 @@ div.project-content {
     /*font-family: "UniversElseLight", "DejaVu Sans", Helvetica, Arial, Sans-Serif;*/
 }
 
+/* on the à propos site the accordion-effect is expanded by default */
+body.page-id-2 div.project-content {
+    display: inherit;
+}
+
 /* PRODUCTIONS */
 div.production-block {
     margin-top: 13px;

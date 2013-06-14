@@ -18,13 +18,13 @@ $(document).ready(function(){
     // Show/Hide Projects
     $("h1.project-title").click(function(e){
         e.preventDefault();
-        $("div.project-content", $(this).next()).slideToggle('easeInOutQuint');
+        $(this).next().slideToggle('easeInOutQuint');
     });
 
     // Show/Hide resources
     $("h1.resource-title").click(function(e){
         e.preventDefault();
-        $('div.resource-content', $(this).next()).slideToggle('easeInOutQuint');
+        $(this).next().slideToggle('easeInOutQuint');
     });
 
     // Rollover logo

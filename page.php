@@ -14,10 +14,34 @@ get_header(); ?>
 <div id="primary" class="site-content">
         <div id="content" role="main">
 
-            <?php while ( have_posts() ) : the_post(); ?>
-                <?php get_template_part( 'content', 'page' ); ?>
-            <?php endwhile; // end of the loop. ?>
+            <?php 
+            // first we display the requested page, but only if it has content:
+            
+            while ( have_posts() ) : the_post();
+                if(!get_the_content()) {
+                    break;
+                }
+                get_template_part( 'content', 'page' );
+            endwhile; // end of the loop.
 
+            // then we find its children:
+            $parent_id = get_the_ID();
+            $args = array(
+                'numberposts' => -1,
+                'order' => 'ASC',
+                'orderby' => 'menu_order',
+                'post_parent' => $parent_id,
+                'post_type' => 'page',
+                
+            );
+            query_posts($args);
+            
+            // end we display them as well:
+            while ( have_posts() ) : the_post();
+                get_template_part( 'content', 'page' );
+            endwhile; // end of the loop.
+
+            ?>
         </div><!-- #content -->
     </div><!-- #primary -->
 
