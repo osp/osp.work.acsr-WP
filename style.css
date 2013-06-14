@@ -462,7 +462,7 @@ div#nav nav#menu a {
 div#nav nav#menu a.active {
     background-color: yellow;
 }
-div#nav nav#menu a:hover {
+div#nav nav#menu a:hover, div#nav nav#menu li.active a {
     background-color: yellow;
     color: black;
 }

@@ -14,11 +14,20 @@
     </div>
     <nav id="menu" class="main-navigation" role="navigation">
         <?php wp_nav_menu(array('theme_location' => 'primary', 'menu_class' => 'nav-menu')); ?>
+    <!-- Search Form -->
+    <?php get_search_form(); ?>
+    
+    <div id="languages">
+        <?php
+            qtrans_generateLanguageSelectCode($style='', $id='');
+         ?>
+    </div>
     </nav><!-- #site-navigation -->
+
     <?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
-        <div id="secondary" class="widget-area" role="complementary">
-            <?php dynamic_sidebar('sidebar-1'); ?>
-        </div><!-- #secondary -->
+    <div id="secondary" class="widget-area" role="complementary">
+        <?php dynamic_sidebar('sidebar-1'); ?>
+    </div><!-- #secondary -->
     <?php endif; ?>
 </div> <!-- end div#nav -->
 

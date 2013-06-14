@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
     // Rename Language ISO CODE
-    $("div#languages .lang-fr a").text("FR");
-    $("div#languages .lang-nl a").text("NL");
+    $("ul.qtrans_language_chooser .lang-fr a").text("FR");
+    $("ul.qtrans_language_chooser .lang-nl a").text("NL");
 
     // removes black hover on images
     $("img").parent().css("background", "none"); 
