@@ -58,11 +58,4 @@ get_header(); ?>
     <?php dynamic_sidebar(2); ?>
 </ul>
 
-
-
-
-
-
-
-
 <?php get_footer(); ?>
