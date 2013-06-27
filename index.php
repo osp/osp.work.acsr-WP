@@ -15,6 +15,10 @@ get_header(); ?>
         <?php if ( have_posts() ) : ?>
 
             <?php /* Start the Loop */ ?>
+            <?php if (is_home()) {
+                $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+                query_posts("showposts=5&paged=$page");
+            } ?>
             <?php while ( have_posts() ) : the_post(); ?>
                 <?php get_template_part( 'content', get_post_format() ); ?>
             <?php endwhile; ?>
