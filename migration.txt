@@ -1,0 +1,27 @@
+Some notes about the migrations
+-------------------------------
+
+UPDATE wp_posts SET post_content = REPLACE(post_content, "http://127.0.0.1:8080/wordpress/" "http://www.acsr.be/");
+
+UPDATE `wp_posts` SET `post_type`='production', `post_parent`='0' WHERE `post_type`='page' AND `post_parent`=210;
+
+UPDATE `wp_postmeta` SET `meta_key`='wpcf-genre' WHERE `meta_key`='genre';
+UPDATE `wp_postmeta` SET `meta_key`='wpcf-audio' WHERE `meta_key`='audio';
+UPDATE `wp_postmeta` SET `meta_key`='wpcf-annee' WHERE `meta_key`='année';
+UPDATE `wp_postmeta` SET `meta_key`='wpcf-equipe' WHERE `meta_key`='equipe';
+UPDATE `wp_postmeta` SET `meta_key`='wpcf-duree' WHERE `meta_key`='durée';
+
+http://www.acsr.be/?page_id=12 -> productions archive
+http://www.acsr.be/?page_id=1139 -> productions archive by title
+http://www.acsr.be/?page_id=40 -> productions archive by genre
+http://www.acsr.be/?page_id=1760 -> gallery archive
+
+http://www.acsr.be/?page_id=3597
+if 404 redirect to:
+    http://www.acsr.be/?p=3597
+
+http://www.acsr.be/?page_id=1760&album=20&photo=401&occur=1
+   -> http://www.acsr.be/?p=ID_OF_ATTACHMENT_PAGE
+http://www.acsr.be/?page_id=1760&album=20&cover=0&occur=1
+   -> http://www.acsr.be/?p=ID_OF_ALBUM_PAGE
+
