@@ -98,8 +98,9 @@ table+h2 {
 p + p,
 h3 { margin-top: 13px; }
 
-div#prod-desc{
-    font-size: 18px;
+div.prod-desc p{
+    font-size: 16px;
+    line-height: 19px;
 }
 
 thead {
@@ -158,7 +159,9 @@ div.page:last-child {
 }
 div.post,
 article.post,
-article.production {
+article.production,
+article.attachment,
+article.galerie {
     background-color: #FFFFC0;
     padding: 13px;
     margin-bottom: 13px;
