@@ -17,7 +17,7 @@ get_header(); ?>
             <?php /* Start the Loop */ ?>
             <?php if (is_home()) {
                 $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
-                query_posts("showposts=5&paged=$page");
+                query_posts("showposts=1&paged=$page");
             } ?>
             <?php while ( have_posts() ) : the_post(); ?>
 
@@ -42,23 +42,16 @@ get_header(); ?>
             <?php endif; // is_single() ?>
         </header><!-- .entry-header -->
 
-
         <div class="entry-content">
             <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?>
             <?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'acsr' ), 'after' => '</div>' ) ); ?>
         </div><!-- .entry-content -->
 
-
-
     </article><!-- #post -->
-
-
 
             <?php endwhile; ?>
 
-
-
-        <?php else : ?>
+        <?php else : // if no posts ?>
 
             <article id="post-0" class="post no-results not-found">
 
