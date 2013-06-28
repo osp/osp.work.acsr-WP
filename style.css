@@ -98,6 +98,10 @@ table+h2 {
 p + p,
 h3 { margin-top: 13px; }
 
+div#prod-desc{
+    font-size: 18px;
+}
+
 thead {
     text-align: left;
 }
@@ -180,19 +184,34 @@ p.pistes,
 p.equipe {
     white-space: pre-line;
 }
-div.metadata,
 p.equipe {
     font-family: "UniversElseLight", "DejaVu Sans", Helvetica, Arial, Sans-Serif;
     text-align: center;
     margin: 13px auto;
     width: 75%;
 }
+div.metadata p{
+    font-family: "UniversElseLight", "DejaVu Sans", Helvetica, Arial, Sans-Serif;
+    text-decoration:underline;
+    text-align: center;
+    width: 75%;
+    margin-left:auto;
+    margin-right:auto;
+   
+}
+
+
 div.metadata p + p {
     margin-top: 0;
+    
 }
 
 p.bio {
     white-space: pre-line;
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;
+    border-top:solid 1px black;
 }
 
 div.post-it {
@@ -443,9 +462,30 @@ div#nav {
     top: 1em;
     left: 38em;
 }
-div#nav div#logo a:hover {
-    background: none;
+
+div#logo{
+    position: relative;
 }
+
+div#nav div#logo a:hover{
+    background: none;
+    z-index:1000;
+}
+
+div#nav div#logo a:hover img#logogris{
+    display:block;
+}
+
+div#nav img#logogris {
+    display:none;
+    position:absolute;
+    top:10px;
+    }
+
+div#logogris {
+    display:none;
+}
+
 div#nav nav#menu {
     font-size: 16px;
     margin-left: 20px;
