@@ -166,7 +166,7 @@ article.production {
 }
 
 div#playlist {
-    margin-bottom: 13px;
+    margin: 13px 0;
 }
 a.audio.playing {
     background-color: black;
@@ -364,6 +364,16 @@ div.production-item div.clip {
     padding-top: 8px;
     padding-bottom: 9px;
 }
+body.single-production div.entry-meta {
+    font-size: 13px;
+    margin-bottom: 26px;
+}
+
+body.single-production img.play {
+    float: left;
+    margin-right: 7px;
+}
+
 
 /* RESSOURCES */
 div.resource-content {

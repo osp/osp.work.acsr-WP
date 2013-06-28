@@ -19,29 +19,7 @@
             <h1 class="entry-title">
                 <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
             </h1>
-            <?php endif; // is_single() ?>
-        </header><!-- .entry-header -->
-
-        <?php if ( is_search() ) : // Only display Excerpts for Search ?>
-        <div class="entry-summary">
-            <?php the_excerpt(); ?>
-        </div><!-- .entry-summary -->
-        <?php else : ?>
-        <div class="entry-content">
-           <?php
-
-               $annee = get_post_meta($post->ID, 'wpcf-annee', true);
-               if($annee != '') echo "<p><strong>" . $annee . "</strong>";
-
-               $duree = get_post_meta($post->ID, 'wpcf-duree', true);
-               if($duree != '') echo " <strong>" . $duree . "</strong>";
-
-               $genre = get_post_meta($post->ID, 'wpcf-genre', true);
-               if($genre != '') echo  $genre . "</p>";
-
-               $audio = get_post_meta($post->ID, 'wpcf-audio', false);
-               
-               if($audio != '') {
+            <?php if($audio != '') {
                    sort($audio);
                    echo "<div id='playlist' class='clip'>";
                    foreach($audio as $key => $val) {
@@ -58,7 +36,55 @@
                     }
                     echo "</div>";
                 }
+                ?>
+            <?php endif; // is_single() ?>
+        </header><!-- .entry-header -->
+
+        <?php if ( is_search() ) : // Only display Excerpts for Search ?>
+        <div class="entry-summary">
+            <?php the_excerpt(); ?>
+        </div><!-- .entry-summary -->
+        <?php else : ?>
+        <div class="entry-content">
+           <div class="entry-meta">
+           <?php
+               $audio = get_post_meta($post->ID, 'wpcf-audio', false);
+               
+               if($audio != '') {
+                   sort($audio);
+                   echo "<div id='playlist' class='clip'>";
+                   $count = 0;
+                   foreach($audio as $key => $val) {
+                       $parsed = explode(' --- ', $val);
+                       if (count($parsed)!=1) { // if there are several tracks
+                           if ($count==0){ 
+                              echo "<img class='play' src='/wp-content/themes/acsr/images/petit-play.png' style='margin-top: -3px;' alt='&#9654;' /> ";
+                           }
+                           echo "<a class='audio' href='";
+                           echo $parsed[1] . "' title='". $parsed[0] ."'>" . $parsed[0];
+                           echo "</a> ";
+                           $count ++;
+                       } else { // if there's only one track
+                           echo "<a class='audio' href='";
+                           echo $parsed[0] . "' title='". $parsed[0] ."'><img class='play' src='/wp-content/themes/acsr/images/petit-play.png' alt='&#9654;' />";
+                           echo "</a> ";
+                       }
+                    }
+                    echo "</div>";
+                }
+                
+                
+               $annee = get_post_meta($post->ID, 'wpcf-annee', true);
+               if($annee != '') echo "<p><strong>" . $annee . "</strong>";
+
+               $duree = get_post_meta($post->ID, 'wpcf-duree', true);
+               if($duree != '') echo " <strong>" . $duree . "</strong>";
+
+               $genre = get_post_meta($post->ID, 'wpcf-genre', true);
+               if($genre != '') echo  $genre . "</p>";
+                
             ?>
+            </div>
             <div class="prod-desc">
                 <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?>
             </div>
