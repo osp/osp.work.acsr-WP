@@ -148,21 +148,11 @@ div#container {
 }
 
 /* CONTENT */
-div.entry-content,
-div.post {
-    background-color: #FFFFC0;
-    padding: 13px;
-    margin-bottom: 13px;
-    width: 100%;
-}
-div.post div.entry-content {
-    padding: 0;
-}
+
 div.page:last-child {
     margin-bottom: 68px;
 }
-header.entry-header,
-h1.page-title {
+article.post {
     background-color: #FFFFC0;
     padding: 13px;
     margin-bottom: 13px;
@@ -235,7 +225,7 @@ ul.gallery img {
 }
 
 div.entry-utility, .entry-meta { /* metadata */
-    margin-top: 13px;
+    margin-bottom: 13px;
     font-size: 10px;
 }
 
