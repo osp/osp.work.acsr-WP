@@ -20,7 +20,40 @@ get_header(); ?>
                 query_posts("showposts=5&paged=$page");
             } ?>
             <?php while ( have_posts() ) : the_post(); ?>
-                <?php get_template_part( 'content', get_post_format() ); ?>
+
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
+        <div class="featured-post">
+            <?php _e( 'Featured post', 'acsr' ); ?>
+        </div>
+        <?php endif; ?>
+        <header class="entry-header">
+            <?php the_post_thumbnail(); ?>
+            <?php if ( is_single() ) : ?>
+            <h1 class="entry-title"><?php the_title(); ?></h1>
+            <?php else : ?>
+            <h1 class="entry-title">
+                <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+            </h1>
+            <div class="entry-meta">
+                <?php acsr_entry_meta(); ?>
+                <?php edit_post_link( __( 'Edit', 'acsr' ), '<span class="edit-link">', '</span>' ); ?>
+            </div><!-- .entry-meta -->
+            <?php endif; // is_single() ?>
+        </header><!-- .entry-header -->
+
+
+        <div class="entry-content">
+            <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?>
+            <?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'acsr' ), 'after' => '</div>' ) ); ?>
+        </div><!-- .entry-content -->
+
+
+
+    </article><!-- #post -->
+
+
+
             <?php endwhile; ?>
 
             <?php acsr_content_nav( 'nav-below' ); ?>
@@ -52,6 +85,13 @@ get_header(); ?>
                     <?php get_search_form(); ?>
                 </div><!-- .entry-content -->
             <?php endif; // end current_user_can() check ?>
+
+
+            <?php // if not first ?>
+            <div class="entry-summary">
+                <?php //the_excerpt(); ?>        
+            </div><!-- .entry-summary -->
+
 
             </article><!-- #post-0 -->
 

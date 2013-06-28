@@ -161,7 +161,7 @@ div.post div.entry-content {
 div.page:last-child {
     margin-bottom: 68px;
 }
-h1.entry-title,
+header.entry-header,
 h1.page-title {
     background-color: #FFFFC0;
     padding: 13px;
@@ -234,7 +234,7 @@ ul.gallery img {
     margin-bottom: 11px;
 }
 
-div.entry-utility { /* metadata */
+div.entry-utility, .entry-meta { /* metadata */
     margin-top: 13px;
     font-size: 10px;
 }
