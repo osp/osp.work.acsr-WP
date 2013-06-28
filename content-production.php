@@ -59,7 +59,9 @@
                     echo "</div>";
                 }
             ?>
-            <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?>
+            <div class="prod-desc">
+                <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?>
+            </div>
             <?php 
                 $equipe = get_post_meta($post->ID, 'wpcf-equipe', true);
                 if($equipe != '') echo "<p class='equipe'>" . $equipe . "</p>";
