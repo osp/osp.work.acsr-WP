@@ -445,6 +445,9 @@ div#nav nav#menu {
     padding: 0px;
     font-weight: bold;
 }
+div#nav nav#menu li:before {
+    content: "";
+}
 div#nav nav#menu a {
     text-decoration: none;
     padding: 0 6px 1px;
