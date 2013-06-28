@@ -152,7 +152,8 @@ div#container {
 div.page:last-child {
     margin-bottom: 68px;
 }
-article.post {
+article.post,
+article.production {
     background-color: #FFFFC0;
     padding: 13px;
     margin-bottom: 13px;
