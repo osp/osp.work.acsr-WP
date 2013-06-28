@@ -15,13 +15,43 @@ get_header(); ?>
         <?php if ( have_posts() ) : ?>
 
             <?php /* Start the Loop */ ?>
+            <?php if (is_home()) {
+                $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+                query_posts("showposts=1&paged=$page");
+            } ?>
             <?php while ( have_posts() ) : the_post(); ?>
-                <?php get_template_part( 'content', get_post_format() ); ?>
+
+    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
+        <div class="featured-post">
+            <?php _e( 'Featured post', 'acsr' ); ?>
+        </div>
+        <?php endif; ?>
+        <header class="entry-header">
+            <?php the_post_thumbnail(); ?>
+            <?php if ( is_single() ) : ?>
+            <h1 class="entry-title"><?php the_title(); ?></h1>
+            <?php else : ?>
+            <h1 class="entry-title">
+                <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+            </h1>
+            <div class="entry-meta">
+                <?php acsr_entry_meta(); ?>
+                <?php edit_post_link( __( 'Edit', 'acsr' ), '<span class="edit-link">', '</span>' ); ?>
+            </div><!-- .entry-meta -->
+            <?php endif; // is_single() ?>
+        </header><!-- .entry-header -->
+
+        <div class="entry-content">
+            <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?>
+            <?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'acsr' ), 'after' => '</div>' ) ); ?>
+        </div><!-- .entry-content -->
+
+    </article><!-- #post -->
+
             <?php endwhile; ?>
 
-            <?php acsr_content_nav( 'nav-below' ); ?>
-
-        <?php else : ?>
+        <?php else : // if no posts ?>
 
             <article id="post-0" class="post no-results not-found">
 
@@ -49,11 +79,24 @@ get_header(); ?>
                 </div><!-- .entry-content -->
             <?php endif; // end current_user_can() check ?>
 
+
+            <?php // if not first ?>
+            <div class="entry-summary">
+                <?php //the_excerpt(); ?>        
+            </div><!-- .entry-summary -->
+
+
             </article><!-- #post-0 -->
 
         <?php endif; // end have_posts() check ?>
 
-
+        <?php /* Display navigation to next/previous pages when applicable */ ?>
+        <?php if (  $wp_query->max_num_pages > 1 ) : ?>
+            <div id="nav-below" class="navigation">
+                <div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> précédent', 'acsr' ) ); ?></div>
+                    <div class="nav-next"><?php previous_posts_link( __( 'suivant <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?></div>
+            </div><!-- #nav-below -->
+        <?php endif; ?>
 <ul id="blog-bar">
     <?php dynamic_sidebar(2); ?>
 </ul>

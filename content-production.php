@@ -20,11 +20,6 @@
                 <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
             </h1>
             <?php endif; // is_single() ?>
-            <?php if ( comments_open() ) : ?>
-                <div class="comments-link">
-                    <?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a reply', 'acsr' ) . '</span>', __( '1 Reply', 'acsr' ), __( '% Replies', 'acsr' ) ); ?>
-                </div><!-- .comments-link -->
-            <?php endif; // comments_open() ?>
         </header><!-- .entry-header -->
 
         <?php if ( is_search() ) : // Only display Excerpts for Search ?>
@@ -64,7 +59,9 @@
                     echo "</div>";
                 }
             ?>
-            <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?>
+            <div class="prod-desc">
+                <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?>
+            </div>
             <?php 
                 $equipe = get_post_meta($post->ID, 'wpcf-equipe', true);
                 if($equipe != '') echo "<p class='equipe'>" . $equipe . "</p>";
