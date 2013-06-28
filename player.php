@@ -62,9 +62,57 @@
 <link rel="stylesheet" type="text/css" media="all" href="/wp-content/themes/acsr/UniversElse/stylesheet.css" />
 <!--<link rel="stylesheet" type="text/css" media="all" href="/wp-content/themes/acsr/style.css" />-->
 
-<script src="/wp-content/themes/acsr/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/wp-content/themes/acsr/js/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/wp-content/themes/acsr/js/flowplayer/example/flowplayer-3.2.6.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/wp-content/themes/acsr/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+
+<link rel='stylesheet' id='mediaelementjs-styles-css'  href='http://acsr.localhost/wp-content/plugins/media-element-html5-video-and-audio-player/mediaelement/mediaelementplayer.css?ver=3.5.2' type='text/css' media='all' />
+<script type='text/javascript' src='http://acsr.localhost/wp-content/plugins/media-element-html5-video-and-audio-player/mediaelement/mediaelement-and-player.min.js?ver=2.1.3'></script>
+
+<style>
+.mejs-container{
+    margin: auto;
+    background: white !important;
+}
+.mejs-time-rail {
+    background-color: white !important;
+    float: none !important;
+}
+.mejs-container .mejs-controls {
+    background: white !important;
+}
+.mejs-controls .mejs-time-rail .mejs-time-loaded {
+    background: black !important;
+}
+.mejs-controls .mejs-time-rail .mejs-time-current {
+    background: white !important;
+    left: -4px;
+    font-family: "UniversElseRegular", "DejaVu Sans", Helvetica, Arial, Sans-Serif;
+}
+.mejs-controls div.mejs-time-rail {
+    padding-top: 0 !important;
+}
+.mejs-controls .mejs-time-rail .mejs-time-total {
+    margin: 0 !important;
+}
+
+.mejs-time-total, 
+.mejs-time-total * {
+    height: 2px !important;
+    outline: 1px solid black;
+}
+.mejs-time-float-corner {
+    outline: 1px solid #FFAA96 !important;
+    width: 0px;
+    border: none !important;
+    height: 10px !important;
+}
+.mejs-time-float,
+.mejs-time-float-current {
+    border: none !important;
+    background: none !important;
+    outline: none !important;
+}
+</style>
+
 <!-- <script src="/wp-content/themes/acsr/js/acsr.js" type="text/javascript" charset="utf-8"></script>-->
 <script charset="utf-8">
    // Read a page's GET URL variables and return them as an associative array.
@@ -84,7 +132,7 @@
 
 
 
-   $(document).ready(function(){
+$(document).ready(function(){
     // Rollover logo
     //$("img#logo").hover(
         //function(){
@@ -118,18 +166,33 @@
     $("img#launcher").click(function(e){
         e.preventDefault();
         if (play) {
-           $f(0).pause();
+           player.pause();
            $(this).attr("src", "/wp-content/themes/acsr/images/play.png");
            play = false;
         }
         else {
            $("a#player").css("display", "block");
-           $f(0).play();
+           player.play();
            $(this).attr("src", "/wp-content/themes/acsr/images/pause.png");
            play = true;
         }
     });
-   });
+    
+    
+       audio = getUrlVars()["audio"];
+       title = unescape(getUrlVars()["title"]);
+       postID = "/?page_id=" + getUrlVars()["postID"];
+       $("a#popupplayer").attr("href", audio);
+       $("a#popupplayer").attr("title", title);
+       $("div#audio-title a").attr("href", postID);
+       $("div#audio-title a").html(title);
+       $("title").text("acsr - en lecture: " + title)
+       
+       $("audio#newplayer").attr("src", audio);
+       
+    var player = new MediaElementPlayer('#newplayer', {features: ['progress']});
+    player.play();
+});
 </script>
 
 <style type="text/css">
@@ -159,97 +222,10 @@ a:hover {
     <img id="launcher" style="margin-top: 13px;" src="/wp-content/themes/acsr/images/pause.png" alt="&#9654;" />
     <a id='popupplayer' class='popupplayer' href='#' title='' style="background: none; display: block; height: 17px; width: 100%; padding: 0; margin-top: 5px; margin-left: 0px;"></a>
 
+<audio id="newplayer" style ="display: none;" src="#" width="120" height="22"></audio>
 
-    <script type="text/javascript" charset="utf-8">
-       audio = getUrlVars()["audio"];
-       title = unescape(getUrlVars()["title"]);
-       postID = "/?page_id=" + getUrlVars()["postID"];
-       $("a#popupplayer").attr("href", audio);
-       $("a#popupplayer").attr("title", title);
-       $("div#audio-title a").attr("href", postID);
-       $("div#audio-title a").html(title);
-       $("title").text("acsr - en lecture: " + title)
 
-        // install flowplayer into container
-        // FIXME: There is something wrong with flowplayer when it is hosted on the server
-        // FIXME: We use the swf on flowplayer website instead
-        $f("popupplayer", "/wp-content/themes/acsr/js/flowplayer/flowplayer-3.2.5.swf",
-        //$f("popupplayer", {
-            //src: "http://releases.flowplayer.org/swf/flowplayer-3.2.7.swf", 
-            version: [10, 0],
-            onFail: function(){
-                alert("Le lecteur audio nécessite le lecteur Flash 10.0.");
-                },
-            },
-            { plugins: {
-                controls: {
-                    fullscreen: false,
-                    time: false,
-                    play: false,
-                    volume: false,
-                    mute: false,
-                    autoHide: false,
-                    height: 17,
-                    backgroundColor: "#FFFFFF",
-                    buttonColor: "#000000",
-                    buttonOverColor: "#999999",
-                },
-            },
-            clip: {
-                autoPlay: true,
-                autoBuffer: true,
-            },
-            onLoad: function() {
-                this.setVolume(100);
-            },
-        });
-    </script>
-<!--[if IE]>
-    <script type="text/javascript" charset="utf-8">
-       audio = getUrlVars()["audio"];
-       title = unescape(getUrlVars()["title"]);
-       postID = "/?page_id=" + getUrlVars()["postID"];
-       $("a#popupplayer").attr("href", audio);
-       $("a#popupplayer").attr("title", title);
-       $("div#audio-title a").attr("href", postID);
-       $("div#audio-title a").html(title);
-       $("title").text("acsr - en lecture: " + title)
 
-        // install flowplayer into container
-        // FIXME: There is something wrong with flowplayer when it is hosted on the server
-        // FIXME: We use the swf on flowplayer website instead
-        $f("popupplayer", "/wp-content/themes/acsr/js/flowplayer/flowplayer-3.2.7.swf", {
-        //$f("popupplayer", {
-            src: "http://releases.flowplayer.org/swf/flowplayer-3.2.7.swf", 
-            version: [10, 0],
-            onFail: function(){
-                alert("Le lecteur audio nécessite le lecteur Flash 10.0.");
-                },
-            },
-            { plugins: {
-                controls: {
-                    fullscreen: false,
-                    time: false,
-                    play: false,
-                    volume: false,
-                    mute: false,
-                    autoHide: false,
-                    height: 17,
-                    backgroundColor: "#FFFFFF",
-                    buttonColor: "#000000",
-                    buttonOverColor: "#999999",
-                },
-            },
-            clip: {
-                autoPlay: true,
-                autoBuffer: true,
-            },
-            onLoad: function() {
-                this.setVolume(100);
-            },
-        });
-    </script>
-<![endif]-->
 
 <!-- Piwik -->
 <script type="text/javascript">

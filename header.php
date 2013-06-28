@@ -98,7 +98,7 @@
 <link rel="stylesheet" type="text/css" media="screen and (max-height: 600px)" href="<?php echo get_template_directory_uri(); ?>/netbook.css" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-<script src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/flowplayer.old/flowplayer-3.2.4.min.js" type="text/javascript" charset="utf-8"></script>
 <!--<script src="<?php echo get_template_directory_uri(); ?>/js/flowplayer/example/flowplayer-3.2.6.min.js" type="text/javascript" charset="utf-8"></script>-->

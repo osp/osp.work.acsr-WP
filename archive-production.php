@@ -132,7 +132,7 @@ get_header(); ?>
                 url = $(this).attr("href");
                 title = $(this).attr("title");
                 postID = $(this).attr("data-link");
-                url = "/wp-content/themes/acsr/player.php?audio=" + url + '&title="' + title + '"&postID=' + postID,'lecteur acsr','height=200,width=150';
+                url = "/wp-content/themes/acsr/player.php?audio=" + url + '&title=' + title + '&postID=' + postID,'lecteur acsr','height=200,width=150';
                 console.log(url);
                 popup = window.open(url);
             });
