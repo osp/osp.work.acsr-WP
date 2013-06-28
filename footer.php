@@ -40,6 +40,7 @@
 ?>
 
 <!-- Piwik -->
+<script src="/wp-content/themes/acsr/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     var pkBaseURL = (("https:" == document.location.protocol) ? "https://stats.stdin.fr/" : "http://stats.stdin.fr/");
     document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));

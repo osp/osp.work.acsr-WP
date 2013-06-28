@@ -77,6 +77,7 @@ $(document).ready(function(){
     // Play audio file from a playlist
     $("a.audio").click(function(e){
         e.preventDefault();
+        /*
         var index = $(this).parent().attr('id').replace("clip", "");
         $("div.active").removeClass('active');
         $(this).parent().parent().addClass('active'); // Blackens corresponding div.production-item
@@ -85,7 +86,13 @@ $(document).ready(function(){
         $f(0).play();
         play = true;
         $("img#launcher").attr("src", "/wp-content/themes/acsr/images/pause.png");
-        $("div#audio-title").text($(this).attr("title"));
-        
+        $("div#audio-title").text($(this).attr("title"));  
+        */
+        url = $(this).attr("href");
+        title = $(this).attr("title");
+        postID = $(this).attr("data-link");
+        url = "/wp-content/themes/acsr/player.php?audio=" + url + '&title="' + title + '"&postID=' + postID,'lecteur acsr','height=200,width=150';
+        popup = window.open(url);
     });
+    
 });
