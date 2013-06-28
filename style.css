@@ -159,7 +159,9 @@ div.page:last-child {
 }
 div.post,
 article.post,
-article.production {
+article.production,
+article.attachment,
+article.galerie {
     background-color: #FFFFC0;
     padding: 13px;
     margin-bottom: 13px;
