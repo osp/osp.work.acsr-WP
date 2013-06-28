@@ -156,6 +156,7 @@ div#container {
 div.page:last-child {
     margin-bottom: 68px;
 }
+div.post,
 article.post,
 article.production {
     background-color: #FFFFC0;
