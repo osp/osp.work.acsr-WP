@@ -592,6 +592,18 @@ div#nav nav#menu a#player {
     margin-left: 13px;
 /*    display: none;*/
 }
+div#nav nav#menu div#le-son-du-mois {
+    background-color: black;
+    color: white;
+    padding: 2px 5px;
+    padding-top: 6px;
+    text-transform: uppercase;
+    margin: auto;
+    margin-top: 13px;
+    width: 39%;
+    font-size: 13px;
+    line-height: 17px;
+}
 div#nav nav#menu img#launcher {
     cursor: pointer;
     margin: 13px auto 7px auto;

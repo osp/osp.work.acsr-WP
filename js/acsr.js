@@ -40,6 +40,12 @@ $(document).ready(function(){
     });
 
     // Rollover Play button
+    $("a.launcher img").hover(
+        function(){
+            $(this).attr("src", home + "/wp-content/themes/acsr/images/play-roll.png");
+        }, function() {
+            $(this).attr("src", home + "/wp-content/themes/acsr/images/play.png");
+    });
     $("a.mini-launcher img").hover(
         function(){
             $(this).attr("src", home + "/wp-content/themes/acsr/images/petit-play-roll.png");

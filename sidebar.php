@@ -23,6 +23,42 @@
     </div>
     <nav id="menu" class="main-navigation" role="navigation">
         <?php wp_nav_menu(array('theme_location' => 'primary', 'menu_class' => 'nav-menu')); ?>
+        
+        <?php 
+            $sticky = get_option( 'sticky_posts' );
+            $args = array(
+                   'post__in'  => $sticky,
+                  	'post_type' => 'production'
+                    );
+            query_posts( $args );
+                
+            if ( have_posts() ) : while ( have_posts() ) : the_post();
+
+            $audio = get_post_meta($post->ID, 'wpcf-audio', false);
+                    // if (get_post_meta($post->ID, 'audio', true)):
+                    if($audio[0] != ''):
+                        //$audio_title = wp_title( '', false, '' );
+                        $audio_title = the_title('', '', false);
+                        
+                        $parse = explode(' --- ', $audio[0]);
+                        if (count($parse)!=1) { // if there are several tracks
+                            $url = $parse[1];
+                        } else { // if there's only one track
+                            $url = $parse[0];
+                        }
+          ?>
+        
+               <div id="le-son-du-mois">le son<br />du mois</div>
+               <div id="audio-title"><em><?php echo the_title(); ?></em></div>
+                   <?php echo "<a class='audio launcher' href='" . $url . "' data-link='".$post->ID ."' style='text-decoration: none;' title='". $audio_title ."'>"; ?>
+                   <img id="launcher" style="margin-top: 13px;" src="<?php echo $home; ?>/wp-content/themes/acsr/images/play.png" alt="&#9654;" />
+               </a>
+        <?php
+            endif;
+            endwhile;
+            endif;
+        ?>
+        
     <!-- Search Form -->
     <?php get_search_form(); ?>
     

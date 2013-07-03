@@ -95,18 +95,15 @@ get_header(); ?>
         <?php endif; ?>
         
         
-        
-        
-            <?php $post_number = 0; ?>
+            <?php 
+                $post_number = 0;
             
-
-            
-            <?php if (is_home()) : ?>
-            <?php if(get_query_var('paged') == 1): 
+            if (is_home()) :
+                if(get_query_var('paged') == 1): 
                 $my_query = new WP_Query('posts_per_page=5&paged=1&post_type=post&ignore_sticky_posts=1');
                 while ($my_query->have_posts()) : $my_query->the_post();
-            ?>
-            <?php if ( $post_number != 0 ) :?>
+            
+            if ( $post_number != 0 ) :?>
                 <div class="latest-post">
                     <h1><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h1>
                     <?php the_excerpt(); ?>

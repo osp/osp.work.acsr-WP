@@ -30,7 +30,7 @@
                            echo "</a> ";
                        } else { // if there's only one track
                            echo "<a class='audio' href='";
-                           echo $parsed[0] . "' title='". $parsed[0] ."'>";
+                           echo $parsed[0] . "' data-link='".$post->ID ."' title='". $parsed[0] ."'>";
                            echo "</a> ";
                        }
                     }
@@ -61,12 +61,12 @@
                               echo "<img class='play' src='" . get_template_directory_uri() . "/images/petit-play.png' style='margin-top: -3px;' alt='&#9654;' /> ";
                            }
                            echo "<a class='audio' href='";
-                           echo $parsed[1] . "' title='". $parsed[0] ."'>" . $parsed[0];
+                           echo $parsed[1] . "' data-link='".$post->ID ."' title='". $parsed[0] ."'>" . $parsed[0];
                            echo "</a> ";
                            $count ++;
                        } else { // if there's only one track
                            echo "<a class='audio' href='";
-                           echo $parsed[0] . "' title='". $parsed[0] ."'><img class='play' src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
+                           echo $parsed[0] . "' data-link='".$post->ID ."' title='". $parsed[0] ."'><img class='play' src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
                            echo "</a> ";
                        }
                     }
