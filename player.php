@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<?php
+// This is just to get a home address that reflects where wordpress is running,
+// i.e. http://127.0.0.1:8080/wordpress
+$a = split('/wp-content', $_SERVER['REQUEST_URI']);
+$home = "http://" . $_SERVER['HTTP_HOST'] . $a[0];
+?>
     <!--
         | | |  |   |  |   |   
         | | |  |   |  |   |   
@@ -31,7 +37,7 @@
     <meta name="expires" content="never" />
     <meta name="Publisher" content="acsr, Bruxelles, Belgium" />
 
-    <meta name="Identifier-URL" content="http://www.acsr.be" />
+    <meta name="Identifier-URL" content="<?php echo $home; ?>" />
 
     <meta name="language" content="fr" />
     <meta name="contactOrganization" content="acsr" />
@@ -58,14 +64,14 @@
 <title>Atelier de Création Sonore Radiophonique - Lecteur</title>
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="stylesheet" type="text/css" media="all" href="/wp-content/themes/acsr/reset.css" />
-<link rel="stylesheet" type="text/css" media="all" href="/wp-content/themes/acsr/UniversElse/stylesheet.css" />
-<!--<link rel="stylesheet" type="text/css" media="all" href="/wp-content/themes/acsr/style.css" />-->
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $home; ?>/wp-content/themes/acsr/reset.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $home; ?>/wp-content/themes/acsr/UniversElse/stylesheet.css" />
+<!--<link rel="stylesheet" type="text/css" media="all" href="<?php echo $home; ?>/wp-content/themes/acsr/style.css" />-->
 
-<script src="/wp-content/themes/acsr/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $home; ?>/wp-content/themes/acsr/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
 
-<link rel='stylesheet' id='mediaelementjs-styles-css'  href='http://acsr.localhost/wp-content/plugins/media-element-html5-video-and-audio-player/mediaelement/mediaelementplayer.css?ver=3.5.2' type='text/css' media='all' />
-<script type='text/javascript' src='http://acsr.localhost/wp-content/plugins/media-element-html5-video-and-audio-player/mediaelement/mediaelement-and-player.min.js?ver=2.1.3'></script>
+<link rel='stylesheet' id='mediaelementjs-styles-css'  href='<?php echo $home; ?>/wp-content/plugins/media-element-html5-video-and-audio-player/mediaelement/mediaelementplayer.css?ver=3.5.2' type='text/css' media='all' />
+<script type='text/javascript' src='<?php echo $home; ?>/wp-content/plugins/media-element-html5-video-and-audio-player/mediaelement/mediaelement-and-player.min.js?ver=2.1.3'></script>
 
 <style>
 .mejs-container{
@@ -113,7 +119,6 @@
 }
 </style>
 
-<!-- <script src="/wp-content/themes/acsr/js/acsr.js" type="text/javascript" charset="utf-8"></script>-->
 <script charset="utf-8">
    // Read a page's GET URL variables and return them as an associative array.
    // from http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html
@@ -130,50 +135,45 @@
        return vars;
    }
 
-
+var home;
 
 $(document).ready(function(){
-    // Rollover logo
-    //$("img#logo").hover(
-        //function(){
-            //$(this).attr("src", "/wp-content/themes/acsr/images/logos/acsr-logo-roll.png");
-        //}, function(){
-            //$(this).attr("src", "/wp-content/themes/acsr/images/logos/acsr-logo.png");
-    //});
-    // Rollover Play/Pause button
-       var play = true;
+    // Find root uri (useful if deployed in a subdirectory locally):
+    home = $("meta[name=Identifier-URL]").attr("content");
+    
+    var play = true;
     $("img#launcher").hover(
         function(){
             if(!play) {
-                $(this).attr("src", "/wp-content/themes/acsr/images/play-roll.png");
+                $(this).attr("src", home + "/wp-content/themes/acsr/images/play-roll.png");
             } else {
-                $(this).attr("src", "/wp-content/themes/acsr/images/pause-roll.png");
+                $(this).attr("src", home + "/wp-content/themes/acsr/images/pause-roll.png");
             }
         }, function(){
             if(!play) {
-                $(this).attr("src", "/wp-content/themes/acsr/images/play.png");
+                $(this).attr("src", home + "/wp-content/themes/acsr/images/play.png");
             } else {
-                $(this).attr("src", "/wp-content/themes/acsr/images/pause.png");
+                $(this).attr("src", home + "/wp-content/themes/acsr/images/pause.png");
             }
     });
     $("a.mini-launcher img").hover(
         function(){
-            $(this).attr("src", "/wp-content/themes/acsr/images/petit-play-roll.png");
+            $(this).attr("src", home + "/wp-content/themes/acsr/images/petit-play-roll.png");
         }, function() {
-            $(this).attr("src", "/wp-content/themes/acsr/images/petit-play.png");
+            $(this).attr("src", home + "/wp-content/themes/acsr/images/petit-play.png");
     });
     // Toggle Play/Pause button
     $("img#launcher").click(function(e){
         e.preventDefault();
         if (play) {
            player.pause();
-           $(this).attr("src", "/wp-content/themes/acsr/images/play.png");
+           $(this).attr("src", home + "/wp-content/themes/acsr/images/play.png");
            play = false;
         }
         else {
            $("a#player").css("display", "block");
            player.play();
-           $(this).attr("src", "/wp-content/themes/acsr/images/pause.png");
+           $(this).attr("src", home + "/wp-content/themes/acsr/images/pause.png");
            play = true;
         }
     });
@@ -181,7 +181,7 @@ $(document).ready(function(){
     
        audio = getUrlVars()["audio"];
        title = unescape(getUrlVars()["title"]);
-       postID = "/?page_id=" + getUrlVars()["postID"];
+       postID = home + "/?page_id=" + getUrlVars()["postID"];
        $("a#popupplayer").attr("href", audio);
        $("a#popupplayer").attr("title", title);
        $("div#audio-title a").attr("href", postID);
@@ -214,17 +214,15 @@ a:hover {
 <body style="text-align: center; width: 100%; font-family: 'UniversElseRegular', Deja Vu Sans, Helvetica, Arial, Sans; font-size: 13px; padding-bottom: 18px;">
     <div id="logo" role="logo">
         <h1><a href='/' style="background: none!important">
-            <img id="logo" src="/wp-content/themes/acsr/images/logos/acsr_logo-web.png" alt="l'atelier de création sonore radiophonique" border="0" style="margin-bottom: 18px; width: 100px"/>
+            <img id="logo" src="<?php echo $home; ?>/wp-content/themes/acsr/images/logos/acsr_logo-web.png" alt="l'atelier de création sonore radiophonique" border="0" style="margin-bottom: 18px; width: 100px"/>
         </a></h1>
     </div>
     
     <div id="audio-title" style=""><a href="#" target="_blank">.</a></div>
-    <img id="launcher" style="margin-top: 13px;" src="/wp-content/themes/acsr/images/pause.png" alt="&#9654;" />
+    <img id="launcher" style="margin-top: 13px;" src="<?php echo $home; ?>/wp-content/themes/acsr/images/pause.png" alt="&#9654;" />
     <a id='popupplayer' class='popupplayer' href='#' title='' style="background: none; display: block; height: 17px; width: 100%; padding: 0; margin-top: 5px; margin-left: 0px;"></a>
 
 <audio id="newplayer" style ="display: none;" src="#" width="120" height="22"></audio>
-
-
 
 
 <!-- Piwik -->

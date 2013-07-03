@@ -51,7 +51,7 @@
     <meta name="expires" content="never" />
     <meta name="Publisher" content="acsr, Bruxelles, Belgium" />
 
-    <meta name="Identifier-URL" content="http://www.acsr.be" />
+    <meta name="Identifier-URL" content="<?php echo get_home_url(); ?>" />
 
     <meta name="language" content="fr" />
     <meta name="contactOrganization" content="acsr" />

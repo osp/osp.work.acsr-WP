@@ -127,20 +127,5 @@ query_posts('posts_per_page=12&paged='.$page.'&post_type=production&orderby=meta
         </article>
         
         
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(function(){
-            // popup player
-            $("a.mini-launcher").click(function(e){
-                e.preventDefault();
-                url = $(this).attr("href");
-                title = $(this).attr("title");
-                postID = $(this).attr("data-link");
-                url = "/wp-content/themes/acsr/player.php?audio=" + url + '&title=' + title + '&postID=' + postID,'lecteur acsr','height=200,width=150';
-                console.log(url);
-                popup = window.open(url);
-            });
-        });
-    </script>
-        
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

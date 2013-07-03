@@ -1,4 +1,9 @@
+var home;
+
 $(document).ready(function(){
+
+    // Find root uri (useful if deployed in a subdirectory locally):
+    home = $("meta[name=Identifier-URL]").attr("content");
 
     // Show on which page we are:
     $(".nav-menu li a").each(function() {
@@ -34,71 +39,22 @@ $(document).ready(function(){
         $(this).next().slideToggle('easeInOutQuint');
     });
 
-    // Rollover logo
-    //$("img#logo").hover(
-        //function(){
-            //$(this).attr("src", "/wp-content/themes/acsr/images/logos/acsr-logo-roll.png");
-        //}, function(){
-            //$(this).attr("src", "/wp-content/themes/acsr/images/logos/acsr-logo.png");
-    //});
-
-    // Rollover Play/Pause button
-    $("img#launcher").hover(
-        function(){
-            if(!play) {
-                $(this).attr("src", "/wp-content/themes/acsr/images/play-roll.png");
-            } else {
-                $(this).attr("src", "/wp-content/themes/acsr/images/pause-roll.png");
-            }
-        }, function(){
-            if(!play) {
-                $(this).attr("src", "/wp-content/themes/acsr/images/play.png");
-            } else {
-                $(this).attr("src", "/wp-content/themes/acsr/images/pause.png");
-            }
-    });
+    // Rollover Play button
     $("a.mini-launcher img").hover(
         function(){
-            $(this).attr("src", "/wp-content/themes/acsr/images/petit-play-roll.png");
+            $(this).attr("src", home + "/wp-content/themes/acsr/images/petit-play-roll.png");
         }, function() {
-            $(this).attr("src", "/wp-content/themes/acsr/images/petit-play.png");
+            $(this).attr("src", home + "/wp-content/themes/acsr/images/petit-play.png");
     });
     
-    // Toggle Play/Pause button
-    var play = false;
-    $("img#launcher").click(function(e){
-        e.preventDefault();
-        if (play) {
-           $f(0).pause();
-           $(this).attr("src", "/wp-content/themes/acsr/images/play.png");
-           play = false;
-        }
-        else {
-           $("a#player").css("display", "block");
-           $f(0).play();
-           $(this).attr("src", "/wp-content/themes/acsr/images/pause.png");
-           play = true;
-        }
-    });
     
     // Play audio file from a playlist
     $("a.audio").click(function(e){
         e.preventDefault();
-        /*
-        var index = $(this).parent().attr('id').replace("clip", "");
-        $("div.active").removeClass('active');
-        $(this).parent().parent().addClass('active'); // Blackens corresponding div.production-item
-        $f(0).stop();
-        $f(0).getClip(index);
-        $f(0).play();
-        play = true;
-        $("img#launcher").attr("src", "/wp-content/themes/acsr/images/pause.png");
-        $("div#audio-title").text($(this).attr("title"));  
-        */
         url = $(this).attr("href");
         title = $(this).attr("title");
         postID = $(this).attr("data-link");
-        url = "/wp-content/themes/acsr/player.php?audio=" + url + '&title="' + title + '"&postID=' + postID,'lecteur acsr','height=200,width=150';
+        url = home + "/wp-content/themes/acsr/player.php?audio=" + url + '&title="' + title + '"&postID=' + postID,'lecteur acsr','height=200,width=150';
         popup = window.open(url);
     });
     
