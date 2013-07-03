@@ -12,7 +12,7 @@
         <?php if (is_home()): ?>
             <a href="<?php echo home_url(); ?>">
                 <img id="logogris" src="<?php echo get_template_directory_uri(); ?>/images/logos/acsr_logo-web-roll.png" alt="l'atelier de création sonore radiophonique" border="0" />
-                <img src="<?php echo get_template_directory_uri(); ?>/images/logos/acsr_logo_intro.png" alt="l'atelier de création sonore radiophonique" border="0" /></a>
+                <img style="margin-top: -14px;" src="<?php echo get_template_directory_uri(); ?>/images/logos/acsr_logo_intro.png" alt="l'atelier de création sonore radiophonique" border="0" /></a>
         <?php else : ?>
             <a href="<?php echo home_url(); ?>">
                 <img id="logogris" src="<?php echo get_template_directory_uri(); ?>/images/logos/acsr_logo-web-roll.png" alt="l'atelier de création sonore radiophonique" border="0" />
