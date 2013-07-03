@@ -58,7 +58,7 @@
                        $parsed = explode(' --- ', $val);
                        if (count($parsed)!=1) { // if there are several tracks
                            if ($count==0){ 
-                              echo "<img class='play' src='/wp-content/themes/acsr/images/petit-play.png' style='margin-top: -3px;' alt='&#9654;' /> ";
+                              echo "<img class='play' src='" . get_template_directory_uri() . "/images/petit-play.png' style='margin-top: -3px;' alt='&#9654;' /> ";
                            }
                            echo "<a class='audio' href='";
                            echo $parsed[1] . "' title='". $parsed[0] ."'>" . $parsed[0];
@@ -66,7 +66,7 @@
                            $count ++;
                        } else { // if there's only one track
                            echo "<a class='audio' href='";
-                           echo $parsed[0] . "' title='". $parsed[0] ."'><img class='play' src='/wp-content/themes/acsr/images/petit-play.png' alt='&#9654;' />";
+                           echo $parsed[0] . "' title='". $parsed[0] ."'><img class='play' src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
                            echo "</a> ";
                        }
                     }

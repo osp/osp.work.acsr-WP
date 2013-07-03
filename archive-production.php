@@ -16,7 +16,9 @@
 
 get_header(); ?>
 
-<?php query_posts('posts_per_page=12&paged='.$page.'&post_type=production&orderby=meta_value&meta_key=wpcf-annee&order=DESC');?>
+<?php
+$page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+query_posts('posts_per_page=12&paged='.$page.'&post_type=production&orderby=meta_value&meta_key=wpcf-annee&order=DESC');?>
 
     <section id="primary" class="site-content">
         <div id="content" role="main">
@@ -39,12 +41,13 @@ get_header(); ?>
                 ?></h1>
                 
             </header><!-- .archive-header -->
-            
+    <!--
     <ul id="resort">
         <li><a href="/?page_id=12#productions-achevees" <?php if ($annee) { echo "class='active'";} ?>>par année</a></li>
         <li><a href="/?page_id=1139#productions-achevees" <?php if ($titre) { echo "class='active'";} ?>>par titre</a></li>
         <li><a href="/?page_id=40#productions-achevees" <?php if ($genre) { echo "class='active'";} ?>>par genre</a></li>
-    </ul>          
+    </ul>
+    -->          
 <div id="prod-finies">
   
                         
@@ -84,7 +87,7 @@ get_header(); ?>
                         }
                         echo "<div class='clip' id='clip". $i . "'>";
                         echo "<a class='audio mini-launcher' href='" . $url . "' style='text-decoration: none;' title='". $audio_title ."'>"; 
-                        echo "<img src='/wp-content/themes/acsr/images/petit-play.png' alt='&#9654;' />";
+                        echo "<img src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
                         echo "</a>";
                         echo "</div>";
                     endif;
@@ -132,7 +135,7 @@ get_header(); ?>
                 url = $(this).attr("href");
                 title = $(this).attr("title");
                 postID = $(this).attr("data-link");
-                url = "/wp-content/themes/acsr/player.php?audio=" + url + '&title="' + title + '"&postID=' + postID,'lecteur acsr','height=200,width=150';
+                url = "/wp-content/themes/acsr/player.php?audio=" + url + '&title=' + title + '&postID=' + postID,'lecteur acsr','height=200,width=150';
                 console.log(url);
                 popup = window.open(url);
             });

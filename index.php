@@ -12,6 +12,9 @@
  */
 
 get_header(); ?>
+
+
+
         <?php if ( have_posts() ) : ?>
 
             <?php /* Start the Loop */ ?>
@@ -79,13 +82,6 @@ get_header(); ?>
                 </div><!-- .entry-content -->
             <?php endif; // end current_user_can() check ?>
 
-
-            <?php // if not first ?>
-            <div class="entry-summary">
-                <?php //the_excerpt(); ?>        
-            </div><!-- .entry-summary -->
-
-
             </article><!-- #post-0 -->
 
         <?php endif; // end have_posts() check ?>
@@ -97,6 +93,28 @@ get_header(); ?>
                     <div class="nav-next"><?php previous_posts_link( __( 'suivant <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?></div>
             </div><!-- #nav-below -->
         <?php endif; ?>
+        
+        
+        
+        
+            <?php $post_number = 0; ?>
+            <?php if (is_home()) {
+                $my_query = new WP_Query('posts_per_page=5&paged=1&post_type=post');
+                while ($my_query->have_posts()) : $my_query->the_post();
+                    if ( $post_number != 0 ) :
+            ?>
+                <div class="latest-post">
+                    <?php the_title(); ?>
+                    <?php the_excerpt(); ?>
+                </div>
+            <?php    
+                    endif;
+                $post_number++;
+                endwhile; 
+            }?>
+
+        
+        
 <ul id="blog-bar">
     <?php dynamic_sidebar(2); ?>
 </ul>

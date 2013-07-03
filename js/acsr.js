@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+    // Show on which page we are:
+    $(".nav-menu li a").each(function() {
+        if ( $(this).attr('href') == document.location.href ) {
+            $(this).addClass("active");
+        };
+    }); 
+
     // Rename Language ISO CODE
     $("ul.qtrans_language_chooser .lang-fr a").text("FR");
     $("ul.qtrans_language_chooser .lang-nl a").text("NL");
