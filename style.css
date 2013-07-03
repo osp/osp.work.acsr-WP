@@ -482,7 +482,9 @@ div#nav div#logo a:hover img#logogris{
 div#nav img#logogris {
     display:none;
     position:absolute;
-    top:10px;
+    top:-25px;
+    left:-15px;
+    z-index:900;
     }
 
 div#logogris {
