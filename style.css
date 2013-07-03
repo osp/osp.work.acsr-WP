@@ -25,7 +25,7 @@ body {
 }
 
 a {
-    color: black;
+    color: inherit;
 }
 a:hover {
     color: white;
@@ -399,6 +399,53 @@ div.resource-content strong {
     font-family: "UniversElseRegular", "DejaVu Sans", Helvetica, Arial, Sans-Serif;
 }
 
+
+/* BLOG STICKY */
+.sticky {
+    background-color: #FFAA96 !important;
+}   
+.sticky .news-cat {
+    text-align: center;
+    font-family: "UniversElseLight", "DejaVu Sans", Helvetica, Arial, Sans-Serif;
+    letter-spacing: 2px;
+    font-size: 10px;
+}
+.sticky h1 {
+    text-align: center;
+}
+/* BLOG LATEST POSTS */
+div.latest-post {
+    background-color: lightgray;
+    width: 42%;
+    padding: 13px;
+    float: left;
+    height: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+div.latest-post:nth-child(even) {
+    margin-right: 10px;
+}
+div.latest-post h1 {
+    font-size: 13px;
+    line-height: 17px;
+    color: white;
+    background-color: black;
+    padding: 2px 5px;
+    display: inline-block;
+}
+div.latest-post h1:hover {
+    background-color: yellow;
+    color: black;
+}
+div.latest-post a {
+    text-decoration: none;
+    background-color: inherit;
+}
+div.latest-post a:hover {
+    color: black;
+}
 /* BLOG-BAR */
 ul#blog-bar {
     width: 36em;
