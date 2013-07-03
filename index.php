@@ -13,11 +13,9 @@
 
 get_header(); ?>
 
-
-
         <?php if ( have_posts() ) : ?>
-
             <?php /* Start the Loop */ ?>
+            
             <?php if (is_home()) {
                 $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
                 query_posts("showposts=1&paged=$page");
@@ -26,30 +24,32 @@ get_header(); ?>
 
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
         <?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
-        <div class="featured-post">
-            <?php _e( 'Featured post', 'acsr' ); ?>
-        </div>
-        <?php endif; ?>
-        <header class="entry-header">
-            <?php the_post_thumbnail(); ?>
-            <?php if ( is_single() ) : ?>
-            <h1 class="entry-title"><?php the_title(); ?></h1>
+            <div class="featured-post">
+                <div class="news-cat"><?php _e( 'NEWS', 'acsr' ); ?></div>
+                <h1 class="entry-title"><?php the_title(); ?></h1>
+                <?php the_excerpt(); ?>
+            </div>
             <?php else : ?>
-            <h1 class="entry-title">
-                <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
-            </h1>
-            <div class="entry-meta">
-                <?php acsr_entry_meta(); ?>
-                <?php edit_post_link( __( 'Edit', 'acsr' ), '<span class="edit-link">', '</span>' ); ?>
-            </div><!-- .entry-meta -->
-            <?php endif; // is_single() ?>
-        </header><!-- .entry-header -->
+                <header class="entry-header">
+                <?php the_post_thumbnail(); ?>
+                <?php if ( is_single() ) : ?>
+                    <h1 class="entry-title"><?php the_title(); ?></h1>
+                <?php else : ?>
+                    <h1 class="entry-title">
+                        <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+                    </h1>
+                    <div class="entry-meta">
+                        <?php acsr_entry_meta(); ?>
+                        <?php edit_post_link( __( 'Edit', 'acsr' ), '<span class="edit-link">', '</span>' ); ?>
+                    </div><!-- .entry-meta -->
+                <?php endif; // is_single() ?>
+                </header><!-- .entry-header -->
 
-        <div class="entry-content">
-            <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?>
-            <?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'acsr' ), 'after' => '</div>' ) ); ?>
-        </div><!-- .entry-content -->
-
+                <div class="entry-content">
+                    <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?>
+                    <?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'acsr' ), 'after' => '</div>' ) ); ?>
+                </div><!-- .entry-content -->
+            <?php endif; ?>
     </article><!-- #post -->
 
             <?php endwhile; ?>
@@ -98,20 +98,28 @@ get_header(); ?>
         
         
             <?php $post_number = 0; ?>
-            <?php if (is_home()) {
-                $my_query = new WP_Query('posts_per_page=5&paged=1&post_type=post');
+            
+
+            
+            <?php if (is_home()) : ?>
+            <?php if(get_query_var('paged') == 1): 
+                $my_query = new WP_Query('posts_per_page=5&paged=1&post_type=post&ignore_sticky_posts=1');
                 while ($my_query->have_posts()) : $my_query->the_post();
-                    if ( $post_number != 0 ) :
             ?>
+            <?php if ( $post_number != 0 ) :?>
                 <div class="latest-post">
-                    <?php the_title(); ?>
+                    <h1><a href='<?php the_permalink(); ?>'><?php the_title(); ?></a></h1>
                     <?php the_excerpt(); ?>
+                    <div class="entry-meta">
+                        <?php acsr_entry_meta(); ?>
+                    </div><!-- .entry-meta -->
                 </div>
             <?php    
                     endif;
                 $post_number++;
                 endwhile; 
-            }?>
+                endif;
+            endif; ?>
 
         
         
