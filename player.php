@@ -66,7 +66,7 @@ $home = "http://" . $_SERVER['HTTP_HOST'] . $a[0];
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo $home; ?>/wp-content/themes/acsr/reset.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo $home; ?>/wp-content/themes/acsr/UniversElse/stylesheet.css" />
-<!--<link rel="stylesheet" type="text/css" media="all" href="<?php echo $home; ?>/wp-content/themes/acsr/style.css" />-->
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $home; ?>/wp-content/themes/acsr/style.css" />
 
 <script src="<?php echo $home; ?>/wp-content/themes/acsr/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
 
@@ -74,6 +74,19 @@ $home = "http://" . $_SERVER['HTTP_HOST'] . $a[0];
 <script type='text/javascript' src='<?php echo $home; ?>/wp-content/plugins/media-element-html5-video-and-audio-player/mediaelement/mediaelement-and-player.min.js?ver=2.1.3'></script>
 
 <style>
+#header img {
+    left: 25%;
+}
+#audio-annee,
+#audio-duree, 
+#audio-genre {
+    background-color: black;
+    color: white;
+    padding: 2px 5px;
+    display: inline;
+}
+
+
 .mejs-container{
     margin: auto;
     background: white !important;
@@ -180,12 +193,18 @@ $(document).ready(function(){
     
     
        audio = getUrlVars()["audio"];
+       annee = getUrlVars()["annee"];
+       duree = getUrlVars()["duree"];
+       genre = getUrlVars()["genre"];
        title = unescape(getUrlVars()["title"]);
        postID = home + "/?page_id=" + getUrlVars()["postID"];
        $("a#popupplayer").attr("href", audio);
        $("a#popupplayer").attr("title", title);
        $("div#audio-title a").attr("href", postID);
        $("div#audio-title a").html(title);
+       $("div#audio-annee").html(annee);
+       $("div#audio-duree").html(duree);
+       $("div#audio-genre").html(genre);
        $("title").text("acsr - en lecture: " + title)
        
        $("audio#newplayer").attr("src", audio);
@@ -212,14 +231,55 @@ a:hover {
 </head>
 
 <body style="text-align: center; width: 100%; font-family: 'UniversElseRegular', Deja Vu Sans, Helvetica, Arial, Sans; font-size: 13px; padding-bottom: 18px;">
+
+    <div id="header">
+        <?php
+         $texturelist='';
+          //$img_folder is the variable that holds the path to the banner images. Mine is images/tutorials/
+        // see that you don't forget about the "/" at the end 
+         $texture_folder = "images/textures/";
+
+          mt_srand((double)microtime()*1000);
+
+          //use the directory class
+         $textures = dir($texture_folder);
+
+          //read all files from the  directory, checks if are images and ads them to a list (see below how to display flash banners)
+         while ($file = $textures->read()) {
+           if (eregi("gif", $file) || eregi("jpg", $file) || eregi("png", $file))
+             $texturelist .= "$file ";
+
+         } closedir($textures->handle);
+
+          //put all images into an array
+         $texturelist = explode(" ", $texturelist);
+         $no = sizeof($texturelist)-2;
+
+         //generate a random number between 0 and the number of images
+         $random = mt_rand(0, $no);
+         $texture = $texturelist[$random];
+
+        //display image
+         echo '<img id="texture" src="'. $home .'/wp-content/themes/acsr/images/textures/' .$texture.'" border=0>';
+        ?>
+    </div>
+
+
+
+
     <div id="logo" role="logo">
-        <h1><a href='/' style="background: none!important">
+        <h1><a href='/' target="_blank" style="background: none!important">
             <img id="logo" src="<?php echo $home; ?>/wp-content/themes/acsr/images/logos/acsr_logo-web.png" alt="l'atelier de création sonore radiophonique" border="0" style="margin-bottom: 18px; width: 100px"/>
         </a></h1>
     </div>
     
-    <div id="audio-title" style=""><a href="#" target="_blank">.</a></div>
-    <img id="launcher" style="margin-top: 13px;" src="<?php echo $home; ?>/wp-content/themes/acsr/images/pause.png" alt="&#9654;" />
+    <div id="audio-title" style="margin-bottom: 7px;"><em><a href="#" target="_blank">.</a></em></div>
+    <div id="audio-annee">.</div>
+    <div id="audio-duree">.</div>
+    <div id="audio-genre">.</div>
+    <div>
+        <img id="launcher" style="margin-top: 13px; clear: left;" src="<?php echo $home; ?>/wp-content/themes/acsr/images/pause.png" alt="&#9654;" />
+    </div>
     <a id='popupplayer' class='popupplayer' href='#' title='' style="background: none; display: block; height: 17px; width: 100%; padding: 0; margin-top: 5px; margin-left: 0px;"></a>
 
 <audio id="newplayer" style ="display: none;" src="#" width="120" height="22"></audio>
