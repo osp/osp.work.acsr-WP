@@ -618,6 +618,9 @@ div#nav nav#menu div#audio-title {
     margin-left: 5px;
     padding: 3px 2px;
 }
+div#audio-title a {
+    padding: 2px 5px;
+}
 div#nav nav#menu div#languages {
     margin-top: 13px;
     font-size: 9px;
