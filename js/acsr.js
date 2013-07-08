@@ -60,7 +60,7 @@ $(document).ready(function(){
         url = $(this).attr("href");
         title = $(this).attr("title");
         postID = $(this).attr("data-link");
-        url = home + "/wp-content/themes/acsr/player.php?audio=" + url + '&title="' + title + '"&postID=' + postID,'lecteur acsr','height=200,width=150';
+        url = home + "/wp-content/themes/acsr/player.php?audio=" + url + '&title=' + title + '&postID=' + postID,'lecteur acsr','height=200,width=150';
         popup = window.open(url);
     });
     
