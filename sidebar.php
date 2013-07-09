@@ -28,11 +28,11 @@
             $sticky = get_option( 'sticky_posts' );
             $args = array(
                    'post__in'  => $sticky,
-                  	'post_type' => 'production'
+                   'post_type' => 'production'
                     );
             query_posts( $args );
                 
-            if ( have_posts() ) : while ( have_posts() ) : the_post();
+            if ( $sticky && have_posts() ) : while ( have_posts() ) : the_post();
 
             $audio = get_post_meta($post->ID, 'wpcf-audio', false);
             $annee = get_post_meta($post->ID, 'wpcf-annee', false)[0];
@@ -55,7 +55,7 @@
                <div id="le-son-du-mois">le son<br />du mois</div>
                <div id="audio-title"><em><a style="background: none;" href="<?php the_permalink(); ?>"><?php echo $audio_title; ?></a></em></div>
                    <?php echo "<a class='audio launcher' href='" . $url . "' data-link='".$post->ID ."' style='text-decoration: none;' title='". $audio_title ."'>"; ?>
-                   <img id="launcher" style="margin-top: 13px;" src="<?php echo $home; ?>/wp-content/themes/acsr/images/play.png" alt="&#9654;" />
+                   <img id="launcher" style="margin-top: 13px;" src="<?php echo get_template_directory_uri(); ?>/images/play.png" alt="&#9654;" />
                </a>
         <?php
             endif;
