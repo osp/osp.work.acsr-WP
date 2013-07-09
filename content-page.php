@@ -5,7 +5,7 @@
  */
 ?>
 
-    <div class='post'>
+    <div class='post' id="post-<?php the_ID();?>">
         <h1 id="title-<?php the_ID(); ?>" class="project-title">
             <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark">
                 <?php the_title(); ?>

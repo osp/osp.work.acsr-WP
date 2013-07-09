@@ -76,6 +76,19 @@ img {
     vertical-align: 15px;
 }
 
+input {
+    border: 1px solid black;
+    color: black;
+    background: none;
+    max-width: 50%;
+}
+input[type=submit]:hover{
+    cursor: pointer;
+    color: white;
+    background-color: black;
+}
+
+
 div#container li:before {
     content: "– ";
 }
@@ -577,20 +590,28 @@ div#nav nav#menu a:hover, div#nav nav#menu li.active a {
 div#nav nav#menu a#popup {
     font-size: 13px;
 }
-div#nav form {
-    margin-top: 13px;
-}
 div#nav input[type=text] {
     border: 1px solid #FFAA96;
     width: 8em;
     height: 17px;
     padding: 0;
+    float: none;
+    background-color: white;
+    clear: both;
+    display: inline-block;
+    max-width: 100%;
 }
 div#nav input[type=submit] {
     background-color: white;
     border: none;
     border-bottom: 1px solid black;
     padding: 0;
+    float: none;
+    clear: both;
+    display: inline-block;
+}
+div#nav input[type=submit]:hover {
+    background-color: black;
 }
 
 div#nav nav#menu a#player {
@@ -656,7 +677,32 @@ div#footer * {
 }
 
 
-/* WPPA-GALLERY */
-div#wppa-container-1 {
-    float: none !important;
+/* À PROPOS DE NOUS */
+#post-4418 {
+    background-color: yellow;
+    min-height: 17px;
+}
+#post-4418 h1 {
+    font-size: 13px;
+    line-height: 17px;
+    display: inline;
+    float: left;
+    margin-right: 5px;
+    font-weight: normal;
+}
+#post-4418 h1 a:after {
+    content: ": ";
+}
+#post-4418 h1 a {
+    text-decoration: none;
+}
+#newsletter-bt {
+    display: inline;
+}
+#newsletter-bt form {
+    display: none;
+    padding-top: 13px;
+}
+#newsletter-bt:hover form {
+    display: block;
 }
