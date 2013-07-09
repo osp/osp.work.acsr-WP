@@ -159,6 +159,7 @@ div.page:last-child {
 }
 div.post,
 article.post,
+article.page,
 article.production,
 article.attachment,
 article.galerie {
@@ -387,7 +388,6 @@ body.single-production img.play {
     float: left;
     margin-right: 7px;
 }
-
 
 /* RESSOURCES */
 div.resource-content {
