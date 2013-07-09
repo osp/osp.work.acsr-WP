@@ -257,6 +257,12 @@ img.first-image {
     max-width: 100%;
     margin-top: 26px;
 }
+div.entry-attachment {
+    margin-top: 26px;
+}
+span.next-image {
+    float: right;
+}
 
 /* NAVIGATION PREV./NEXT */
 div#nav-below {

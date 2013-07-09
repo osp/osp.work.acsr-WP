@@ -34,10 +34,6 @@ get_header(); ?>
                             <?php edit_post_link( __( 'Edit', 'acsr' ), '<span class="edit-link">', '</span>' ); ?>
                         </footer><!-- .entry-meta -->
 
-                        <nav id="image-navigation" class="navigation" role="navigation">
-                            <span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous', 'acsr' ) ); ?></span>
-                            <span class="next-image"><?php next_image_link( false, __( 'Next &rarr;', 'acsr' ) ); ?></span>
-                        </nav><!-- #image-navigation -->
                     </header><!-- .entry-header -->
 
                     <div class="entry-content">
@@ -79,6 +75,10 @@ endif;
                                     <?php the_excerpt(); ?>
                                 </div>
                                 <?php endif; ?>
+                                <nav id="image-navigation" class="navigation" role="navigation">
+                                    <span class="previous-image"><?php previous_image_link( false, __( '&larr; Previous', 'acsr' ) ); ?></span>
+                                    <span class="next-image"><?php next_image_link( false, __( 'Next &rarr;', 'acsr' ) ); ?></span>
+                                </nav><!-- #image-navigation -->
                             </div><!-- .attachment -->
 
                         </div><!-- .entry-attachment -->
