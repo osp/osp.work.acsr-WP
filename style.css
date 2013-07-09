@@ -253,6 +253,11 @@ div.entry-utility, .entry-meta { /* metadata */
     font-size: 10px;
 }
 
+img.first-image {
+    max-width: 100%;
+    margin-top: 26px;
+}
+
 /* NAVIGATION PREV./NEXT */
 div#nav-below {
     padding: 7px 13px;

@@ -458,3 +458,28 @@ function acsr_customize_preview_js() {
     wp_enqueue_script( 'acsr-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20120827', true );
 }
 add_action( 'customize_preview_init', 'acsr_customize_preview_js' );
+
+
+function catch_that_image() {
+    // FETCHES FIRST IMAGE OF A POST
+    global $post, $posts;
+    $first_img = '';
+    ob_start();
+    ob_end_clean();
+
+
+    $transformed_content = apply_filters('the_content',$post->post_content);
+
+
+    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $transformed_content, $matches);
+    $first_img = $matches [1] [0];
+
+    if(empty($first_img)){ //Defines a default image
+        $first_img = "/images/default.jpg";
+    }
+    $pattern = '/(\d+)-(\d+)x(\d+).(\w+)/i';
+    $replace = '${1}.${4}';
+    $output = preg_replace("/".$pattern."/", $replace, $first_img);
+return preg_replace($pattern, $replace, $first_img);
+
+}

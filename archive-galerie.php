@@ -36,16 +36,37 @@ get_header(); ?>
 
             <?php
             /* Start the Loop */
-            while ( have_posts() ) : the_post();
+            while ( have_posts() ) : the_post();?>
+            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
+                <div class="featured-post">
+                    <?php _e( 'Featured post', 'acsr' ); ?>
+                </div>
+                <?php endif; ?>
+                <header class="entry-header">
+                    <?php the_post_thumbnail(); ?>
+                    <?php if ( is_single() ) : ?>
+                    <h1 class="entry-title"><?php the_title(); ?></h1>
+                    <?php else : ?>
+                    <h1 class="entry-title">
+                        <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+                    </h1>
+                    <?php endif; // is_single() ?>
+                </header><!-- .entry-header -->
 
-                /* Include the post format-specific template for the content. If you want to
-                 * this in a child theme then include a file called called content-___.php
-                 * (where ___ is the post format) and that will be used instead.
-                 */
-                get_template_part( 'content', get_post_format() );
+                <?php if ( is_search() ) : // Only display Excerpts for Search ?>
+                    <div class="entry-summary">
+                        <?php the_excerpt(); ?>
+                    </div><!-- .entry-summary -->
+                <?php else : ?>
+                    <div class="entry-content">
+                        <?php the_excerpt(); ?>
+                        <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><img src="<?php echo catch_that_image();?>" class="first-image" alt="" /></a>
+                    </div><!-- .entry-content -->
+                <?php endif; ?>
 
-            endwhile;
-            ?>
+            </article><!-- #post -->
+            <?php endwhile; ?>
 
         <?php else : ?>
             <?php get_template_part( 'content', 'none' ); ?>
