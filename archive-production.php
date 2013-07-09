@@ -18,8 +18,48 @@ get_header(); ?>
 
 <?php
 $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
-query_posts('posts_per_page=12&paged='.$page.'&post_type=production&orderby=meta_value&meta_key=wpcf-annee&order=DESC');?>
 
+// These are the default options
+// correspond to url /production/
+
+$args = array(  'posts_per_page' => 12, 
+                'paged' => $page,
+                'post_type' => 'production',
+                'orderby' => 'meta_value',
+                'meta_key' => 'wpcf-annee',
+                'order' => 'DESC');
+
+/*  We allow to specify a different order through the url, i.e.
+ *
+ *  /production/?order=ASC
+ */
+
+if (array_key_exists('order', $_GET))  {
+    $args['order'] = $_GET['order'];
+}
+
+/*  We also allow to specify a different column to order by,
+ *  and in case of ordering by a meta value, which one:
+ * 
+ *  /production/?orderby=title
+ *  /production/?orderby=title&order=ASC
+ *  /production/?orderby=meta_value&meta_key=wpcf-genre&order=ASC
+ *
+ */
+ 
+if ( array_key_exists('orderby', $_GET) )  {
+    $args['orderby'] = $_GET['orderby'];
+    if ( $_GET['orderby'] == 'meta_value' && array_key_exists('meta_key', $_GET))  {
+        $args['meta_key'] = $_GET['meta_key'];
+    }
+}
+
+if ($args['orderby'] != 'meta_value') {
+    unset( $args['meta_key'] );
+}
+
+query_posts($args);
+?>
     <section id="primary" class="site-content">
         <div id="content" role="main">
 
@@ -41,13 +81,20 @@ query_posts('posts_per_page=12&paged='.$page.'&post_type=production&orderby=meta
                 ?></h1>
                 
             </header><!-- .archive-header -->
-    <!--
+    
     <ul id="resort">
-        <li><a href="/?page_id=12#productions-achevees" <?php if ($annee) { echo "class='active'";} ?>>par année</a></li>
-        <li><a href="/?page_id=1139#productions-achevees" <?php if ($titre) { echo "class='active'";} ?>>par titre</a></li>
-        <li><a href="/?page_id=40#productions-achevees" <?php if ($genre) { echo "class='active'";} ?>>par genre</a></li>
+        <?php
+            // this is so it works also if pretty permalinks are not enabled:
+            $production_uri = "/?post_type=production&";
+            if ( get_option( "permalink_structure" ) ) {
+                $production_uri = "/production/?";
+            }
+        ?>
+        <li><a href="<?php echo get_home_url(); ?><?php echo $production_uri ?>" <?php if ($args['meta_key'] == 'wpcf-annee') { echo "class='active'";} ?>>par année</a></li>
+        <li><a href="<?php echo get_home_url(); ?><?php echo $production_uri ?>orderby=title&order=ASC" <?php if ($args['orderby'] == 'title') { echo "class='active'";} ?>>par titre</a></li>
+        <li><a href="<?php echo get_home_url(); ?><?php echo $production_uri ?>orderby=meta_value&meta_key=wpcf-genre&order=ASC" <?php if ($args['meta_key'] == 'wpcf-genre') { echo "class='active'";} ?>>par genre</a></li>
     </ul>
-    -->          
+    
 <div id="prod-finies">
   
                         
