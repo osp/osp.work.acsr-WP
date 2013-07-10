@@ -146,9 +146,9 @@ function get_the__uri_that_switches_views() {
 
 
         <?php if ($_GET['format'] == "listing"): ?> 
-        <li><a href="<?php echo get_the__uri_that_switches_views() ?>">Vue pastilles</a></li>
+        <li><a href="<?php echo get_the__uri_that_switches_views() ?>">vue pastilles</a></li>
         <?php else: ?> 
-        <li><a href="<?php echo get_the__uri_that_switches_views() ?>">Vue liste</a></li>
+        <li><a href="<?php echo get_the__uri_that_switches_views() ?>">vue liste</a></li>
         <?php endif; ?> 
     </ul>
     
