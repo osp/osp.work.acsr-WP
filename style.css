@@ -358,16 +358,68 @@ div#prod-finies {
 
 div#prod-finies div.production-item {
     padding-top: 13px;
+    padding-bottom: 12px;
     display: inline-block;
     width: 100%;
-    /*padding-bottom: 13px;*/
 }
+
+div#prod-finies p.genre,
+div#prod-finies p.duree,
+div#prod-finies p.annee {
+    font-family: "UniversElseLight", "DejaVu Sans", Helvetica, Arial, Sans-Serif;
+}
+div#prod-finies h3,
+div#prod-finies p + p {
+    margin-top: 0;
+}
+
+div#prod-finies h3 a {
+    text-decoration: none;
+    font-style: italic;
+}
+
+div#prod-finies.listing {
+	-moz-column-count: 1;
+	-webkit-column-count: 1;
+	column-count: 1;
+    text-align: left;
+}
+div#prod-finies.listing div.production-item {
+    padding-top: 7px;
+    padding-bottom: 6px;
+}
+div#prod-finies.listing div.production-item + div.production-item {
+    border-top: 1px dotted black;
+}
+div#prod-finies.listing h3,
+div#prod-finies.listing p {
+    display: inline;
+    float: left;
+    font-size: 13px;
+    line-height: 19px;
+}
+div#prod-finies.listing p.artist:after,
+div#prod-finies.listing p.genre:after,
+div#prod-finies.listing p.duree:after {
+    content: ", ";
+    margin-right: 5px;
+}
+div#prod-finies.listing div.clip {
+    float: right;
+    clear: both;
+    margin-top: -12px;
+    padding-right: 27px;
+}
+
 ul#resort {
     margin-bottom: 2em;
 }
 ul#resort li {
     display: inline;
     margin-right: 2em;
+}
+ul#resort li a {
+    padding: 0 4px;
 }
 ul#resort a.active {
     color: white;
@@ -389,8 +441,9 @@ div.production-item.active a {
     color: white;
 }
 div.production-item div.clip {
-    padding-top: 8px;
-    padding-bottom: 9px;
+    height: 20px;
+    padding-top: 4px;
+    padding-bottom: 2px;
 }
 body.single-production div.entry-meta {
     font-size: 13px;

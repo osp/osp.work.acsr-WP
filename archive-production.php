@@ -161,16 +161,14 @@ function get_the__uri_that_switches_views() {
                  */
            ?>
 <div id='post<?php echo $i; ?>' class="production-item">
+                    <?php 
+                    if (get_post_meta($post->ID, 'wpcf-artiste', true)): 
+                        echo "<p class='artist'>" . get_post_meta($post->ID, 'wpcf-artiste', 'true') . "</p>";
+                    endif;
+                    ?>
                     <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                     
                     <?php 
-                    if (get_post_meta($post->ID, 'wpcf-genre', true)): 
-                        echo "<p>" . get_post_meta($post->ID, 'wpcf-genre', 'true') . "</p>";
-                    endif;
-                    
-                    if (get_post_meta($post->ID, 'wpcf-annee', true)): 
-                        echo "<p>" . get_post_meta($post->ID, 'wpcf-annee', 'true') . "</p>";
-                    endif;
                     
                     $audio = get_post_meta($post->ID, 'wpcf-audio', false);
                     // if (get_post_meta($post->ID, 'audio', true)):
@@ -191,6 +189,24 @@ function get_the__uri_that_switches_views() {
                         echo "</div>";
                     endif;
                     $i++;
+
+                    if(qtrans_getLanguage()=='fr') {
+                        if (get_post_meta($post->ID, 'wpcf-genre', true)): 
+                            echo "<p class='genre'>" . get_post_meta($post->ID, 'wpcf-genre', 'true') . "</p>";
+                        endif;
+                    } elseif(qtrans_getLanguage()=='nl'){
+                        if (get_post_meta($post->ID, 'wpcf-genre-nl', true)): 
+                            echo "<p class='genre'>" . get_post_meta($post->ID, 'wpcf-genre-nl', 'true') . "</p>";
+                        endif;
+                    }
+
+                    if (get_post_meta($post->ID, 'wpcf-duree', true)): 
+                        echo "<p class='duree'>" . get_post_meta($post->ID, 'wpcf-duree', 'true') . "</p>";
+                    endif;
+                    
+                    if (get_post_meta($post->ID, 'wpcf-annee', true)): 
+                        echo "<p class='annee'>" . get_post_meta($post->ID, 'wpcf-annee', 'true') . "</p>";
+                    endif;
                     ?>
                 </div>		
             <?php
