@@ -385,6 +385,39 @@
          style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
          clip-path="none" />
     </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5223">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:none"
+         id="rect5225"
+         width="521.32574"
+         height="586.73926"
+         x="477.71677"
+         y="3571.7729" />
+    </clipPath>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask5228">
+      <rect
+         y="3409.2302"
+         x="1589.7462"
+         height="511.41461"
+         width="465.82336"
+         id="rect5230"
+         style="fill:#ffffff;fill-opacity:1;stroke:none" />
+    </mask>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5253">
+      <rect
+         y="2815.1021"
+         x="2569.3933"
+         height="1115.9939"
+         width="557.0058"
+         id="rect5255"
+         style="fill:#ffffff;fill-opacity:1;stroke:none" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -393,14 +426,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.61425758"
-     inkscape:cx="-664.72879"
-     inkscape:cy="-1110.8165"
+     inkscape:zoom="1.1575885"
+     inkscape:cx="1947.3014"
+     inkscape:cy="-2306.0162"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="744"
+     inkscape:window-width="1680"
+     inkscape:window-height="994"
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="1" />
@@ -3248,6 +3281,15 @@
      id="layer2"
      inkscape:label="c"
      style="display:inline">
+    <rect
+       inkscape:transform-center-y="37.649145"
+       inkscape:transform-center-x="78.624342"
+       y="3276.7993"
+       x="1579.8414"
+       height="93.247299"
+       width="469.62119"
+       id="rect5265"
+       style="fill:#ececec;fill-opacity:1;stroke:none;display:inline" />
     <path
        style="fill:#cccccc;fill-opacity:1;stroke:none"
        d="m -319.16967,1662.1247 0,1362.144 1474.30777,0 0,-1362.144 z m 90.24928,55.3159 1260.59379,0 0,1218.6563 -1260.59379,0 z"
@@ -3267,6 +3309,78 @@
        id="rect3066-6"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccccccc" />
+    <image
+       y="2966.8984"
+       x="1561.1246"
+       id="image5183"
+       xlink:href="file:///home/ludi/wrk/wp-acsr/wp-content/themes/acsr/layouts/Screenshot%20from%202013-07-10%2010:45:55.png"
+       height="830"
+       width="836"
+       clip-path="none"
+       mask="url(#mask5228)"
+       transform="translate(-10,-30)" />
+    <image
+       width="836"
+       height="830"
+       xlink:href="file:///home/ludi/wrk/wp-acsr/wp-content/themes/acsr/layouts/Screenshot%20from%202013-07-10%2010:45:55.png"
+       id="image5186"
+       x="504.59744"
+       y="3716.1804"
+       clip-path="url(#clipPath5223)"
+       transform="translate(1044.6337,-892.00224)" />
+    <image
+       y="2860.3982"
+       x="2071.0369"
+       id="image5196"
+       xlink:href="file:///home/ludi/wrk/wp-acsr/wp-content/themes/acsr/layouts/Screenshot%20from%202013-07-10%2010:45:55.png"
+       height="830"
+       width="836"
+       clip-path="url(#clipPath5253)"
+       transform="translate(-525.41242,-30.819756)" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5257"
+       style="font-size:8px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(816.77164,2357.1666)"><flowRegion
+         id="flowRegion5259"><rect
+           id="rect5261"
+           width="190.91411"
+           height="24.187983"
+           x="791.84991"
+           y="930.19189"
+           style="fill:#000000" /></flowRegion><flowPara
+         id="flowPara5263"
+         style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;font-family:Univers Else;-inkscape-font-specification:Univers Else">Diffusions - Séances d’écoute</flowPara></flowRoot>    <flowRoot
+       transform="translate(798.77164,2381.1666)"
+       style="font-size:13px;font-style:italic;font-weight:normal;line-height:150%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Univers Else;-inkscape-font-specification:Univers Else Italic;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr"
+       id="flowRoot6055"
+       xml:space="preserve"><flowRegion
+         id="flowRegion6057"><rect
+           y="930.19189"
+           x="791.84991"
+           height="90.705582"
+           width="452.66516"
+           id="rect6059"
+           style="-inkscape-font-specification:Univers Else Italic;font-family:Univers Else;font-weight:normal;font-style:italic;font-stretch:normal;font-variant:normal;font-size:13px;text-anchor:start;text-align:start;writing-mode:lr;line-height:150%" /></flowRegion><flowPara
+         style="font-size:13px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:150%;writing-mode:lr;text-anchor:start;font-family:Univers Else;-inkscape-font-specification:Univers Else Italic"
+         id="flowPara6061">— Cartographie du silence, <flowSpan
+   style="-inkscape-font-specification:Univers Else;font-family:Univers Else;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:13px;text-anchor:start;text-align:start;writing-mode:lr;line-height:150%"
+   id="flowSpan6081">Radio Panik, vendredi 12 juillet 2013, 16h00.</flowSpan></flowPara><flowPara
+         style="font-size:13px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:150%;writing-mode:lr;text-anchor:start;font-family:Univers Else;-inkscape-font-specification:Univers Else Italic"
+         id="flowPara6069">— Flux, <flowSpan
+   style="-inkscape-font-specification:Univers Else;font-family:Univers Else;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:13px;text-anchor:start;text-align:start;writing-mode:lr;line-height:150%"
+   id="flowSpan6083">Radio Campus, vendredi 5 juillet 2013, 19h00. </flowSpan></flowPara></flowRoot>    <path
+       inkscape:connector-curvature="0"
+       id="path6077"
+       d="m 1611.4104,3331.594 414.5007,0"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1611.4104,3351.8662 310.5007,0"
+       id="path6079"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
   </g>
   <g
      inkscape:groupmode="layer"
