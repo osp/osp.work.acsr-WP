@@ -112,7 +112,7 @@ p + p,
 h3 { margin-top: 13px; }
 
 div.prod-desc p{
-    font-size: 16px;
+    font-size: 15px;
     line-height: 19px;
 }
 
@@ -448,6 +448,14 @@ div.production-item div.clip {
 body.single-production div.entry-meta {
     font-size: 13px;
     margin-bottom: 26px;
+}
+body.single-production div.more-details {
+    font-size: 13px;
+    margin-bottom: 26px;
+    font-family: "UniversElseRegular", "DejaVu Sans", Helvetica, Arial, Sans-Serif;
+    text-align: center;
+    margin: 13px auto;
+    width: 75%;
 }
 
 body.single-production img.play {
