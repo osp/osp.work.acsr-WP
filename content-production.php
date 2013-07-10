@@ -48,6 +48,13 @@
         <div class="entry-content">
            <div class="entry-meta">
            <?php
+                if (get_post_meta($post->ID, 'wpcf-artiste', true)): 
+                    $artist = get_post_meta($post->ID, 'wpcf-artiste', 'false');
+                    echo "<p class='artist'><a href='/?s=". str_replace(" ", "+", $artist)  ."'>" . $artist . "</a></p>";
+                endif;
+
+
+
                $audio = get_post_meta($post->ID, 'wpcf-audio', false);
                
                if($audio != '') {

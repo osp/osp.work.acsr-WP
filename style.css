@@ -377,7 +377,10 @@ div#prod-finies h3 a {
     text-decoration: none;
     font-style: italic;
 }
-
+p.artist a {
+    text-decoration: none;
+    cursor: help;
+}
 div#prod-finies.listing {
 	-moz-column-count: 1;
 	-webkit-column-count: 1;
@@ -398,6 +401,7 @@ div#prod-finies.listing p {
     font-size: 13px;
     line-height: 19px;
 }
+
 div#prod-finies.listing p.artist:after,
 div#prod-finies.listing p.genre:after,
 div#prod-finies.listing p.duree:after {
