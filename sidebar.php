@@ -35,9 +35,17 @@
             if ( $sticky && have_posts() ) : while ( have_posts() ) : the_post();
 
             $audio = get_post_meta($post->ID, 'wpcf-audio', false);
-            $annee = get_post_meta($post->ID, 'wpcf-annee', false)[0];
-            $duree = get_post_meta($post->ID, 'wpcf-duree', false)[0];
-            $genre = get_post_meta($post->ID, 'wpcf-genre', false)[0];
+
+            $get_artists = get_post_meta($post->ID, 'wpcf-artiste', false);
+            $artists = "";
+            if (!empty($get_artists)): 
+                foreach($get_artists as $key => $val) {
+                    $artists .= $val;
+                }
+            endif;
+            $annee = get_post_meta($post->ID, 'wpcf-annee', true);
+            $duree = get_post_meta($post->ID, 'wpcf-duree', true);
+            $genre = get_post_meta($post->ID, 'wpcf-genre', true);
                     // if (get_post_meta($post->ID, 'audio', true)):
                     if($audio[0] != ''):
                         //$audio_title = wp_title( '', false, '' );
@@ -49,11 +57,15 @@
                         } else { // if there's only one track
                             $url = $parse[0];
                         }
-                        $url = $url . "&duree=" . $duree . "&genre=" . $genre . "&annee=" . $annee;
+                        $url = $url . "&duree=" . $duree . "&genre=" . $genre . "&annee=" . $annee. "&artiste=" . $artists ;
           ?>
         
                <div id="le-son-du-mois">le son<br />du mois</div>
-               <div id="audio-title"><em><a style="background: none;" href="<?php the_permalink(); ?>"><?php echo $audio_title; ?></a></em></div>
+               <div id="audio-title">
+
+                    &nbsp;<?php echo $artists;?>&nbsp;
+                    <em><a style="background: none;" href="<?php the_permalink(); ?>"><?php echo $audio_title; ?></a></em>
+                </div>
                    <?php echo "<a class='audio launcher' href='" . $url . "' data-link='".$post->ID ."' style='text-decoration: none;' title='". $audio_title ."'>"; ?>
                    <img id="launcher" style="margin-top: 13px;" src="<?php echo get_template_directory_uri(); ?>/images/play.png" alt="&#9654;" />
                </a>

@@ -57,7 +57,7 @@ $home = "http://" . $_SERVER['HTTP_HOST'] . $a[0];
     <meta name="dc.type" content="text" />
     <meta name="dc.format" content="text/html" />
 
-    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript"  charset="utf-8"/>
 
 
 
@@ -77,6 +77,7 @@ $home = "http://" . $_SERVER['HTTP_HOST'] . $a[0];
 #header img {
     left: 25%;
 }
+#audio-artiste,
 #audio-annee,
 #audio-duree, 
 #audio-genre {
@@ -85,32 +86,38 @@ $home = "http://" . $_SERVER['HTTP_HOST'] . $a[0];
     padding: 2px 5px;
     display: inline;
 }
-
+#audio-title {
+    margin: 7px 0;
+}
 
 .mejs-container{
     margin: auto;
-    background: white !important;
+    background: none !important;
 }
 .mejs-time-rail {
-    background-color: white !important;
+    background-color: none !important;
     float: none !important;
 }
 .mejs-container .mejs-controls {
-    background: white !important;
+    background: none !important;
 }
 .mejs-controls .mejs-time-rail .mejs-time-loaded {
-    background: black !important;
+    background: #FFAA96 !important;
 }
 .mejs-controls .mejs-time-rail .mejs-time-current {
-    background: white !important;
+    background: none !important;
     left: -4px;
     font-family: "UniversElseRegular", "DejaVu Sans", Helvetica, Arial, Sans-Serif;
 }
 .mejs-controls div.mejs-time-rail {
     padding-top: 0 !important;
 }
+.mejs-controls .mejs-time-rail .mejs-time-buffering {
+    background: #FFFFC0 !important;
+}
 .mejs-controls .mejs-time-rail .mejs-time-total {
     margin: 0 !important;
+    background: yellow !important;
 }
 
 .mejs-time-total, 
@@ -127,12 +134,12 @@ $home = "http://" . $_SERVER['HTTP_HOST'] . $a[0];
 .mejs-time-float,
 .mejs-time-float-current {
     border: none !important;
-    background: none !important;
+    background: #FFFFC0 !important;
     outline: none !important;
 }
 </style>
 
-<script charset="utf-8">
+<script type="text/javascript" charset="utf-8">
    // Read a page's GET URL variables and return them as an associative array.
    // from http://jquery-howto.blogspot.com/2009/09/get-url-parameters-values-with-jquery.html
    function getUrlVars()
@@ -194,8 +201,9 @@ $(document).ready(function(){
     
        audio = getUrlVars()["audio"];
        annee = getUrlVars()["annee"];
+       artiste = unescape(getUrlVars()["artiste"]);
        duree = getUrlVars()["duree"];
-       genre = getUrlVars()["genre"];
+       genre = unescape(getUrlVars()["genre"]);
        title = unescape(getUrlVars()["title"]);
        postID = home + "/?page_id=" + getUrlVars()["postID"];
        $("a#popupplayer").attr("href", audio);
@@ -203,6 +211,7 @@ $(document).ready(function(){
        $("div#audio-title a").attr("href", postID);
        $("div#audio-title a").html(title);
        $("div#audio-annee").html(annee);
+       $("div#audio-artiste").html(artiste);
        $("div#audio-duree").html(duree);
        $("div#audio-genre").html(genre);
        $("title").text("acsr - en lecture: " + title)
@@ -273,7 +282,8 @@ a:hover {
         </a></h1>
     </div>
     
-    <div id="audio-title" style="margin-bottom: 7px;"><em><a href="#" target="_blank">.</a></em></div>
+    <div id="audio-artiste">.</div>
+    <div id="audio-title"><em><a href="#" target="_blank">.</a></em></div>
     <div id="audio-annee">.</div>
     <div id="audio-duree">.</div>
     <div id="audio-genre">.</div>
