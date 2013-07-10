@@ -539,6 +539,9 @@ div.resource-content strong {
     text-align: center;
 }
 /* BLOG LATEST POSTS */
+div.latest-posts {
+    width: 482px;
+}
 div.latest-post {
     background-color: lightgray;
     width: 42%;
@@ -549,7 +552,7 @@ div.latest-post {
     overflow: hidden;
     margin-bottom: 10px;
 }
-div.latest-post:nth-child(even) {
+div.latest-post:nth-child(odd) {
     margin-right: 10px;
 }
 div.latest-post h1 {

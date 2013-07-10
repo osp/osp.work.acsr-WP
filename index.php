@@ -101,7 +101,10 @@ get_header(); ?>
             if (is_home()) :
                 if(get_query_var('paged') == 1): 
                 $my_query = new WP_Query('posts_per_page=5&paged=1&post_type=post&ignore_sticky_posts=1');
-                while ($my_query->have_posts()) : $my_query->the_post();
+                ?>
+    <div class="latest-posts">
+
+            <?php while ($my_query->have_posts()) : $my_query->the_post();
             
             if ( $post_number != 0 ) :?>
                 <div class="latest-post">
@@ -114,8 +117,11 @@ get_header(); ?>
             <?php    
                     endif;
                 $post_number++;
-                endwhile; 
-                endif;
+                endwhile; ?>
+
+</div>
+
+                <?php endif;
             endif; ?>
 
         
