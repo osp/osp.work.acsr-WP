@@ -98,6 +98,9 @@ function get_the__uri_that_switches_views() {
     if (array_key_exists('order', $_GET))  {
         $args['order'] = $_GET['order'];
     }
+    if (array_key_exists('paged', $_GET))  {
+        $args['paged'] = $_GET['paged'];
+    }
     if ( array_key_exists('orderby', $_GET) )  {
         $args['orderby'] = $_GET['orderby'];
         if ( $_GET['orderby'] == 'meta_value' && array_key_exists('meta_key', $_GET))  {
