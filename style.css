@@ -172,7 +172,9 @@ article.post,
 article.page,
 article.production,
 article.attachment,
-article.galerie {
+article.galerie,
+.page-title,
+.archive-title {
     background-color: #FFFFC0;
     padding: 13px;
     margin-bottom: 13px;
