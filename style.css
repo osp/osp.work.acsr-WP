@@ -67,6 +67,7 @@ h2 a {
 }
 h3 {
     font-size: 16px;
+    line-height: 19px;
 }
 tt {
     /*font-family: "UniversElseRegular", "DejaVu Sans", Helvetica, Arial, Sans-Serif;*/
@@ -362,6 +363,9 @@ div#prod-finies div.production-item {
     display: inline-block;
     width: 100%;
 }
+div#prod-finies ul.artist {
+    margin-bottom: 3px !important;
+}
 
 div#prod-finies p.genre,
 div#prod-finies p.duree,
@@ -377,9 +381,20 @@ div#prod-finies h3 a {
     text-decoration: none;
     font-style: italic;
 }
-p.artist a {
+ul.artist a {
     text-decoration: none;
     cursor: help;
+    padding: 0 !important;
+}
+ul.artist li {
+    display: inline;
+    margin: 0 !important;
+}
+ul.artist li:before {
+    content: "" !important;
+}
+ul.artist li + li:before {
+    content: ", " !important;
 }
 div#prod-finies.listing {
 	-moz-column-count: 1;
@@ -401,8 +416,12 @@ div#prod-finies.listing p {
     font-size: 13px;
     line-height: 19px;
 }
+div#prod-finies.listing ul.artist {
+    display: inline;
+    float: left;
+}
 
-div#prod-finies.listing p.artist:after,
+div#prod-finies.listing ul.artist:after,
 div#prod-finies.listing p.genre:after,
 div#prod-finies.listing p.duree:after {
     content: ", ";

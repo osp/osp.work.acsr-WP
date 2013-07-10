@@ -48,16 +48,20 @@
         <div class="entry-content">
            <div class="entry-meta">
            <?php
-                if (get_post_meta($post->ID, 'wpcf-artiste', true)): 
-                    $artist = get_post_meta($post->ID, 'wpcf-artiste', 'false');
-                    echo "<p class='artist'><a href='/?s=". str_replace(" ", "+", $artist)  ."'>" . $artist . "</a></p>";
+                $artists = get_post_meta($post->ID, 'wpcf-artiste', false);
+                if (!empty($artists)): 
+                    echo "<ul class='artist'>";
+                    foreach($artists as $key => $val) {
+                        echo "<li><a href='/?s=". str_replace(" ", "+", $val)  ."'>" . $val . "</a></li>";
+                    }
+                    echo "</ul>";
                 endif;
 
 
 
                $audio = get_post_meta($post->ID, 'wpcf-audio', false);
                
-               if($audio != '') {
+               if(!empty($audio)) {
                    sort($audio);
                    echo "<div id='playlist' class='clip'>";
                    $count = 0;

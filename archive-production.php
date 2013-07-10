@@ -165,9 +165,13 @@ function get_the__uri_that_switches_views() {
            ?>
 <div id='post<?php echo $i; ?>' class="production-item">
                     <?php 
-                    if (get_post_meta($post->ID, 'wpcf-artiste', true)): 
-                        $artist = get_post_meta($post->ID, 'wpcf-artiste', 'false');
-                        echo "<p class='artist'><a href='/?s=". str_replace(" ", "+", $artist)  ."'>" . $artist . "</a></p>";
+                    $artists = get_post_meta($post->ID, 'wpcf-artiste', false);
+                    if (!empty($artists)): 
+                        echo "<ul class='artist'>";
+                        foreach($artists as $key => $val) {
+                            echo "<li><a href='/?s=". str_replace(" ", "+", $val)  ."'>" . $val . "</a></li>";
+                        }
+                        echo "</ul>";
                     endif;
                     ?>
                     <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
