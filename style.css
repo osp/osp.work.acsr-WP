@@ -436,10 +436,11 @@ div#prod-finies.listing div.clip {
 
 ul#resort {
     margin-bottom: 2em;
+    margin-left: -3px;
 }
 ul#resort li {
     display: inline;
-    margin-right: 2em;
+    margin-right: 1em;
 }
 ul#resort li a {
     padding: 0 4px;
