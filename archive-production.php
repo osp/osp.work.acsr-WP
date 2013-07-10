@@ -19,6 +19,8 @@ get_header(); ?>
 <?php
 $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
+/* HOW TO SORT */
+
 // These are the default options
 // correspond to url /production/
 
@@ -59,6 +61,57 @@ if ($args['orderby'] != 'meta_value') {
 }
 
 query_posts($args);
+
+
+/* HOW TO DISPLAY */
+
+$format = 'detail';
+
+if ( array_key_exists('format', $_GET) )  {
+    $format = $_GET['format'];
+}
+function get_the_production_uri($args=array()) {
+    global $format;
+    if ( !get_option( "permalink_structure" ) ) {
+        // uri starts with /?post_type=production&
+        $args = array('post_type' => 'production') + $args;
+    }
+    if (!array_key_exists('format', $args))  {
+        $args['format'] = $format;
+    }
+    $qstring = http_build_query($args);
+    if ($qstring) {
+        $qstring = '?' . $qstring;
+    }
+    $folder = '';
+    if ( get_option( "permalink_structure" ) ) {
+        // uri starts with /?post_type=production&
+        $folder = 'production/';
+    }
+
+    return get_home_url() . '/' . $folder . $qstring;
+}
+
+function get_the__uri_that_switches_views() {
+    global $format;
+    $args = array();
+    if (array_key_exists('order', $_GET))  {
+        $args['order'] = $_GET['order'];
+    }
+    if ( array_key_exists('orderby', $_GET) )  {
+        $args['orderby'] = $_GET['orderby'];
+        if ( $_GET['orderby'] == 'meta_value' && array_key_exists('meta_key', $_GET))  {
+            $args['meta_key'] = $_GET['meta_key'];
+        }
+    }
+    if ($format=='detail') {
+        $args['format'] = 'listing';
+    } elseif ($format=='listing') {
+        $args['format'] = 'detail';
+    }
+    return get_the_production_uri($args);
+}
+
 ?>
     <section id="primary" class="site-content">
         <div id="content" role="main">
@@ -83,19 +136,12 @@ query_posts($args);
             </header><!-- .archive-header -->
     
     <ul id="resort">
-        <?php
-            // this is so it works also if pretty permalinks are not enabled:
-            $production_uri = "/?post_type=production&";
-            if ( get_option( "permalink_structure" ) ) {
-                $production_uri = "/production/?";
-            }
-        ?>
-        <li><a href="<?php echo get_home_url(); ?><?php echo $production_uri ?>" <?php if ($args['meta_key'] == 'wpcf-annee') { echo "class='active'";} ?>>par année</a></li>
-        <li><a href="<?php echo get_home_url(); ?><?php echo $production_uri ?>orderby=title&order=ASC" <?php if ($args['orderby'] == 'title') { echo "class='active'";} ?>>par titre</a></li>
-        <li><a href="<?php echo get_home_url(); ?><?php echo $production_uri ?>orderby=meta_value&meta_key=wpcf-genre&order=ASC" <?php if ($args['meta_key'] == 'wpcf-genre') { echo "class='active'";} ?>>par genre</a></li>
-    </ul>
+        <li><a href="<?php echo get_the_production_uri(); ?>" <?php if ($args['meta_key'] == 'wpcf-annee') { echo "class='active'";} ?>>par année</a></li>
+        <li><a href="<?php echo get_the_production_uri(array('orderby' => 'title', 'order' => 'ASC')) ?>" <?php if ($args['orderby'] == 'title') { echo "class='active'";} ?>>par titre</a></li>
+        <li><a href="<?php echo get_the_production_uri(array('orderby' => 'meta_value', 'meta_key' => 'wpcf-genre', 'order' => 'ASC')) ?>" <?php if ($args['meta_key'] == 'wpcf-genre') { echo "class='active'";} ?>>par genre</a></li>
+        <li><a href="<?php echo get_the__uri_that_switches_views() ?>">Switch views</a></li>
     
-<div id="prod-finies">
+<div id="prod-finies" class="<?php echo $_GET['format']; ?>">
   
                         
                         
@@ -164,6 +210,7 @@ query_posts($args);
         <?php endif; ?>
         
         <article class="post">
+        
         <h1>Productions en cours</h1>
         <?php
                 $my_query = new WP_Query('page_id=1144');
