@@ -182,6 +182,7 @@ function get_the__uri_that_switches_views() {
                     
                     $audio = get_post_meta($post->ID, 'wpcf-audio', false);
                     // if (get_post_meta($post->ID, 'audio', true)):
+                        echo "<div class='clip' id='clip". $i . "'>";
                     if($audio[0] != ''):
                         //$audio_title = wp_title( '', false, '' );
                         $audio_title = the_title('', '', false);
@@ -192,12 +193,11 @@ function get_the__uri_that_switches_views() {
                         } else { // if there's only one track
                             $url = $parse[0];
                         }
-                        echo "<div class='clip' id='clip". $i . "'>";
                         echo "<a class='audio mini-launcher' href='" . $url . "' data-link='".$post->ID ."' style='text-decoration: none;' title='". $audio_title ."'>"; 
                         echo "<img src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
                         echo "</a>";
-                        echo "</div>";
                     endif;
+                        echo "</div>";
                     $i++;
 
                     if(qtrans_getLanguage()=='fr') {
@@ -217,6 +217,13 @@ function get_the__uri_that_switches_views() {
                     if (get_post_meta($post->ID, 'wpcf-annee', true)): 
                         echo "<p class='annee'>" . get_post_meta($post->ID, 'wpcf-annee', 'true') . "</p>";
                     endif;
+
+                    $post_categories = wp_get_post_categories( $post->ID );
+                   if(!empty($post_categories)){
+                        foreach($post_categories as $c){
+                            echo "<p class='category'>, " . get_category( $c )->name . "</p>";
+                        }
+                   }
                     ?>
                 </div>		
             <?php

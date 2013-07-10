@@ -112,10 +112,6 @@ table+h2 {
 p + p,
 h3 { margin-top: 13px; }
 
-div.prod-desc p{
-    font-size: 15px;
-    line-height: 19px;
-}
 
 thead {
     text-align: left;
@@ -181,6 +177,9 @@ article.galerie {
     padding: 13px;
     margin-bottom: 13px;
     width: 442px;
+}
+div.post {
+    display: inline-block;
 }
 
 div#playlist {
@@ -369,7 +368,8 @@ div#prod-finies ul.artist {
 
 div#prod-finies p.genre,
 div#prod-finies p.duree,
-div#prod-finies p.annee {
+div#prod-finies p.annee,
+div#prod-finies p.category {
     font-family: "UniversElseLight", "DejaVu Sans", Helvetica, Arial, Sans-Serif;
 }
 div#prod-finies h3,
@@ -485,6 +485,20 @@ body.single-production div.more-details {
 body.single-production img.play {
     float: left;
     margin-right: 7px;
+}
+div.prod-desc p{
+    font-size: 15px;
+    line-height: 19px;
+}
+div.diffusions {
+    background-color: lightgray;
+}
+div.dates p {
+    text-align: center;
+    float: left;
+}
+div.dates p + p {
+    margin-top: 0;
 }
 
 /* RESSOURCES */

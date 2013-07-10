@@ -5,7 +5,8 @@
  */
 ?>
 
-    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <article id="post-<?php the_ID(); ?>"  >
+    <div class="post" <?php post_class();?>>
         <?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
         <div class="featured-post">
             <?php _e( 'Featured post', 'acsr' ); ?>
@@ -91,6 +92,13 @@
                $duree = get_post_meta($post->ID, 'wpcf-duree', true);
                if($duree != '') echo " <strong>" . $duree . "</strong>";
 
+                $post_categories = wp_get_post_categories( $post->ID );
+               if(!empty($post_categories)){
+                    foreach($post_categories as $c){
+                        echo "<strong>" . get_category( $c )->name . "</strong>";
+                    }
+               }
+
                 if(qtrans_getLanguage()=='fr') {
                     if (get_post_meta($post->ID, 'wpcf-genre', true)): 
                         echo get_post_meta($post->ID, 'wpcf-genre', 'true') . "</p>";
@@ -131,16 +139,33 @@
                         if($licence != '') echo "<p>Licence&thinsp;:&nbsp;" . $licence . "</p>";
                     ?>
             </div>
+        </div><!-- .entry-content -->
+    </div>
+
+    <?php $dates = get_post_meta($post->ID, 'wpcf-dates-de-diffusion', true);
+          if($dates != ''):
+    ?>
+    <div class="post diffusions">
+            <h3>Diffusions/Séances d'écoute</h3>
+            <div class='dates'>
+                <?php echo str_replace("\n", "<br />", $dates); ?>
+            </div>
+    </div>
+    <?php endif; ?>
+
+    <?php $bio = get_post_meta($post->ID, 'wpcf-bio', true);
+        if($bio != ''):
+    ?>
+    <div class="post">
             <?php
                 if(qtrans_getLanguage()=='fr') {
-                    $bio = get_post_meta($post->ID, 'wpcf-bio', true);
                     if($bio != '') echo "<p class='bio'>" . $bio . "</p>";
                 } elseif(qtrans_getLanguage()=='nl'){
-                    $bio = get_post_meta($post->ID, 'wpcf-bio-nl', true);
-                    if($bio != '') echo "<p class='bio'>" . $bio . "</p>";
+                    $bio_nl = get_post_meta($post->ID, 'wpcf-bio-nl', true);
+                    if($bio_nl != '') echo "<p class='bio'>" . $bio_nl . "</p>";
                 }
             ?>
-            <?php edit_post_link( __( 'Edit', 'acsr' ), '<span class="edit-link">', '</span>' ); ?>
-        </div><!-- .entry-content -->
+    </div>
+    <?php endif; ?>
         <?php endif; ?>
     </article><!-- #post -->
