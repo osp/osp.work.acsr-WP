@@ -139,7 +139,13 @@ function get_the__uri_that_switches_views() {
         <li><a href="<?php echo get_the_production_uri(); ?>" <?php if ($args['meta_key'] == 'wpcf-annee') { echo "class='active'";} ?>>par année</a></li>
         <li><a href="<?php echo get_the_production_uri(array('orderby' => 'title', 'order' => 'ASC')) ?>" <?php if ($args['orderby'] == 'title') { echo "class='active'";} ?>>par titre</a></li>
         <li><a href="<?php echo get_the_production_uri(array('orderby' => 'meta_value', 'meta_key' => 'wpcf-genre', 'order' => 'ASC')) ?>" <?php if ($args['meta_key'] == 'wpcf-genre') { echo "class='active'";} ?>>par genre</a></li>
-        <li><a href="<?php echo get_the__uri_that_switches_views() ?>">Switch views</a></li>
+
+
+        <?php if ($_GET['format'] == "listing"): ?> 
+        <li><a href="<?php echo get_the__uri_that_switches_views() ?>">Vue pastilles</a></li>
+        <?php else: ?> 
+        <li><a href="<?php echo get_the__uri_that_switches_views() ?>">Vue liste</a></li>
+        <?php endif; ?> 
     
 <div id="prod-finies" class="<?php echo $_GET['format']; ?>">
   
