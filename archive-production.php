@@ -23,8 +23,11 @@ $page = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
 // These are the default options
 // correspond to url /production/
-
-$args = array(  'posts_per_page' => 12, 
+$nposts = 12;
+if ($_GET['format'] == 'listing') {
+    $nposts = 24;
+}
+$args = array(  'posts_per_page' => $nposts, 
                 'paged' => $page,
                 'post_type' => 'production',
                 'orderby' => 'meta_value',
