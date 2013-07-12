@@ -193,10 +193,22 @@ function get_the__uri_that_switches_views() {
                     <?php 
                     
                     $audio = get_post_meta($post->ID, 'wpcf-audio', false);
-                    // if (get_post_meta($post->ID, 'audio', true)):
-                        echo "<div class='clip' id='clip". $i . "'>";
+                    echo "<div class='clip' id='clip". $i . "'>";
                     if($audio[0] != ''):
-                        //$audio_title = wp_title( '', false, '' );
+                        $get_artists = get_post_meta($post->ID, 'wpcf-artiste', false);
+                        $artists = "";
+                        if (!empty($get_artists)): 
+                            foreach($get_artists as $key => $val) {
+                                $artists .= $val;
+                            }
+                        endif;
+                        $annee = get_post_meta($post->ID, 'wpcf-annee', true);
+                        $duree = get_post_meta($post->ID, 'wpcf-duree', true);
+                        if(qtrans_getLanguage()=='fr') {
+                            $genre = get_post_meta($post->ID, 'wpcf-genre', 'true');
+                        } elseif(qtrans_getLanguage()=='nl'){
+                            $genre = get_post_meta($post->ID, 'wpcf-genre-nl', 'true');
+                        }
                         $audio_title = the_title('', '', false);
                         
                         $parse = explode(' --- ', $audio[0]);
@@ -205,30 +217,28 @@ function get_the__uri_that_switches_views() {
                         } else { // if there's only one track
                             $url = $parse[0];
                         }
-                        echo "<a class='audio mini-launcher' href='" . $url . "' data-link='".$post->ID ."' style='text-decoration: none;' title='". $audio_title ."'>"; 
+                        
+                        $args = array( "duree" => $duree, "genre" => $genre, "annee" => $annee, "artiste" => $artists );
+                        $url = $url . '&' . http_build_query($args);
+                        
+                        echo "<a class='audio mini-launcher' href='" . $url . "' data-link='".$post->ID ."' style='text-decoration: none;' title='". urlencode($audio_title) ."'>"; 
                         echo "<img src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
                         echo "</a>";
                     endif;
                         echo "</div>";
                     $i++;
 
-                    if(qtrans_getLanguage()=='fr') {
-                        if (get_post_meta($post->ID, 'wpcf-genre', true)): 
-                            echo "<p class='genre'>" . get_post_meta($post->ID, 'wpcf-genre', 'true') . "</p>";
-                        endif;
-                    } elseif(qtrans_getLanguage()=='nl'){
-                        if (get_post_meta($post->ID, 'wpcf-genre-nl', true)): 
-                            echo "<p class='genre'>" . get_post_meta($post->ID, 'wpcf-genre-nl', 'true') . "</p>";
-                        endif;
+                    if ($genre) { 
+                        echo '<p class="genre">' . $genre . "</p>";
                     }
 
-                    if (get_post_meta($post->ID, 'wpcf-duree', true)): 
-                        echo "<p class='duree'>" . get_post_meta($post->ID, 'wpcf-duree', 'true') . "</p>";
-                    endif;
+                    if ($duree) { 
+                        echo '<p class="duree">' . $duree . "</p>";
+                    };
                     
-                    if (get_post_meta($post->ID, 'wpcf-annee', true)): 
-                        echo "<p class='annee'>" . get_post_meta($post->ID, 'wpcf-annee', 'true') . "</p>";
-                    endif;
+                    if ($annee) { 
+                        echo '<p class="annee">' . $annee . "</p>";
+                    }
 
                     $post_categories = wp_get_post_categories( $post->ID );
                    if(!empty($post_categories)){

@@ -20,24 +20,24 @@
             <h1 class="entry-title">
                 <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
             </h1>
-            <?php if($audio != '') {
+            <?php /*if($audio != '') {
                    sort($audio);
                    echo "<div id='playlist' class='clip'>";
                    foreach($audio as $key => $val) {
                        $parsed = explode(' --- ', $val);
                        if (count($parsed)!=1) { // if there are several tracks
                            echo "<a class='audio' href='";
-                           echo $parsed[1] . "' title='". $parsed[0] ."'>" . $parsed[0];
+                           echo $parsed[1] . "' title='". get_the_title() ."'>" . $parsed[0];
                            echo "</a> ";
                        } else { // if there's only one track
                            echo "<a class='audio' href='";
-                           echo $parsed[0] . "' data-link='".$post->ID ."' title='". $parsed[0] ."'>";
+                           echo $parsed[0] . "' data-link='".$post->ID ."' title='". get_the_title() ."'>";
                            echo "</a> ";
                        }
                     }
                     echo "</div>";
                 }
-                ?>
+                */?>
             <?php endif; // is_single() ?>
         </header><!-- .entry-header -->
 
@@ -63,24 +63,42 @@
                $audio = get_post_meta($post->ID, 'wpcf-audio', false);
                
                if(!empty($audio)) {
-                   sort($audio);
-                   echo "<div id='playlist' class='clip'>";
-                   $count = 0;
-                   foreach($audio as $key => $val) {
-                       $parsed = explode(' --- ', $val);
-                       if (count($parsed)!=1) { // if there are several tracks
-                           if ($count==0){ 
-                              echo "<img class='play' src='" . get_template_directory_uri() . "/images/petit-play.png' style='margin-top: -3px;' alt='&#9654;' /> ";
-                           }
-                           echo "<a class='audio' href='";
-                           echo $parsed[1] . "' data-link='".$post->ID ."' title='". $parsed[0] ."'>" . $parsed[0];
-                           echo "</a> ";
-                           $count ++;
-                       } else { // if there's only one track
-                           echo "<a class='audio' href='";
-                           echo $parsed[0] . "' data-link='".$post->ID ."' title='". $parsed[0] ."'><img class='play' src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
-                           echo "</a> ";
-                       }
+                    $get_artists = get_post_meta($post->ID, 'wpcf-artiste', false);
+                    $artists = "";
+                    if (!empty($get_artists)): 
+                        foreach($get_artists as $key => $val) {
+                            $artists .= $val;
+                        }
+                    endif;
+                    $annee = get_post_meta($post->ID, 'wpcf-annee', true);
+                    $duree = get_post_meta($post->ID, 'wpcf-duree', true);
+                    if(qtrans_getLanguage()=='fr') {
+                        $genre = get_post_meta($post->ID, 'wpcf-genre', 'true');
+                    } elseif(qtrans_getLanguage()=='nl'){
+                        $genre = get_post_meta($post->ID, 'wpcf-genre-nl', 'true');
+                    }
+                    $audio_title = the_title('', '', false);
+                    $args = array( "duree" => $duree, "genre" => $genre, "annee" => $annee, "artiste" => $artists );
+                    $qstring = http_build_query($args);
+
+                    sort($audio);
+                    echo '<div id="playlist" class="clip">';
+                    $count = 0;
+                    foreach($audio as $key => $val) {
+                        $parsed = explode(' --- ', $val);
+                        if (count($parsed)!=1) { // if the audio field also includes a title, seperated from the url by ---
+                            if ($count==0){ 
+                                echo '<img class="play" src="' . get_template_directory_uri() . '/images/petit-play.png" style="margin-top: -3px;" alt="&#9654;" /> ';
+                            }
+                            echo '<a class="audio" href="';
+                            echo $parsed[1] . '&' . $qstring . '" data-link="'.$post->ID .'" title="'. $parsed[0] .'">' . $parsed[0];
+                            echo '</a> ';
+                            $count ++;
+                        } else { // if the audio field contains just the url */
+                            echo "<a class='audio' href='";
+                            echo $val . '&' . $qstring ."' data-link='".$post->ID ."' title='". get_the_title() ."'><img class='play' src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
+                            echo "</a> ";
+                        }
                     }
                     echo "</div>";
                 }
