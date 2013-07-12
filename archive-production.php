@@ -72,9 +72,23 @@ if ( array_key_exists('format', $_GET) )  {
 }
 function get_the_production_uri($args=array()) {
     global $format;
+    global $page;
+    $folder = '';
+    
     if ( !get_option( "permalink_structure" ) ) {
-        // uri starts with /?post_type=production&
+        // uri starts with /?post_type=production&page=n&
         $args = array('post_type' => 'production') + $args;
+        if ($page > 1) {
+            $args = array('paged' => $page) + $args;
+        }
+    } else {
+        // uri starts with /production/page/n/
+        $folder = 'production/';
+        if ($page > 1) {
+            $folder .= 'page/' . $page . '/';
+        }
+        
+        
     }
     if (!array_key_exists('format', $args))  {
         $args['format'] = $format;
@@ -82,11 +96,6 @@ function get_the_production_uri($args=array()) {
     $qstring = http_build_query($args);
     if ($qstring) {
         $qstring = '?' . $qstring;
-    }
-    $folder = '';
-    if ( get_option( "permalink_structure" ) ) {
-        // uri starts with /?post_type=production&
-        $folder = 'production/';
     }
 
     return get_home_url() . '/' . $folder . $qstring;
