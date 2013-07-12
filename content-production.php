@@ -20,24 +20,24 @@
             <h1 class="entry-title">
                 <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
             </h1>
-            <?php if($audio != '') {
+            <?php /*if($audio != '') {
                    sort($audio);
                    echo "<div id='playlist' class='clip'>";
                    foreach($audio as $key => $val) {
                        $parsed = explode(' --- ', $val);
                        if (count($parsed)!=1) { // if there are several tracks
                            echo "<a class='audio' href='";
-                           echo $parsed[1] . "' title='". $parsed[0] ."'>" . $parsed[0];
+                           echo $parsed[1] . "' title='". get_the_title() ."'>" . $parsed[0];
                            echo "</a> ";
                        } else { // if there's only one track
                            echo "<a class='audio' href='";
-                           echo $parsed[0] . "' data-link='".$post->ID ."' title='". $parsed[0] ."'>";
+                           echo $parsed[0] . "' data-link='".$post->ID ."' title='". get_the_title() ."'>";
                            echo "</a> ";
                        }
                     }
                     echo "</div>";
                 }
-                ?>
+                */?>
             <?php endif; // is_single() ?>
         </header><!-- .entry-header -->
 
@@ -76,9 +76,9 @@
                            echo $parsed[1] . "' data-link='".$post->ID ."' title='". $parsed[0] ."'>" . $parsed[0];
                            echo "</a> ";
                            $count ++;
-                       } else { // if there's only one track
+                       } else { // if there's only one track */
                            echo "<a class='audio' href='";
-                           echo $parsed[0] . "' data-link='".$post->ID ."' title='". $parsed[0] ."'><img class='play' src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
+                           echo $val . "' data-link='".$post->ID ."' title='". get_the_title() ."'><img class='play' src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
                            echo "</a> ";
                        }
                     }

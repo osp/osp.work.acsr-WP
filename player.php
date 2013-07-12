@@ -61,7 +61,7 @@ $home = "http://" . $_SERVER['HTTP_HOST'] . $a[0];
 
 
 
-<title>Atelier de Création Sonore Radiophonique - Lecteur</title>
+<title>Atelier de Création Sonore Radiophonique - en lecture: <?php echo $_GET['title']; ?></title>
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo $home; ?>/wp-content/themes/acsr/reset.css" />
@@ -198,26 +198,7 @@ $(document).ready(function(){
         }
     });
     
-    
-       audio = getUrlVars()["audio"];
-       annee = getUrlVars()["annee"];
-       artiste = unescape(getUrlVars()["artiste"]);
-       duree = getUrlVars()["duree"];
-       genre = unescape(getUrlVars()["genre"]);
-       title = unescape(getUrlVars()["title"]);
-       postID = home + "/?page_id=" + getUrlVars()["postID"];
-       $("a#popupplayer").attr("href", audio);
-       $("a#popupplayer").attr("title", title);
-       $("div#audio-title a").attr("href", postID);
-       $("div#audio-title a").html(title);
-       $("div#audio-annee").html(annee);
-       $("div#audio-artiste").html(artiste);
-       $("div#audio-duree").html(duree);
-       $("div#audio-genre").html(genre);
-       $("title").text("acsr - en lecture: " + title)
-       
-       $("audio#newplayer").attr("src", audio);
-       
+           
     var player = new MediaElementPlayer('#newplayer', {features: ['progress']});
     player.play();
 });
@@ -282,17 +263,17 @@ a:hover {
         </a></h1>
     </div>
     
-    <div id="audio-artiste">.</div>
-    <div id="audio-title"><em><a href="#" target="_blank">.</a></em></div>
-    <div id="audio-annee">.</div>
-    <div id="audio-duree">.</div>
-    <div id="audio-genre">.</div>
+    <div id="audio-artiste"><?php echo $_GET['artiste']; ?></div>
+    <div id="audio-title"><em><a href="<?php echo $home . '/?page_id=' . $_GET['postID']; ?>" target="_blank" title="<?php echo $_GET['title']; ?>"><?php echo $_GET['title']; ?></a></em></div>
+    <div id="audio-annee"><?php echo $_GET['annee']; ?></div>
+    <div id="audio-duree"><?php echo $_GET['duree']; ?></div>
+    <div id="audio-genre"><?php echo $_GET['genre']; ?></div>
     <div>
         <img id="launcher" style="margin-top: 13px; clear: left;" src="<?php echo $home; ?>/wp-content/themes/acsr/images/pause.png" alt="&#9654;" />
     </div>
     <a id='popupplayer' class='popupplayer' href='#' title='' style="background: none; display: block; height: 17px; width: 100%; padding: 0; margin-top: 5px; margin-left: 0px;"></a>
 
-<audio id="newplayer" style ="display: none;" src="#" width="120" height="22"></audio>
+<audio id="newplayer" style ="display: none;" src="<?php echo $_GET['audio']; ?>" width="120" height="22"></audio>
 
 
 <!-- Piwik -->

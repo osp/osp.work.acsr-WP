@@ -205,6 +205,10 @@ function get_the__uri_that_switches_views() {
                         } else { // if there's only one track
                             $url = $parse[0];
                         }
+                        
+                        
+                        
+                        
                         echo "<a class='audio mini-launcher' href='" . $url . "' data-link='".$post->ID ."' style='text-decoration: none;' title='". $audio_title ."'>"; 
                         echo "<img src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
                         echo "</a>";
