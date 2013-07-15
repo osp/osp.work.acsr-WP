@@ -809,3 +809,9 @@ div#footer * {
 #newsletter-bt:hover form {
     display: block;
 }
+
+
+/* SEARCH RESULTS */
+body.search-results article.production {
+    background-color: yellow;
+}
