@@ -751,7 +751,6 @@ div#nav nav#menu div#audio-title {
     background-color: yellow;
     font-size: 13px;
     display: inline;
-    margin-left: 5px;
     padding: 3px 2px;
 }
 div#audio-title a {
@@ -782,11 +781,11 @@ div#footer * {
 
 
 /* À PROPOS DE NOUS */
-#post-4418 {
+#post-4461 {
     background-color: yellow;
     min-height: 17px;
 }
-#post-4418 h1 {
+#post-4461 h1 {
     font-size: 13px;
     line-height: 17px;
     display: inline;
@@ -794,10 +793,10 @@ div#footer * {
     margin-right: 5px;
     font-weight: normal;
 }
-#post-4418 h1 a:after {
+#post-4461 h1 a:after {
     content: ": ";
 }
-#post-4418 h1 a {
+#post-4461 h1 a {
     text-decoration: none;
 }
 #newsletter-bt {
