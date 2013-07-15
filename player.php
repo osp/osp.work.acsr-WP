@@ -198,10 +198,8 @@ $(document).ready(function(){
         }
     });
     
-           
     var player = new MediaElementPlayer('#newplayer', {features: ['progress']});
-    player.play();
-});
+    setTimeout(function(){player.play()}, 1000);});
 </script>
 
 <style type="text/css">
@@ -256,7 +254,6 @@ a:hover {
 
 
 
-
     <div id="logo" role="logo">
         <h1><a href='/' target="_blank" style="background: none!important">
             <img id="logo" src="<?php echo $home; ?>/wp-content/themes/acsr/images/logos/acsr_logo-web.png" alt="l'atelier de création sonore radiophonique" border="0" style="margin-bottom: 18px; width: 100px"/>
@@ -271,9 +268,16 @@ a:hover {
     <div>
         <img id="launcher" style="margin-top: 13px; clear: left;" src="<?php echo $home; ?>/wp-content/themes/acsr/images/pause.png" alt="&#9654;" />
     </div>
-    <a id='popupplayer' class='popupplayer' href='#' title='' style="background: none; display: block; height: 17px; width: 100%; padding: 0; margin-top: 5px; margin-left: 0px;"></a>
 
-<audio id="newplayer" style ="display: none;" src="<?php echo $_GET['audio']; ?>" width="120" height="22"></audio>
+
+<?php
+    $nom_du_fichier = array_pop(explode('/', $_GET['audio']));
+    $audio = str_replace($nom_du_fichier, urlencode($nom_du_fichier), $_GET['audio']); 
+?>
+
+    <a id='popupplayer' class='popupplayer' href='<?php echo $audio; ?>' title='' style="background: none; display: block; height: 17px; width: 100%; padding: 0; margin-top: 5px; margin-left: 0px;"></a>
+
+<audio id="newplayer" style ="display: none;" src="<?php echo $audio; ?>" width="120" height="22"></audio>
 
 
 <!-- Piwik -->
