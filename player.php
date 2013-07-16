@@ -199,7 +199,7 @@ $(document).ready(function(){
     });
     
     var player = new MediaElementPlayer('#newplayer', {features: ['progress']});
-    setTimeout(function(){player.play()}, 1000);});
+    setTimeout(function(){player.play()}, 2000);});
 </script>
 
 <style type="text/css">

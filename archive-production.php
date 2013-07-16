@@ -178,6 +178,7 @@ function get_the__uri_that_switches_views() {
                  */
            ?>
 <div id='post<?php echo $i; ?>' class="production-item">
+<div class="artiste-title">
                     <?php 
                     $artists = get_post_meta($post->ID, 'wpcf-artiste', false);
                     if (!empty($artists)): 
@@ -189,6 +190,7 @@ function get_the__uri_that_switches_views() {
                     endif;
                     ?>
                     <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+</div>
                     
                     <?php 
                     
@@ -227,7 +229,9 @@ function get_the__uri_that_switches_views() {
                     endif;
                         echo "</div>";
                     $i++;
-
+?>
+<div class="details">
+<?php
                     if ($genre) { 
                         echo '<p class="genre">' . $genre . "</p>";
                     }
@@ -247,6 +251,7 @@ function get_the__uri_that_switches_views() {
                         }
                    }
                     ?>
+</div>
                 </div>		
             <?php
             endwhile;
@@ -282,5 +287,4 @@ function get_the__uri_that_switches_views() {
         </article>
         
         
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
