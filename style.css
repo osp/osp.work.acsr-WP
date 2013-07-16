@@ -155,11 +155,13 @@ div#header {
 }
 div#main {
     float: left;
+    min-width: 630px;
 }
 div#container {
     width: 34em;
     position: relative;
     z-index: 10;
+    float: left;
 }
 
 /* CONTENT */
@@ -436,6 +438,11 @@ div#prod-finies.listing div.clip {
     padding-right: 27px;
 }
 
+div#prod-finies div.artiste-title,
+div#prod-finies div.details {
+    max-width: 370px;
+}
+
 ul#resort {
     margin-bottom: 2em;
     margin-left: -3px;
@@ -638,9 +645,9 @@ ul#blog-bar li.archive-list ul li {
 div#nav {
     text-align: center;
     width: 185px;
-    position: fixed;
-    top: 1em;
-    left: 38em;
+    position: static;
+    margin-top: -3em;
+    float: left;
 }
 
 div#logo{
