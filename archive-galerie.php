@@ -66,7 +66,7 @@ get_header(); ?>
                             $args = array( 'post_type' => 'attachment', 'posts_per_page' => 1, 'post_status' =>'any', 'post_parent' => $post->ID ); 
                             $attachments = get_posts($args);
                         ?>
-                            <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><img src="<?php echo wp_get_attachment_image_src( $attachments[0]->ID , "large")[0]; ?>" class="first-image" alt="" /></a>
+                            <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><img src="<?php echo reset(wp_get_attachment_image_src( reset($attachments)->ID , "large")); ?>" class="first-image" alt="" /></a>
 
                     </div><!-- .entry-content -->
                 <?php endif; ?>
