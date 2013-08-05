@@ -27,10 +27,16 @@ $(document).ready(function(){
     left2 = Math.floor(Math.random() * 600);
     $("img#dessin").css({top: top2 + 'px' , left: left2 + 'px'});
 
-    // Show/Hide Projects
+    // Show/Hide sub-pages
     $("div.has-children h1").click(function(e){
         e.preventDefault();
         $(this).next().slideToggle('easeInOutQuint');
+    });
+    
+    // Show/Hide Projects
+    $("div#bt-newsletter").click(function(e){
+        e.preventDefault();
+        $("form", $(this)).slideToggle('easeInOutQuint');
     });
 
     // Rollover Play button

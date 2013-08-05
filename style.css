@@ -808,9 +808,6 @@ div#footer * {
     display: none;
     padding-top: 13px;
 }
-#newsletter-bt:hover form {
-    display: block;
-}
 
 
 /* SEARCH RESULTS */
