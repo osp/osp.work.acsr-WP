@@ -330,7 +330,7 @@ div#comments input[type=submit]:hover {
 }
 
 /* PROJETS */
-div.project-content {
+div.has-children div.project-content {
     display: none;
     /*margin: 13px 0 26px 0;*/
     /*font-family: "UniversElseLight", "DejaVu Sans", Helvetica, Arial, Sans-Serif;*/

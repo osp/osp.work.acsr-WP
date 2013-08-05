@@ -9,10 +9,17 @@
  *
  */
 
-get_header(); ?>
+get_header(); 
+
+$args = array(
+    'post_type' => 'page',
+    'post_parent' => $post->ID
+);
+$children = get_children($args);
+?>
 
 <div id="primary" class="site-content">
-        <div id="content" role="main">
+        <div id="content" role="main" class=" <?php if(!empty($children)){ echo 'has-children'; }?>">
 
             <?php 
             // first we display the requested page, but only if it has content:

@@ -28,13 +28,7 @@ $(document).ready(function(){
     $("img#dessin").css({top: top2 + 'px' , left: left2 + 'px'});
 
     // Show/Hide Projects
-    $("h1.project-title").click(function(e){
-        e.preventDefault();
-        $(this).next().slideToggle('easeInOutQuint');
-    });
-
-    // Show/Hide resources
-    $("h1.resource-title").click(function(e){
+    $("div.has-children h1").click(function(e){
         e.preventDefault();
         $(this).next().slideToggle('easeInOutQuint');
     });
