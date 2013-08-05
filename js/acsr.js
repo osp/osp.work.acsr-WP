@@ -64,4 +64,6 @@ $(document).ready(function(){
         popup = window.open(url);
     });
     
+    // Text ellipsis
+    $("div.latest-post").dotdotdot();
 });

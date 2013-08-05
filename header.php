@@ -100,6 +100,7 @@
 
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery-ui-1.7.2.custom.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/dotdotdot-1.6.1/jquery.dotdotdot.min.js" type="text/javascript" charset="utf-8"></script>
 
 <script src="<?php echo get_template_directory_uri(); ?>/js/acsr.js" type="text/javascript" charset="utf-8"></script>
 
