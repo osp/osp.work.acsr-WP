@@ -283,7 +283,7 @@ span.next-image {
 }
 
 /* NAVIGATION PREV./NEXT */
-div#nav-below {
+#nav-below {
     padding: 7px 13px;
     background-color: #FFFFC0;
     width: 100%;

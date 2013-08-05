@@ -13,10 +13,9 @@ get_header(); ?>
 
                 <?php get_template_part( 'content', get_post_format() ); ?>
 
-                <nav class="nav-single">
-                    <h3 class="assistive-text"><?php _e( 'Post navigation', 'acsr' ); ?></h3>
-                    <span class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'acsr' ) . '</span> %title' ); ?></span>
-                    <span class="nav-next"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'acsr' ) . '</span>' ); ?></span>
+                <nav id="nav-below" class="nav-single navigation">
+                    <div class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'acsr' ) . '</span> précédent' ); ?></div>
+                    <div class="nav-next"><?php next_post_link( '%link', 'suivant <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'acsr' ) . '</span>' ); ?></div>
                 </nav><!-- .nav-single -->
 
                 <?php comments_template( '', true ); ?>
