@@ -34,7 +34,7 @@ $(document).ready(function(){
     });
     
     // Show/Hide Projects
-    $("div#bt-newsletter").click(function(e){
+    $("div#newsletter-bt").click(function(e){
         e.preventDefault();
         $("form", $(this)).slideToggle('easeInOutQuint');
     });
