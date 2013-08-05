@@ -18,11 +18,11 @@ if ( post_password_required() )
     return;
 ?>
 
+    <?php if ( have_comments() ) : ?>
 <div id="comments" class="comments-area">
 
     <?php // You can start editing here -- including this comment! ?>
 
-    <?php if ( have_comments() ) : ?>
         <h2 class="comments-title">
             <?php
                 printf( _n( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'acsr' ),
@@ -50,8 +50,8 @@ if ( post_password_required() )
         <p class="nocomments"><?php _e( 'Comments are closed.' , 'acsr' ); ?></p>
         <?php endif; ?>
 
-    <?php endif; // have_comments() ?>
 
     <?php comment_form(); ?>
 
 </div><!-- #comments .comments-area -->
+    <?php endif; // have_comments() ?>
