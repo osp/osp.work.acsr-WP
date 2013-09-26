@@ -34,9 +34,9 @@ $(document).ready(function(){
     });
     
     // Show/Hide Projects
-    $("div#newsletter-bt").click(function(e){
+    $("div#newsletter-bt span").click(function(e){
         e.preventDefault();
-        $("form", $(this)).slideToggle('easeInOutQuint');
+        $("form", $(this).parent()).slideToggle('easeInOutQuint');
     });
 
     // Rollover Play button
