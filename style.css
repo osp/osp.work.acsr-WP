@@ -814,3 +814,10 @@ div#footer * {
 body.search-results article.production {
     background-color: yellow;
 }
+
+@media print {
+    @page {
+        size: 21cm 29,7cm;
+        margin: 0;
+    }
+}
