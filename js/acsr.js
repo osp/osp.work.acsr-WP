@@ -7,9 +7,17 @@ $(document).ready(function(){
 
     // Show on which page we are:
     $(".nav-menu li a").each(function() {
-        if ( $(this).attr('href') == document.location.href ) {
+        // link to '/', document.location is '/' => active
+        if ($(this).attr('href') === '/') {
+            if ( document.location.href === home + '/' ) {
+                $(this).addClass("active");
+            } 
+        // link to 'http://www.acsr.be/a-propos/', document.location.href is 'http://www.acsr.be/a-propos/' => active
+        // link to 'http://www.acsr.be/galerie/', document.location.href is 'http://www.acsr.be/galerie/los-santos-2/' => active
+        } else if ( document.location.href.substring(home.length).indexOf( $(this).attr('href').substring(home.length)  ) !== -1 )  {
             $(this).addClass("active");
-        };
+        }
+
     }); 
 
     // Rename Language ISO CODE
