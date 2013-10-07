@@ -44,7 +44,6 @@ get_header(); ?>
                 </div>
                 <?php endif; ?>
                 <header class="entry-header">
-                    <?php the_post_thumbnail(); ?>
                     <?php if ( is_single() ) : ?>
                     <h1 class="entry-title"><?php the_title(); ?></h1>
                     <?php else : ?>
@@ -61,13 +60,22 @@ get_header(); ?>
                 <?php else : ?>
                     <div class="entry-content">
                         <?php the_excerpt(); ?>
-
+                        <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark">
                         <?php
+                        // if there exists a manually selected thumbnail image,
+                        // we show it—otherwise the first uploaded image for this
+                        // page.
+                        if ( has_post_thumbnail() ) {
+                            the_post_thumbnail();
+                        } else {
                             $args = array( 'post_type' => 'attachment', 'posts_per_page' => 1, 'post_status' =>'any', 'post_parent' => $post->ID ); 
                             $attachments = get_posts($args);
                         ?>
-                            <a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'acsr' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><img src="<?php echo reset(wp_get_attachment_image_src( reset($attachments)->ID , "large")); ?>" class="first-image" alt="" /></a>
-
+                            <img src="<?php echo reset(wp_get_attachment_image_src( reset($attachments)->ID , "large")); ?>" class="first-image" alt="" />
+                        <?php
+                        }
+                        ?>
+                        </a>
                     </div><!-- .entry-content -->
                 <?php endif; ?>
 
