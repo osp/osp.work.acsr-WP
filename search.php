@@ -17,8 +17,14 @@ get_header(); ?>
 
 
             <?php /* Start the Loop */ ?>
-            <?php while ( have_posts() ) : the_post(); ?>
-                <?php get_template_part( 'content', get_post_format() ); ?>
+            <?php while ( have_posts() ) : the_post();
+                $tmpl = get_post_format(); // i.e. ‘image’, for content-image.php
+                if (!$tmpl) {
+                    $tmpl = get_post_type(); // i.e. ‘galerie’, for content-galerie.php
+                }
+                echo '<h1>' . $tmpl . '</h1>';
+                get_template_part( 'content', $tmpl ); ?>
+                
             <?php endwhile; ?>
 
         <?php else : ?>

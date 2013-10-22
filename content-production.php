@@ -41,11 +41,6 @@
             <?php endif; // is_single() ?>
         </header><!-- .entry-header -->
 
-        <?php if ( is_search() ) : // Only display Excerpts for Search ?>
-        <div class="entry-summary">
-            <?php the_excerpt(); ?>
-        </div><!-- .entry-summary -->
-        <?php else : ?>
         <div class="entry-content">
            <div class="entry-meta">
            <?php
@@ -160,30 +155,31 @@
         </div><!-- .entry-content -->
     </div>
 
-    <?php $dates = get_post_meta($post->ID, 'wpcf-dates-de-diffusion', true);
-          if($dates != ''):
-    ?>
-    <div class="post diffusions">
-            <h3>Diffusions/Séances d'écoute</h3>
-            <div class='dates'>
-                <?php echo str_replace("\n", "<br />", $dates); ?>
-            </div>
-    </div>
-    <?php endif; ?>
-
-    <?php $bio = get_post_meta($post->ID, 'wpcf-bio', true);
-        if($bio != ''):
-    ?>
-    <div class="post">
-            <?php
-                if(qtrans_getLanguage()=='fr') {
-                    if($bio != '') echo "<p class='bio'>" . $bio . "</p>";
-                } elseif(qtrans_getLanguage()=='nl'){
-                    $bio_nl = get_post_meta($post->ID, 'wpcf-bio-nl', true);
-                    if($bio_nl != '') echo "<p class='bio'>" . $bio_nl . "</p>";
-                }
-            ?>
-    </div>
-    <?php endif; ?>
+    <?php if ( !is_search() ) : // In Search results, don’t display all that metadata ?>
+        <?php $dates = get_post_meta($post->ID, 'wpcf-dates-de-diffusion', true);
+              if($dates != ''):
+        ?>
+        <div class="post diffusions">
+                <h3>Diffusions/Séances d'écoute</h3>
+                <div class='dates'>
+                    <?php echo str_replace("\n", "<br />", $dates); ?>
+                </div>
+        </div>
+        
+        <?php $bio = get_post_meta($post->ID, 'wpcf-bio', true);
+            if($bio != ''):
+        ?>
+        <div class="post">
+                <?php
+                    if(qtrans_getLanguage()=='fr') {
+                        if($bio != '') echo "<p class='bio'>" . $bio . "</p>";
+                    } elseif(qtrans_getLanguage()=='nl'){
+                        $bio_nl = get_post_meta($post->ID, 'wpcf-bio-nl', true);
+                        if($bio_nl != '') echo "<p class='bio'>" . $bio_nl . "</p>";
+                    }
+                ?>
+        </div>
+            <?php endif; ?>
         <?php endif; ?>
+    <?php endif; ?>
     </article><!-- #post -->
