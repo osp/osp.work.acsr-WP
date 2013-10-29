@@ -1,6 +1,6 @@
 <?php
 /**
- * Twenty Twelve functions and definitions.
+ * ACSR functions and definitions.
  *
  * Sets up the theme and provides some helper functions, which are used
  * in the theme as custom template tags. Others are attached to action and
@@ -37,6 +37,76 @@ function acsr_comments_form_defaults($default) {
     return $default;
 }
 
+
+function acsr_post_player() {
+   global $post;
+   $audio = get_post_meta($post->ID, 'wpcf-audio', false);
+   
+   if(!empty($audio)) {
+        $get_artists = get_post_meta($post->ID, 'wpcf-artiste', false);
+        $artists = "";
+        if (!empty($get_artists)): 
+            foreach($get_artists as $key => $val) {
+                $artists .= $val;
+            }
+        endif;
+        $annee = get_post_meta($post->ID, 'wpcf-annee', true);
+        $duree = get_post_meta($post->ID, 'wpcf-duree', true);
+        if(qtrans_getLanguage()=='fr') {
+            $genre = get_post_meta($post->ID, 'wpcf-genre', 'true');
+        } elseif(qtrans_getLanguage()=='nl'){
+            $genre = get_post_meta($post->ID, 'wpcf-genre-nl', 'true');
+        }
+        $audio_title = the_title('', '', false);
+        $args = array( "duree" => $duree, "genre" => $genre, "annee" => $annee, "artiste" => $artists );
+        $qstring = http_build_query($args);
+
+        sort($audio);
+        echo '<div id="playlist" class="clip">';
+        $count = 0;
+        foreach($audio as $key => $val) {
+            $parsed = explode(' --- ', $val);
+            if (count($parsed)!=1) { // if the audio field also includes a title, seperated from the url by ---
+                if ($count==0){ 
+                    echo '<img class="play" src="' . get_template_directory_uri() . '/images/petit-play.png" style="margin-top: -3px;" alt="&#9654;" /> ';
+                }
+                echo '<a class="audio" href="';
+                echo $parsed[1] . '&' . $qstring . '" data-link="'.$post->ID .'" title="'. $parsed[0] .'">' . $parsed[0];
+                echo '</a> ';
+                $count ++;
+            } else { // if the audio field contains just the url */
+                echo "<a class='audio' href='";
+                echo $val . '&' . $qstring ."' data-link='".$post->ID ."' title='". get_the_title() ."'><img class='play' src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
+                echo "</a> ";
+            }
+        }
+        echo "</div>";
+    }
+    
+    
+   $annee = get_post_meta($post->ID, 'wpcf-annee', true);
+   if($annee != '') echo "<p><strong>" . $annee . "</strong>";
+
+   $duree = get_post_meta($post->ID, 'wpcf-duree', true);
+   if($duree != '') echo " <strong>" . $duree . "</strong>";
+
+    $post_categories = wp_get_post_categories( $post->ID );
+   if(!empty($post_categories)){
+        foreach($post_categories as $c){
+            echo "<strong>" . get_category( $c )->name . "</strong>";
+        }
+   }
+
+    if(qtrans_getLanguage()=='fr') {
+        if (get_post_meta($post->ID, 'wpcf-genre', true)): 
+            echo get_post_meta($post->ID, 'wpcf-genre', 'true') . "</p>";
+        endif;
+    } elseif(qtrans_getLanguage()=='nl'){
+        if (get_post_meta($post->ID, 'wpcf-genre-nl', true)): 
+            echo get_post_meta($post->ID, 'wpcf-genre-nl', 'true') . "</p>";
+        endif;
+    }
+}
 
  
 /**
