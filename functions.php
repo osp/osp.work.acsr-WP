@@ -41,8 +41,8 @@ function acsr_comments_form_defaults($default) {
 function acsr_post_player() {
    global $post;
    $audio = get_post_meta($post->ID, 'wpcf-audio', false);
-   
-   if(!empty($audio)) {
+   // most posts without audio have Array( ), but some posts have Array ( [0] => )
+   if(!empty($audio) and $audio[0]) {
         $get_artists = get_post_meta($post->ID, 'wpcf-artiste', false);
         $artists = "";
         if (!empty($get_artists)): 
