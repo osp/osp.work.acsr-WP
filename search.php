@@ -22,7 +22,6 @@ get_header(); ?>
                 if (!$tmpl) {
                     $tmpl = get_post_type(); // i.e. ‘galerie’, for content-galerie.php
                 }
-                echo '<h1>' . $tmpl . '</h1>';
                 get_template_part( 'content', $tmpl ); ?>
                 
             <?php endwhile; ?>
