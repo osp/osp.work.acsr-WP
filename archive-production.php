@@ -30,7 +30,7 @@ if ($_GET['format'] == 'listing') {
 $args = array(  'posts_per_page' => $nposts, 
                 'paged' => $page,
                 'post_type' => 'production',
-                'orderby' => 'meta_value',
+                'orderby' => 'meta_value ID',
                 'meta_key' => 'wpcf-annee',
                 'order' => 'DESC');
 
