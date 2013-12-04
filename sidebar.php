@@ -69,7 +69,7 @@
                <div id="le-son-du-mois">le son<br />du mois</div>
                <div id="audio-title">
 
-                    &nbsp;<?php echo $artists;?>&nbsp;
+                    <!-- &nbsp;<?php echo $artists;?>&nbsp; -->
                     <em><a style="background: none;" href="<?php the_permalink(); ?>"><?php echo $audio_title; ?></a></em>
                 </div>
                    <?php echo "<a class='audio launcher' href='" . $url . "' data-link='".$post->ID ."' style='text-decoration: none;' title='". urlencode($audio_title) ."'>"; ?>
