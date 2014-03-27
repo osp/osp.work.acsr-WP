@@ -540,6 +540,10 @@ div.resource-content strong {
 .sticky h1 {
     text-align: center;
 }
+
+.sticky h1 a {
+    text-decoration: none;
+}
 /* BLOG LATEST POSTS */
 div.latest-posts {
     width: 482px;
