@@ -336,6 +336,10 @@ div.has-children div.project-content {
     /*font-family: "UniversElseLight", "DejaVu Sans", Helvetica, Arial, Sans-Serif;*/
 }
 
+div.has-children div.project-content#project-1793, div.has-children div.project-content#project-4461 {
+    display: inherit;
+}
+
 /* PRODUCTIONS */
 div.production-block {
     margin-top: 13px;
