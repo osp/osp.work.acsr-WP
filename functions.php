@@ -135,13 +135,6 @@ endforeach;
 
             }*/
 
- $tag_listB =  get_the_tag_list( '<br /><strong>Tags :</strong> ', ', ' );
-if($tag_listB != '') echo $tag_listB;
-echo " ";
-   
-
-
-
 }
 
 

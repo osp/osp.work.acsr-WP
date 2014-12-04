@@ -113,6 +113,21 @@
                 ?>
         </div>
             <?php endif; ?>
+
+                    <?php
+                       global $post;
+            if(has_tag()):
+        ?>
+        <div class="post">
+                <?php
+                    $tag_listB =  get_the_tag_list( '<br /><strong>Tags :</strong> ', ', ' );
+                    if($tag_listB != '') echo $tag_listB;
+                    echo " ";
+                ?>
+        </div>
         <?php endif; ?>
+            
+            
+<?php endif; ?>
     <?php endif; ?>
     </article><!-- #post -->
