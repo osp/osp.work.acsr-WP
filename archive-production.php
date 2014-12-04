@@ -222,11 +222,6 @@ function get_the__uri_that_switches_views() {
             <?php
             /* Start the Loop */
             while ( have_posts() ) : the_post();
-
-                /* Include the post format-specific template for the content. If you want to
-                 * this in a child theme then include a file called called content-___.php
-                 * (where ___ is the post format) and that will be used instead.
-                 */
            ?>
 <div id='post<?php echo $i; ?>' class="production-item">
 <div class="artiste-title">
@@ -244,34 +239,21 @@ function get_the__uri_that_switches_views() {
 </div>
 
                     <?php
-
+                    $annee = get_post_meta($post->ID, 'wpcf-annee', true);
+                    $duree = get_post_meta($post->ID, 'wpcf-duree', true);
+                    $genre = get_post_meta($post->ID, 'wpcf-genre', true);
                     $audio = get_post_meta($post->ID, 'wpcf-audio', false);
-                    echo "<div class='clip' id='clip". $i . "'>";
+
+                    // embed a player if we have sound:
                     if($audio[0] != ''):
+                        echo "<div class='clip' id='clip". $i . "'>";
                         $get_artists = get_post_meta($post->ID, 'wpcf-artiste', false);
-                        $artists = "";
-                        if (!empty($get_artists)):
-                            foreach($get_artists as $key => $val) {
-                                $artists .= $val;
+                        $audio_artists = "";
+                        if (!empty($artists)):
+                            foreach($artists as $key => $val) {
+                                $audio_artists .= $val;
                             }
                         endif;
-                        $annee = get_post_meta($post->ID, 'wpcf-annee', true);
-                        $duree = get_post_meta($post->ID, 'wpcf-duree', true);
-                        $genre = get_post_meta($post->ID, 'wpcf-genre', 'true');
-
-            //$thematiques = get_post_meta($post->ID, 'wpcf-thematiques', false);
-
-
-$get_thematiques  = get_post_meta($post->ID, 'wpcf-thematiques', false);
-                        $thematiques = "";
-                        if (($get_thematiques)!=''):
-                            foreach($get_thematiques as $keyb => $valb) {
-                                $thematiques .= $valb;
-                            }
-                        endif;
-
-
-
 
                         $audio_title = the_title('', '', false);
 
@@ -282,39 +264,21 @@ $get_thematiques  = get_post_meta($post->ID, 'wpcf-thematiques', false);
                             $url = $parse[0];
                         }
 
-                        $args = array( "duree" => $duree, "genre" => $genre, "thematiques" => $thematiques, "annee" => $annee, "artiste" => $artists );
+                        $args = array( "duree" => $duree, "genre" => $genre, "annee" => $annee, "artiste" => $audio_artists );
                         $url = $url . '&' . http_build_query($args);
 
                         echo "<a class='audio mini-launcher' href='" . $url . "' data-link='".$post->ID ."' style='text-decoration: none;' title='". urlencode($audio_title) ."'>";
                         echo "<img src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
                         echo "</a>";
-                    endif;
                         echo "</div>";
-                    $i++;
+                        $i++;
+                    endif;
 ?>
 <div class="details">
 <?php
                     if ($genre) {
                         echo '<p class="genre">' . $genre . "</p>";
                     }
-            //if ($thematiques) {
-                        // foreach($thematiques as $th){
-                         //   echo "<p class='thematiques'> " .  $th  . "</p>";
-                        //};
-                   // }
-// DANS LA PAGE PRODUCTION CACHE LES THEMATIQUES
-
-//$get_thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
-
-//        if (($get_thematiques)!=' '):
-//            foreach($get_thematiques as $keyc => $valc) {
-//                $thematiques = $valc;
-//echo "<p class='thematiques'> - " . $thematiques . "</p>";
-
-//            }
- //       endif;
-
-
 
                     if ($duree) {
                         echo '<p class="duree">' . $duree . "</p>";
