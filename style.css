@@ -658,9 +658,9 @@ div#nav div#logo a:hover{
     z-index:1000;
 }
 
-div#nav div#logo a:hover img#logogris{
+/*div#nav div#logo a:hover img#logogris{
     display:block;
-}
+}*/
 
 div#nav img#logogris {
     display:none;
