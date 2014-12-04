@@ -342,16 +342,16 @@ div.production-block {
 }
 div.audio-list,
 div#prod-finies {
-	-moz-column-count: 3;
-	-moz-column-gap: 26px;
-	-moz-column-rule: 1px dotted black;
-	-webkit-column-count: 3;
-	-webkit-column-gap: 26px;
-	-webkit-column-rule: 1px dotted black;
-	column-count: 3;
-	column-gap: 26px;
-	column-rule: 1px dotted black;
-	text-align: center;
+    -moz-column-count: 3;
+    -moz-column-gap: 26px;
+    -moz-column-rule: 1px dotted black;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 26px;
+    -webkit-column-rule: 1px dotted black;
+    column-count: 3;
+    column-gap: 26px;
+    column-rule: 1px dotted black;
+    text-align: center;
     margin-top: 13px;
 }
 
@@ -396,9 +396,9 @@ ul.artist li + li:before {
     content: ", " !important;
 }
 div#prod-finies.listing {
-	-moz-column-count: 1;
-	-webkit-column-count: 1;
-	column-count: 1;
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
     text-align: left;
 }
 div#prod-finies.listing div.production-item {
@@ -582,11 +582,11 @@ div.latest-post a:hover {
 }
 /* BLOG-BAR */
 ul#blog-bar {
-    width: 36em;
+    width: 44em;
     margin-top: 13px;
 }
 ul#blog-bar li.archive-list {
-    width: 25%;
+    width: 20%;
     float: left;
     background-color: Yellow;
     padding: 7px 0;
@@ -598,30 +598,32 @@ ul#blog-bar li.archive-list ul {
 ul#blog-bar li.archive-list ul#last-posts {
     padding: 13px;
     width: 100%;
-	-moz-column-count: 2;
-	-moz-column-gap: 13px;
-	/*-moz-column-rule: 1px dotted black;*/
-	-webkit-column-count: 2;
-	-webkit-column-gap: 13px;
-	/*-webkit-column-rule: 1px dotted black;*/
-	column-count: 2;
-	column-gap: 13px;
-	/*column-rule: 1px dotted black;*/
+    -moz-column-count: 2;
+    -moz-column-gap: 13px;
+    /*-moz-column-rule: 1px dotted black;*/
+    -webkit-column-count: 2;
+    -webkit-column-gap: 13px;
+    /*-webkit-column-rule: 1px dotted black;*/
+    column-count: 2;
+    column-gap: 13px;
+    /*column-rule: 1px dotted black;*/
 }
 ul#blog-bar li.archive-list ul#archive {
     padding: 13px 6px 13px 13px;
     width: 75%;
-	-moz-column-count: 4;
-	-moz-column-gap: 13px;
-	-webkit-column-count: 4;
-	-webkit-column-gap: 13px;
-	column-count: 4;
-	column-gap: 13px;
+    -moz-column-count: 4;
+    -moz-column-gap: 13px;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 13px;
+    column-count: 4;
+    column-gap: 13px;
 }
-ul#blog-bar li.archive-list ul#categories {
+/*ul#blog-bar li.archive-list ul#categories {
     padding: 13px 0 13px 13px;
     width: 50%;
-}
+}*/
+#archives-3 .widget-title {padding-left: 17px}
+.textwidget{padding-left:20px}
 ul#blog-bar li.archive-list h4 {
     margin-left: 13px;
 }
@@ -824,4 +826,18 @@ body.search-results article.production {
         size: 21cm 29,7cm;
         margin: 0;
     }
+}
+ul#resort{margin-bottom:1em}
+#thematiques select {border: 0; padding:3px;
+    margin: 0;
+    background: #FFFFC0;
+    border:none;
+    border-bottom:solid 1px black;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    padding-left:0px;
 }
