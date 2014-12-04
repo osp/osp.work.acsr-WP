@@ -66,11 +66,7 @@
     <!-- Search Form -->
     <?php get_search_form(); ?>
     
-    <div id="languages">
-        <?php
-            qtrans_generateLanguageSelectCode($style='', $id='');
-         ?>
-    </div>
+  
     </nav><!-- #site-navigation -->
 
     <?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
