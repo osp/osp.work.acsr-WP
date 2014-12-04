@@ -24,7 +24,7 @@
  */
 
 /**
- * Donâ€™t show the long text that instructs the commenter about available HTML tags:
+ * Don’t show the long text that instructs the commenter about available HTML tags:
  */
 
 function acsr_init() {
@@ -63,7 +63,7 @@ function acsr_post_player() {
         } elseif(qtrans_getLanguage()=='nl'){
             $genre = get_post_meta($post->ID, 'wpcf-genre-nl', 'true');
         }
-	
+    
 $get_thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
 $thematiques = "";
         if (($get_thematiques)!=' '): 
@@ -116,7 +116,7 @@ $thematiques = "";
 
    if(qtrans_getLanguage()=='fr') {
         if (get_post_meta($post->ID, 'wpcf-genre', true)): 
-		echo "<strong>Genre :</strong>";
+        echo "<strong>Genre :</strong>";
             echo get_post_meta($post->ID, 'wpcf-genre', 'true') . "</p>";
         endif;
     } elseif(qtrans_getLanguage()=='nl'){
@@ -498,18 +498,18 @@ if ( ! function_exists( 'acsr_entry_meta' ) ) :
 
 
 function get_the_category_list2( $separator = '' ) {
-	global $wp_rewrite;
-	
-	$categories = get_the_category( $post_id );
-	if ( empty( $categories ) ) {
-		/** This filter is documented in wp-includes/category-template.php */
-		return apply_filters( 'the_category', __( 'Uncategorized' ), $separator, $parents );
-	}
+    global $wp_rewrite;
+    
+    $categories = get_the_category( $post_id );
+    if ( empty( $categories ) ) {
+        /** This filter is documented in wp-includes/category-template.php */
+        return apply_filters( 'the_category', __( 'Uncategorized' ), $separator, $parents );
+    }
 
-	$rel = ( is_object( $wp_rewrite ) && $wp_rewrite->using_permalinks() ) ? 'rel="category tag"' : 'rel="category"';
+    $rel = ( is_object( $wp_rewrite ) && $wp_rewrite->using_permalinks() ) ? 'rel="category tag"' : 'rel="category"';
 
-	$thelist = '';
-	$thelist .= '<strong>Catégories:</strong>';
+    $thelist = '';
+    $thelist .= '<strong>Catégories:</strong>';
 foreach((get_the_category()) as $childcat) {
 if (cat_is_ancestor_of(20, $childcat)) {
 $thelist .= '<a href="'.get_category_link($childcat->cat_ID).'">';
@@ -531,17 +531,17 @@ $thelist .= '<a href="'.get_category_link($childcatB->cat_ID).'">';
 }}
 
 
-	/**
-	 * Filter the category or list of categories.
-	 *
-	 * @since 1.2.0
-	 *
-	 * @param array  $thelist   List of categories for the current post.
-	 * @param string $separator Separator used between the categories.
-	 * @param string $parents   How to display the category parents. Accepts 'multiple',
-	 *                          'single', or empty.
-	 */
-	return apply_filters( 'the_category', $thelist, $separator, $parents );
+    /**
+     * Filter the category or list of categories.
+     *
+     * @since 1.2.0
+     *
+     * @param array  $thelist   List of categories for the current post.
+     * @param string $separator Separator used between the categories.
+     * @param string $parents   How to display the category parents. Accepts 'multiple',
+     *                          'single', or empty.
+     */
+    return apply_filters( 'the_category', $thelist, $separator, $parents );
 }
 
 
