@@ -657,27 +657,12 @@ div#nav {
 
 div#logo{
     position: relative;
-}
-
-div#nav div#logo a:hover{
-    background: none;
-    z-index:1000;
-}
-
-/*div#nav div#logo a:hover img#logogris{
     display:block;
-}*/
+}
 
-div#nav img#logogris {
-    display:none;
-    position:absolute;
-    top:-22px;
-    left:-15px;
-    z-index:900;
-    }
 
-div#logogris {
-    display:none;
+div#nav div#logo img:hover{
+    z-index:3000;
 }
 
 div#nav nav#menu {

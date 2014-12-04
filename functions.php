@@ -126,17 +126,6 @@ echo "<strong>Genre :</strong>";
         endif;
     }
 
-
-echo  '<strong>Thématiques:</strong>';
-foreach((get_the_category()) as $childcat) {
-if (cat_is_ancestor_of(109, $childcat)) {
-echo  '<a href="'.get_category_link($childcat->cat_ID).'">';
-echo  $childcat->cat_name . '</a> ';
-
-}}
-
-
-
 /*$thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
 if (!empty($thematiques)) { 
                 echo "<strong> Thématiques: </strong>";
