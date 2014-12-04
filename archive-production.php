@@ -30,8 +30,8 @@ if ($_GET['format'] == 'listing') {
 $args = array(  'posts_per_page' => $nposts, 
                 'paged' => $page,
                 'post_type' => 'production',
-                'orderby' => 'meta_value ID',
-                'meta_key' => 'wpcf-annee',
+                'orderby' => 'meta_value_num',
+                'meta_key' => 'ID wpcf-annee',
                 'order' => 'DESC');
 
 /*  We allow to specify a different order through the url, i.e.
@@ -152,9 +152,21 @@ function get_the__uri_that_switches_views() {
     
     <ul id="resort">
         <li><a href="<?php echo get_the_production_uri(); ?>" <?php if ($args['meta_key'] == 'wpcf-annee') { echo "class='active'";} ?>>par année</a></li>
-        <li><a href="<?php echo get_the_production_uri(array('orderby' => 'title', 'order' => 'ASC')) ?>" <?php if ($args['orderby'] == 'title') { echo "class='active'";} ?>>par titre</a></li>
-        <li><a href="<?php echo get_the_production_uri(array('orderby' => 'meta_value', 'meta_key' => 'wpcf-genre', 'order' => 'ASC')) ?>" <?php if ($args['meta_key'] == 'wpcf-genre') { echo "class='active'";} ?>>par genre</a></li>
-        <li><a href="<?php echo get_the_production_uri(array('orderby' => 'meta_value', 'meta_key' => 'wpcf-artiste', 'order' => 'ASC')) ?>" <?php if ($args['meta_key'] == 'wpcf-artiste') { echo "class='active'";} ?>>par artiste</a></li>
+        <li><a href="<?php echo get_the_production_uri(array('orderby' => 'title', 'order' => 'ASC')) ?>" <?php if ($args['orderby'] == 'title') { echo "class='active'";} ?>>titre</a></li>
+        <li><a href="<?php echo get_the_production_uri(array('orderby' => 'meta_value', 'meta_key' => 'wpcf-genre', 'order' => 'ASC')) ?>" <?php if ($args['meta_key'] == 'wpcf-genre') { echo "class='active'";} ?>>genre</a></li>
+
+  <!-- <li><a href="<?php echo get_the_production_uri(array('orderby' => 'meta_value', 'meta_key' => 'wpcf-thematiques', 'order' => 'ASC')) ?>" <?php if ($args['meta_key'] == 'wpcf-thematiques') { echo "class='active'";} ?>>thematiques</a></li>-->
+
+
+<!--<li>
+ <?php the_widget( "WP_Widget_Thematique"); ?> 
+</li>-->
+
+
+
+
+
+        <li><a href="<?php echo get_the_production_uri(array('orderby' => 'meta_value', 'meta_key' => 'wpcf-artiste', 'order' => 'ASC')) ?>" <?php if ($args['meta_key'] == 'wpcf-artiste') { echo "class='active'";} ?>>artiste</a></li>
 
 
         <?php if ($_GET['format'] == "listing"): ?> 
@@ -163,7 +175,46 @@ function get_the__uri_that_switches_views() {
         <li><a href="<?php echo get_the__uri_that_switches_views() ?>">vue liste</a></li>
         <?php endif; ?> 
     </ul>
-    
+   
+<?php $args = array(
+	'show_option_all'    => 'ou sélectionner une thématique  &nbsp;&nbsp;&nbsp;  &rarr;',
+	'show_option_none'   => '',
+	'orderby'            => 'ID', 
+	'order'              => 'ASC',
+	'show_count'         => 0,
+	'hide_empty'         => 1, 
+	'child_of'           => 0,
+    	'exclude_tree'	     => '20',
+    	'exclude' 	     => '1',
+	'echo'               => 1,
+	'selected'           => 0,
+	'hierarchical'       => 0, 
+	'name'               => 'cat',
+	'id'                 => '',
+	'class'              => 'postform',
+	'depth'              => 0,
+	'tab_index'          => 0,
+	'taxonomy'           => 'category',
+	'hide_if_empty'      => false,
+); ?>
+
+
+
+<div id="thematiques">
+	<?php wp_dropdown_categories($args ); ?>
+
+<script type="text/javascript"><!--
+    var dropdown = document.getElementById("cat");
+    function onCatChange() {
+		if ( dropdown.options[dropdown.selectedIndex].value > 0 ) {
+			location.href = "<?php echo get_option('home');
+?>/?cat="+dropdown.options[dropdown.selectedIndex].value;
+		}
+    }
+    dropdown.onchange = onCatChange;
+--></script>
+</div>
+ 
 <div id="prod-finies" class="<?php echo $_GET['format']; ?>">
   
                         
@@ -211,6 +262,21 @@ function get_the__uri_that_switches_views() {
                         } elseif(qtrans_getLanguage()=='nl'){
                             $genre = get_post_meta($post->ID, 'wpcf-genre-nl', 'true');
                         }
+
+			//$thematiques = get_post_meta($post->ID, 'wpcf-thematiques', false);
+
+
+$get_thematiques  = get_post_meta($post->ID, 'wpcf-thematiques', false);
+                        $thematiques = "";
+                        if (($get_thematiques)!=''): 
+                            foreach($get_thematiques as $keyb => $valb) {
+                                $thematiques .= $valb;
+                            }
+                        endif;
+
+            
+
+ 			
                         $audio_title = the_title('', '', false);
                         
                         $parse = explode(' --- ', $audio[0]);
@@ -220,7 +286,7 @@ function get_the__uri_that_switches_views() {
                             $url = $parse[0];
                         }
                         
-                        $args = array( "duree" => $duree, "genre" => $genre, "annee" => $annee, "artiste" => $artists );
+                        $args = array( "duree" => $duree, "genre" => $genre, "thematiques" => $thematiques, "annee" => $annee, "artiste" => $artists );
                         $url = $url . '&' . http_build_query($args);
                         
                         echo "<a class='audio mini-launcher' href='" . $url . "' data-link='".$post->ID ."' style='text-decoration: none;' title='". urlencode($audio_title) ."'>"; 
@@ -235,6 +301,24 @@ function get_the__uri_that_switches_views() {
                     if ($genre) { 
                         echo '<p class="genre">' . $genre . "</p>";
                     }
+			//if ($thematiques) { 
+                        // foreach($thematiques as $th){
+                         //   echo "<p class='thematiques'> " .  $th  . "</p>";
+                        //};
+                   // }
+// DANS LA PAGE PRODUCTION CACHE LES THEMATIQUES
+
+//$get_thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
+
+//        if (($get_thematiques)!=' '): 
+//            foreach($get_thematiques as $keyc => $valc) {
+//                $thematiques = $valc;
+//echo "<p class='thematiques'> - " . $thematiques . "</p>";
+
+//            }
+ //       endif;
+
+
 
                     if ($duree) { 
                         echo '<p class="duree">' . $duree . "</p>";
@@ -244,12 +328,15 @@ function get_the__uri_that_switches_views() {
                         echo '<p class="annee">' . $annee . "</p>";
                     }
 
-                    $post_categories = wp_get_post_categories( $post->ID );
-                   if(!empty($post_categories)){
-                        foreach($post_categories as $c){
-                            echo "<p class='category'>, " . get_category( $c )->name . "</p>";
-                        }
-                   }
+
+
+               //     $post_categories = wp_get_post_categories( $post->ID );
+               //    if(!empty($post_categories)){
+               //         foreach($post_categories as $c){
+               //             echo "<p class='category'>, " . get_category( $c )->name . "</p>";
+               //         }
+               //    }
+
                     ?>
 </div>
                 </div>		

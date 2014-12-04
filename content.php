@@ -16,7 +16,7 @@
             <?php if ( is_single() ) : ?>
             <h1 class="entry-title"><?php the_title(); ?></h1>
             <div class="entry-meta">
-                <?php acsr_post_player(); ?>
+                <!-- COMMENTE PAR FRED POUR EVITER REPETITION CATEGORIES <?php acsr_post_player(); ?>-->
                 <?php acsr_entry_meta(); ?>
                 <?php edit_post_link( __( 'Edit', 'acsr' ), '<span class="edit-link">', '</span>' ); ?>
                 <?php if ( is_singular() && get_the_author_meta( 'description' ) && is_multi_author() ) : // If a user has filled out their description and this is a multi-author blog, show a bio on their entries. ?>

@@ -52,7 +52,7 @@
                 }
                 echo "</ul>";
             }
-           
+
            acsr_post_player();
             ?>
             </div>

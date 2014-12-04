@@ -7,6 +7,9 @@ $(document).ready(function(){
 
     // Show on which page we are:
     $(".nav-menu li a").each(function() {
+        if ($(this).attr('href') === undefined) {
+            return;
+        }
         // link to '/', document.location is '/' => active
         if ($(this).attr('href') === '/') {
             if ( document.location.href === home + '/' ) {

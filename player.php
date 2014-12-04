@@ -265,6 +265,9 @@ a:hover {
     <div id="audio-annee"><?php echo $_GET['annee']; ?></div>
     <div id="audio-duree"><?php echo $_GET['duree']; ?></div>
     <div id="audio-genre"><?php echo $_GET['genre']; ?></div>
+<div id="audio-thematiques"><?php echo $_GET['thematiques']; ?></div>
+
+
     <div>
         <img id="launcher" style="margin-top: 13px; clear: left;" src="<?php echo $home; ?>/wp-content/themes/acsr/images/pause.png" alt="&#9654;" />
     </div>

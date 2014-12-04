@@ -24,7 +24,7 @@
  */
 
 /**
- * Don’t show the long text that instructs the commenter about available HTML tags:
+ * Donâ€™t show the long text that instructs the commenter about available HTML tags:
  */
 
 function acsr_init() {
@@ -63,8 +63,19 @@ function acsr_post_player() {
         } elseif(qtrans_getLanguage()=='nl'){
             $genre = get_post_meta($post->ID, 'wpcf-genre-nl', 'true');
         }
+	
+$get_thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
+$thematiques = "";
+        if (($get_thematiques)!=' '): 
+            foreach($get_thematiques as $keyc => $valc) {
+                $thematiques .= $valc;
+            }
+        endif;
+
+
+
         $audio_title = the_title('', '', false);
-        $args = array( "duree" => $duree, "genre" => $genre, "annee" => $annee, "artiste" => $artists );
+        $args = array( "duree" => $duree, "genre" => $genre, "thematiques" => $thematiques, "annee" => $annee, "artiste" => $artists );
         $qstring = http_build_query($args);
 
         sort($audio);
@@ -91,29 +102,103 @@ function acsr_post_player() {
     
     
    $annee = get_post_meta($post->ID, 'wpcf-annee', true);
-   if($annee != '') echo "<p><strong>" . $annee . "</strong>";
+   if($annee != '') echo "<p style=\"line-height:25px\"><strong>" . $annee . "</strong>";
 
    $duree = get_post_meta($post->ID, 'wpcf-duree', true);
    if($duree != '') echo " <strong>" . $duree . "</strong>";
 
-    $post_categories = wp_get_post_categories( $post->ID );
-   if(!empty($post_categories)){
-        foreach($post_categories as $c){
-            echo "<strong>" . get_category( $c )->name . "</strong>";
-        }
-   }
+   // $post_categories = wp_get_post_categories( $post->ID );
+   //if(!empty($post_categories)){
+   //     foreach($post_categories as $c){
+   //         echo "<strong>" . get_category( $c )->name . "</strong>";
+   //     }
+  // }
 
-    if(qtrans_getLanguage()=='fr') {
+   if(qtrans_getLanguage()=='fr') {
         if (get_post_meta($post->ID, 'wpcf-genre', true)): 
+		echo "<strong>Genre :</strong>";
             echo get_post_meta($post->ID, 'wpcf-genre', 'true') . "</p>";
         endif;
     } elseif(qtrans_getLanguage()=='nl'){
         if (get_post_meta($post->ID, 'wpcf-genre-nl', true)): 
+echo "<strong>Genre :</strong>";
             echo get_post_meta($post->ID, 'wpcf-genre-nl', 'true') . "</p>";
         endif;
     }
+
+
+echo  '<strong>Thématiques:</strong>';
+foreach((get_the_category()) as $childcat) {
+if (cat_is_ancestor_of(109, $childcat)) {
+echo  '<a href="'.get_category_link($childcat->cat_ID).'">';
+echo  $childcat->cat_name . '</a> ';
+
+}}
+
+
+
+/*$thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
+if (!empty($thematiques)) { 
+                echo "<strong> Thématiques: </strong>";
+         foreach ( $thematiques as $item) :
+echo "$item; ";
+endforeach;
+
+            }*/
+
+ $tag_listB =  get_the_tag_list( '<br /><strong>Tags :</strong> ', ', ' );
+if($tag_listB != '') echo $tag_listB;
+echo " ";
+   
+
+
+
 }
 
+
+/** AJOUTER CATEGORY POUR LES PRODICTIONS**/
+add_action( 'init', 'register_cpt_production' );
+
+function register_cpt_production() {
+
+    $labels = array( 
+        'name' => _x( 'production', 'production' ),
+        'singular_name' => _x( 'production', 'production' ),
+        'add_new' => _x( 'Ajouter', 'production' ),
+        'add_new_item' => _x( 'Ajouter un production', 'production' ),
+        'edit_item' => _x( 'Editer un productions', 'production' ),
+        'new_item' => _x( 'Nouveau productions', 'production' ),
+        'view_item' => _x( 'Voir le productions', 'production' ),
+        'search_items' => _x( 'Rechercher un productions', 'production' ),
+        'not_found' => _x( 'Aucun produit trouvé', 'production' ),
+        'not_found_in_trash' => _x( 'Aucun productions dans la corbeille', 'production' ),
+        'parent_item_colon' => _x( 'productions parent :', 'production' ),
+        'menu_name' => _x( 'productions', 'production' ),
+    );
+
+    $args = array( 
+        'labels' => $labels,
+        'hierarchical' => false,
+        'description' => 'Les productions de ma boutique.',
+        'supports' => array( 'title', 'editor', 'thumbnail', 'custom-fields', 'revisions' ),
+        'taxonomies' => array( 'category', 'post_tag' ),
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_position' => 5,
+
+        'show_in_nav_menus' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => false,
+        'has_archive' => true,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => true,
+        'capability_type' => 'post'
+    );
+
+    register_post_type( 'production', $args );
+}
  
 /**
  * Sets up the content width value based on the theme's design and stylesheet.
@@ -412,6 +497,13 @@ function acsr_comment( $comment, $args, $depth ) {
 }
 endif;
 
+
+
+
+
+
+
+
 if ( ! function_exists( 'acsr_entry_meta' ) ) :
 /**
  * Prints HTML with meta information for current post: categories, tags, permalink, author, and date.
@@ -420,9 +512,62 @@ if ( ! function_exists( 'acsr_entry_meta' ) ) :
  *
  * @since Twenty Twelve 1.0
  */
+
+
+
+function get_the_category_list2( $separator = '' ) {
+	global $wp_rewrite;
+	
+	$categories = get_the_category( $post_id );
+	if ( empty( $categories ) ) {
+		/** This filter is documented in wp-includes/category-template.php */
+		return apply_filters( 'the_category', __( 'Uncategorized' ), $separator, $parents );
+	}
+
+	$rel = ( is_object( $wp_rewrite ) && $wp_rewrite->using_permalinks() ) ? 'rel="category tag"' : 'rel="category"';
+
+	$thelist = '';
+	$thelist .= '<strong>Catégories:</strong>';
+foreach((get_the_category()) as $childcat) {
+if (cat_is_ancestor_of(20, $childcat)) {
+$thelist .= '<a href="'.get_category_link($childcat->cat_ID).'">';
+ $thelist .= $childcat->cat_name . '</a> ';
+}}
+
+ $i = 0;
+/**foreach ((get_the_category()) as $childcatC) {
+if (cat_is_ancestor_of(109, $childcatC))
+$thelist .= '<strong>Thématiques:</strong>';
+if (++$i == 1) break;
+}*/ 
+
+
+foreach((get_the_category()) as $childcatB) {
+if (cat_is_ancestor_of(21, $childcatB)) {
+$thelist .= '<a href="'.get_category_link($childcatB->cat_ID).'">';
+ $thelist .= $childcatB->cat_name . '</a> ';
+}}
+
+
+	/**
+	 * Filter the category or list of categories.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @param array  $thelist   List of categories for the current post.
+	 * @param string $separator Separator used between the categories.
+	 * @param string $parents   How to display the category parents. Accepts 'multiple',
+	 *                          'single', or empty.
+	 */
+	return apply_filters( 'the_category', $thelist, $separator, $parents );
+}
+
+
+
+
 function acsr_entry_meta() {
     // Translators: used between list items, there is a space after the comma.
-    $categories_list = get_the_category_list( ', ' );
+    $categories_list = get_the_category_list2( ', ' );
 
     // Translators: used between list items, there is a space after the comma.
     $tag_list = get_the_tag_list( '', ', ' );
@@ -436,7 +581,7 @@ function acsr_entry_meta() {
 
     // Translators: 1 is category, 2 is tag, and 3 is the date.
     if ( $tag_list ) {
-        $utility_text = __( 'Posté le %3$s dans %1$s, et taggé comme %2$s.', 'acsr' );
+        $utility_text = __( 'Posté le %3$s dans %1$s <strong>Tags</strong> %2$s.', 'acsr' );
     } elseif ( $categories_list ) {
         $utility_text = __( 'Posté le %3$s dans %1$s.', 'acsr' );
     } else {
@@ -444,8 +589,8 @@ function acsr_entry_meta() {
     }
 
     printf(
-        $utility_text,
-        $categories_list,
+       $utility_text,
+         $categories_list,
         $tag_list,
         $date
     );
@@ -534,3 +679,19 @@ function acsr_customize_preview_js() {
     wp_enqueue_script( 'acsr-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20120827', true );
 }
 add_action( 'customize_preview_init', 'acsr_customize_preview_js' );
+
+
+function add_custom_types_to_tax( $query ) {
+if( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
+
+// Get all your post types
+$post_types = get_post_types();
+
+$query->set( 'post_type', $post_types );
+return $query;
+}
+}
+add_filter( 'pre_get_posts', 'add_custom_types_to_tax' );
+
+
+
