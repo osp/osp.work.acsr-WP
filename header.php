@@ -9,15 +9,15 @@
 
 
     <!--
-        | | |  |   |  |   |   
-        | | |  |   |  |   |   
-        | | |  |===|  )- -(   
-        |_|_|  |___|  |___|   
-        \   /   ).(    [_]    
-         \-/    \|/     U     
-     hjm  '      '            
+        | | |  |   |  |   |
+        | | |  |   |  |   |
+        | | |  |===|  )- -(
+        |_|_|  |___|  |___|
+        \   /   ).(    [_]
+         \-/    \|/     U
+     hjm  '      '
 
-    Website design and visual identity: OSP (http://osp.constantvzw.org) and Jérôme Degive (http://picapica.be) 
+    Website design and visual identity: OSP (http://osp.constantvzw.org) and Jérôme Degive (http://picapica.be)
     running thanks to free/libre software such as Gnu/Linux, WordPress, Vim, MySQL and many others.
     -->
 
@@ -36,14 +36,14 @@
 <meta name="viewport" content="width=device-width" />
 
     <meta http-equiv="Content-Style-Type" content="text/css" />
-        
+
     <meta name="description" content="L’acsr est un lieu de sensibilisation à la création sonore radiophonique." />
-          
+
     <meta name="keywords" content="Atelier Création Radio Radiophonique Sonore Expérimental Module acsr Bruxelles rencontres concours phonothèque" />
     <meta name="author" content="acsr" />
-        
+
     <meta name="category" content="Atelier, création, production, diffusion, enseignement, radiophonique" />
-          
+
     <meta name="Publisher" content="acsr" />
     <meta name="copyright" content="acsr" />
     <meta name="robots" content="index,follow" />
@@ -61,10 +61,10 @@
     <meta name="contactState" content="Belgique" />
 
     <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
-        
+
     <meta name="dc.title" lang="en" content="acsr" />
     <meta name="dc.description" lang="fr" content="L’acsr est un lieu de sensibilisation à la création sonore radiophonique." />
-          
+
     <meta name="dc.language" content="fr" />
     <meta name="dc.publisher" content="acsr" />
     <meta name="dc.rights" content="2011 tous droits réservés" />
@@ -95,7 +95,6 @@
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/reset.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/UniversElse/stylesheet.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/style.css" />
-<link rel="stylesheet" type="text/css" media="screen and (max-height: 600px)" href="<?php echo get_template_directory_uri(); ?>/netbook.css" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
@@ -120,16 +119,16 @@
     <div id="header">
         <?php
          $texturelist='';
-          //$img_folder is the variable that holds the path to the banner images. Mine is images/tutorials/
-        // see that you don't forget about the "/" at the end 
+          //$img_folder is the variable that holds the path to the background images.
+        // see that you don't forget about the "/" at the end
          $texture_folder = "wp-content/themes/acsr/images/textures/";
 
           mt_srand((double)microtime()*1000);
 
-          //use the directory class
+         //use the directory class
          $textures = dir($texture_folder);
 
-          //read all files from the  directory, checks if are images and ads them to a list (see below how to display flash banners)
+         //read all files from the  directory, checks if are images and ads them to a list
          while ($file = $textures->read()) {
            if (eregi("gif", $file) || eregi("jpg", $file) || eregi("png", $file))
              $texturelist .= "$file ";
@@ -148,26 +147,24 @@
          echo '<img id="texture" src="'. get_template_directory_uri().'/images/textures/' .$texture.'" border=0>';
 
 
-
-
-          $dessinlist='';
-          //$img_folder is the variable that holds the path to the banner images. Mine is images/tutorials/
-        // see that you don't forget about the "/" at the end 
+         $dessinlist='';
+         //$img_folder is the variable that holds the path to the drawings.
+         // see that you don't forget about the "/" at the end
          $dessin_folder = "wp-content/themes/acsr/images/dessins/";
 
           mt_srand((double)microtime()*1000);
 
-          //use the directory class
+         //use the directory class
          $dessins = dir($dessin_folder);
 
-          //read all files from the  directory, checks if are images and ads them to a list (see below how to display flash banners)
+         //read all files from the  directory, checks if are images and ads them to a list
          while ($file = $dessins->read()) {
            if (eregi("gif", $file) || eregi("jpg", $file) || eregi("png", $file))
              $dessinlist .= "$file ";
 
          } closedir($dessins->handle);
 
-          //put all images into an array
+         //put all images into an array
          $dessinlist = explode(" ", $dessinlist);
          $no = sizeof($dessinlist)-2;
 

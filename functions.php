@@ -51,7 +51,7 @@ function acsr_post_player() {
    if(!empty($audio) and $audio[0]) {
         $get_artists = get_post_meta($post->ID, 'wpcf-artiste', false);
         $artists = "";
-        if (!empty($get_artists)): 
+        if (!empty($get_artists)):
             foreach($get_artists as $key => $val) {
                 $artists .= $val;
             }
@@ -63,10 +63,10 @@ function acsr_post_player() {
         } elseif(qtrans_getLanguage()=='nl'){
             $genre = get_post_meta($post->ID, 'wpcf-genre-nl', 'true');
         }
-    
+
 $get_thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
 $thematiques = "";
-        if (($get_thematiques)!=' '): 
+        if (($get_thematiques)!=' '):
             foreach($get_thematiques as $keyc => $valc) {
                 $thematiques .= $valc;
             }
@@ -84,7 +84,7 @@ $thematiques = "";
         foreach($audio as $key => $val) {
             $parsed = explode(' --- ', $val);
             if (count($parsed)!=1) { // if the audio field also includes a title, seperated from the url by ---
-                if ($count==0){ 
+                if ($count==0){
                     echo '<img class="play" src="' . get_template_directory_uri() . '/images/petit-play.png" style="margin-top: -3px;" alt="&#9654;" /> ';
                 }
                 echo '<a class="audio" href="';
@@ -99,8 +99,8 @@ $thematiques = "";
         }
         echo "</div>";
     }
-    
-    
+
+
    $annee = get_post_meta($post->ID, 'wpcf-annee', true);
    if($annee != '') echo "<p style=\"line-height:25px\"><strong>" . $annee . "</strong>";
 
@@ -115,19 +115,19 @@ $thematiques = "";
   // }
 
    if(qtrans_getLanguage()=='fr') {
-        if (get_post_meta($post->ID, 'wpcf-genre', true)): 
+        if (get_post_meta($post->ID, 'wpcf-genre', true)):
         echo "<strong>Genre :</strong>";
             echo get_post_meta($post->ID, 'wpcf-genre', 'true') . "</p>";
         endif;
     } elseif(qtrans_getLanguage()=='nl'){
-        if (get_post_meta($post->ID, 'wpcf-genre-nl', true)): 
+        if (get_post_meta($post->ID, 'wpcf-genre-nl', true)):
 echo "<strong>Genre :</strong>";
             echo get_post_meta($post->ID, 'wpcf-genre-nl', 'true') . "</p>";
         endif;
     }
 
 /*$thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
-if (!empty($thematiques)) { 
+if (!empty($thematiques)) {
                 echo "<strong> Thématiques: </strong>";
          foreach ( $thematiques as $item) :
 echo "$item; ";
@@ -143,7 +143,7 @@ add_action( 'init', 'register_cpt_production' );
 
 function register_cpt_production() {
 
-    $labels = array( 
+    $labels = array(
         'name' => _x( 'production', 'production' ),
         'singular_name' => _x( 'production', 'production' ),
         'add_new' => _x( 'Ajouter', 'production' ),
@@ -158,7 +158,7 @@ function register_cpt_production() {
         'menu_name' => _x( 'productions', 'production' ),
     );
 
-    $args = array( 
+    $args = array(
         'labels' => $labels,
         'hierarchical' => false,
         'description' => 'Les productions de ma boutique.',
@@ -181,32 +181,13 @@ function register_cpt_production() {
 
     register_post_type( 'production', $args );
 }
- 
-/**
- * Sets up the content width value based on the theme's design and stylesheet.
- */
-if ( ! isset( $content_width ) )
-    $content_width = 625;
 
-/**
- * Sets up theme defaults and registers the various WordPress features that
- * Twenty Twelve supports.
- *
- * @uses load_theme_textdomain() For translation/localization support.
- * @uses add_editor_style() To add a Visual Editor stylesheet.
- * @uses add_theme_support() To add support for post thumbnails, automatic feed links,
- *     custom background, and post formats.
- * @uses register_nav_menu() To add support for navigation menus.
- * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
- *
- * @since Twenty Twelve 1.0
- */
 function acsr_setup() {
     /*
-     * Makes Twenty Twelve available for translation.
+     * Makes ACSR available for translation.
      *
      * Translations can be added to the /languages/ directory.
-     * If you're building a theme based on Twenty Twelve, use a find and replace
+     * If you're building a theme based on ACSR, use a find and replace
      * to change 'acsr' to the name of your theme in all the template files.
      */
     load_theme_textdomain( 'acsr', get_template_directory() . '/languages' );
@@ -238,14 +219,9 @@ function acsr_setup() {
 add_action( 'after_setup_theme', 'acsr_setup' );
 
 /**
- * Adds support for a custom header image.
- */
-require( get_template_directory() . '/inc/custom-header.php' );
-
-/**
  * Enqueues scripts and styles for front-end.
  *
- * @since Twenty Twelve 1.0
+ * @since ACSR 1.0
  */
 function acsr_scripts_styles() {
     global $wp_styles;
@@ -316,7 +292,7 @@ add_action( 'wp_enqueue_scripts', 'acsr_scripts_styles' );
  * Creates a nicely formatted and more specific title element text
  * for output in head of document, based on current view.
  *
- * @since Twenty Twelve 1.0
+ * @since ACSR 1.0
  *
  * @param string $title Default title text for current view.
  * @param string $sep Optional separator.
@@ -347,7 +323,7 @@ add_filter( 'wp_title', 'acsr_wp_title', 10, 2 );
 /**
  * Makes our wp_nav_menu() fallback -- wp_page_menu() -- show a home link.
  *
- * @since Twenty Twelve 1.0
+ * @since ACSR 1.0
  */
 function acsr_page_menu_args( $args ) {
     if ( ! isset( $args['show_home'] ) )
@@ -359,7 +335,7 @@ add_filter( 'wp_page_menu_args', 'acsr_page_menu_args' );
 /**
  * Registers our main widget area and the front page widget areas.
  *
- * @since Twenty Twelve 1.0
+ * @since ACSR 1.0
  */
 function acsr_widgets_init() {
     register_sidebar( array(
@@ -398,7 +374,7 @@ if ( ! function_exists( 'acsr_content_nav' ) ) :
 /**
  * Displays navigation to next/previous pages when applicable.
  *
- * @since Twenty Twelve 1.0
+ * @since ACSR 1.0
  */
 function acsr_content_nav( $html_id ) {
     global $wp_query;
@@ -424,7 +400,7 @@ if ( ! function_exists( 'acsr_comment' ) ) :
  *
  * Used as a callback by wp_list_comments() for displaying the comments.
  *
- * @since Twenty Twelve 1.0
+ * @since ACSR 1.0
  */
 function acsr_comment( $comment, $args, $depth ) {
     $GLOBALS['comment'] = $comment;
@@ -492,14 +468,14 @@ if ( ! function_exists( 'acsr_entry_meta' ) ) :
  *
  * Create your own acsr_entry_meta() to override in a child theme.
  *
- * @since Twenty Twelve 1.0
+ * @since ACSR 1.0
  */
 
 
 
 function get_the_category_list2( $separator = '' ) {
     global $wp_rewrite;
-    
+
     $categories = get_the_category( $post_id );
     if ( empty( $categories ) ) {
         /** This filter is documented in wp-includes/category-template.php */
@@ -521,7 +497,7 @@ $thelist .= '<a href="'.get_category_link($childcat->cat_ID).'">';
 if (cat_is_ancestor_of(109, $childcatC))
 $thelist .= '<strong>Thématiques:</strong>';
 if (++$i == 1) break;
-}*/ 
+}*/
 
 
 foreach((get_the_category()) as $childcatB) {
@@ -581,32 +557,17 @@ endif;
 
 /**
  * Extends the default WordPress body class to denote:
- * 1. Using a full-width layout, when no active widgets in the sidebar
- *    or full-width template.
- * 2. Front Page template: thumbnail in use and number of sidebars for
- *    widget areas.
- * 3. White or empty background color to change the layout and spacing.
- * 4. Custom fonts enabled.
- * 5. Single or multiple authors.
+ * 1. White or empty background color to change the layout and spacing.
+ * 2. Custom fonts enabled.
+ * 3. Single or multiple authors.
  *
- * @since Twenty Twelve 1.0
+ * @since ACSR 1.0
  *
  * @param array Existing class values.
  * @return array Filtered class values.
  */
 function acsr_body_class( $classes ) {
     $background_color = get_background_color();
-
-    if ( ! is_active_sidebar( 'sidebar-1' ) || is_page_template( 'page-templates/full-width.php' ) )
-        $classes[] = 'full-width';
-
-    if ( is_page_template( 'page-templates/front-page.php' ) ) {
-        $classes[] = 'template-front-page';
-        if ( has_post_thumbnail() )
-            $classes[] = 'has-post-thumbnail';
-        if ( is_active_sidebar( 'sidebar-2' ) && is_active_sidebar( 'sidebar-3' ) )
-            $classes[] = 'two-sidebars';
-    }
 
     if ( empty( $background_color ) )
         $classes[] = 'custom-background-empty';
@@ -623,45 +584,6 @@ function acsr_body_class( $classes ) {
     return $classes;
 }
 add_filter( 'body_class', 'acsr_body_class' );
-
-/**
- * Adjusts content_width value for full-width and single image attachment
- * templates, and when there are no active widgets in the sidebar.
- *
- * @since Twenty Twelve 1.0
- */
-function acsr_content_width() {
-    if ( is_page_template( 'page-templates/full-width.php' ) || is_attachment() || ! is_active_sidebar( 'sidebar-1' ) ) {
-        global $content_width;
-        $content_width = 960;
-    }
-}
-add_action( 'template_redirect', 'acsr_content_width' );
-
-/**
- * Add postMessage support for site title and description for the Theme Customizer.
- *
- * @since Twenty Twelve 1.0
- *
- * @param WP_Customize_Manager $wp_customize Theme Customizer object.
- * @return void
- */
-function acsr_customize_register( $wp_customize ) {
-    $wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
-    $wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
-}
-add_action( 'customize_register', 'acsr_customize_register' );
-
-/**
- * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
- *
- * @since Twenty Twelve 1.0
- */
-function acsr_customize_preview_js() {
-    wp_enqueue_script( 'acsr-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20120827', true );
-}
-add_action( 'customize_preview_init', 'acsr_customize_preview_js' );
-
 
 function add_custom_types_to_tax( $query ) {
 if( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
