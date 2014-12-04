@@ -15,15 +15,15 @@
     </div>
     <nav id="menu" class="main-navigation" role="navigation">
         <?php wp_nav_menu(array('theme_location' => 'primary', 'menu_class' => 'nav-menu')); ?>
-        
-        <?php 
+
+        <?php
             $sticky = get_option( 'sticky_posts' );
             $args = array(
                    'post__in'  => $sticky,
                    'post_type' => 'production'
                     );
             query_posts( $args );
-                
+
             if ( $sticky && have_posts() ) : while ( have_posts() ) : the_post();
 
             $audio = get_post_meta($post->ID, 'wpcf-audio', false);
@@ -31,33 +31,29 @@
             if($audio[0] != ''):
                 $get_artists = get_post_meta($post->ID, 'wpcf-artiste', false);
                 $artists = "";
-                if (!empty($get_artists)): 
+                if (!empty($get_artists)):
                     foreach($get_artists as $key => $val) {
                         $artists .= $val;
                     }
                 endif;
                 $annee = get_post_meta($post->ID, 'wpcf-annee', true);
                 $duree = get_post_meta($post->ID, 'wpcf-duree', true);
-                if(qtrans_getLanguage()=='fr') {
-                    $genre = get_post_meta($post->ID, 'wpcf-genre', 'true');
-                } elseif(qtrans_getLanguage()=='nl'){
-                    $genre = get_post_meta($post->ID, 'wpcf-genre-nl', 'true');
-                }
+                $genre = get_post_meta($post->ID, 'wpcf-genre', 'true');
                 $audio_title = the_title('', '', false);
-                
+
                 $args = array( "duree" => $duree, "genre" => $genre, "annee" => $annee, "artiste" => $artists );
                 $qstring = http_build_query($args);
-                
+
                 $parse = explode(' --- ', $audio[0]);
                 if (count($parse)!=1) { // if there are several tracks
                     $url = $parse[1];
                 } else { // if there's only one track
                     $url = $parse[0];
                 }
-                
+
                 $url = $url . '&' . $qstring;
           ?>
-        
+
                <div id="le-son-du-mois">le son<br />du mois</div>
                <div id="audio-title">
 
@@ -72,11 +68,11 @@
             endwhile; // all the sticky posts
             endif; // if there are sticky posts
         ?>
-        
+
     <!-- Search Form -->
     <?php get_search_form(); ?>
-    
-    
+
+
     </nav><!-- #site-navigation -->
 
     <?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>

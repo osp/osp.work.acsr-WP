@@ -14,21 +14,17 @@ $(document).ready(function(){
         if ($(this).attr('href') === '/') {
             if ( document.location.href === home + '/' ) {
                 $(this).addClass("active");
-            } 
+            }
         // link to 'http://www.acsr.be/a-propos/', document.location.href is 'http://www.acsr.be/a-propos/' => active
         // link to 'http://www.acsr.be/galerie/', document.location.href is 'http://www.acsr.be/galerie/los-santos-2/' => active
         } else if ( document.location.href.substring(home.length).indexOf( $(this).attr('href').substring(home.length)  ) !== -1 )  {
             $(this).addClass("active");
         }
 
-    }); 
-
-    // Rename Language ISO CODE
-    $("ul.qtrans_language_chooser .lang-fr a").text("FR");
-    $("ul.qtrans_language_chooser .lang-nl a").text("NL");
+    });
 
     // removes black hover on images
-    $("img").parent().css("background", "none"); 
+    $("img").parent().css("background", "none");
 
     // Random position of background image
     top1 = Math.floor(Math.random() * 200);
@@ -43,7 +39,7 @@ $(document).ready(function(){
         e.preventDefault();
         $(this).next().slideToggle('easeInOutQuint');
     });
-    
+
     // Show/Hide Projects
     $("div#newsletter-bt span").click(function(e){
         e.preventDefault();
@@ -63,8 +59,8 @@ $(document).ready(function(){
         }, function() {
             $(this).attr("src", home + "/wp-content/themes/acsr/images/petit-play.png");
     });
-    
-    
+
+
     // Play audio file from a playlist
     $("a.audio").click(function(e){
         e.preventDefault();
@@ -74,7 +70,7 @@ $(document).ready(function(){
         url = home + "/wp-content/themes/acsr/player.php?audio=" + url + '&title=' + title + '&postID=' + postID,'lecteur acsr','height=200,width=150';
         popup = window.open(url);
     });
-    
+
     // Text ellipsis
     $("div.latest-post").dotdotdot();
 });

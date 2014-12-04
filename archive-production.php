@@ -257,11 +257,7 @@ function get_the__uri_that_switches_views() {
                         endif;
                         $annee = get_post_meta($post->ID, 'wpcf-annee', true);
                         $duree = get_post_meta($post->ID, 'wpcf-duree', true);
-                        if(qtrans_getLanguage()=='fr') {
-                            $genre = get_post_meta($post->ID, 'wpcf-genre', 'true');
-                        } elseif(qtrans_getLanguage()=='nl'){
-                            $genre = get_post_meta($post->ID, 'wpcf-genre-nl', 'true');
-                        }
+                        $genre = get_post_meta($post->ID, 'wpcf-genre', 'true');
 
             //$thematiques = get_post_meta($post->ID, 'wpcf-thematiques', false);
 

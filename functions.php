@@ -58,11 +58,7 @@ function acsr_post_player() {
         endif;
         $annee = get_post_meta($post->ID, 'wpcf-annee', true);
         $duree = get_post_meta($post->ID, 'wpcf-duree', true);
-        if(qtrans_getLanguage()=='fr') {
-            $genre = get_post_meta($post->ID, 'wpcf-genre', 'true');
-        } elseif(qtrans_getLanguage()=='nl'){
-            $genre = get_post_meta($post->ID, 'wpcf-genre-nl', 'true');
-        }
+        $genre = get_post_meta($post->ID, 'wpcf-genre', 'true');
 
 $get_thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
 $thematiques = "";
@@ -114,18 +110,10 @@ $thematiques = "";
    //     }
   // }
 
-   if(qtrans_getLanguage()=='fr') {
-        if (get_post_meta($post->ID, 'wpcf-genre', true)):
-        echo "<strong>Genre :</strong>";
-            echo get_post_meta($post->ID, 'wpcf-genre', 'true') . "</p>";
-        endif;
-    } elseif(qtrans_getLanguage()=='nl'){
-        if (get_post_meta($post->ID, 'wpcf-genre-nl', true)):
-echo "<strong>Genre :</strong>";
-            echo get_post_meta($post->ID, 'wpcf-genre-nl', 'true') . "</p>";
-        endif;
-    }
-
+    if (get_post_meta($post->ID, 'wpcf-genre', true)):
+    echo "<strong>Genre :</strong>";
+        echo get_post_meta($post->ID, 'wpcf-genre', 'true') . "</p>";
+    endif;
 /*$thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
 if (!empty($thematiques)) {
                 echo "<strong> Thématiques: </strong>";

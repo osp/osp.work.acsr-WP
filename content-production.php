@@ -45,7 +45,7 @@
            <div class="entry-meta">
            <?php
             $artists = get_post_meta($post->ID, 'wpcf-artiste', false);
-            if (!empty($artists)) { 
+            if (!empty($artists)) {
                 echo "<ul class='artist'>";
                 foreach($artists as $key => $val) {
                     echo "<li><a href='/?s=". str_replace(" ", "+", $val)  ."'>" . $val . "</a></li>";
@@ -59,27 +59,17 @@
             <div class="prod-desc">
                 <?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'acsr' ) ); ?>
             </div>
-            <?php 
-                if(qtrans_getLanguage()=='fr') {
-                    $equipe = get_post_meta($post->ID, 'wpcf-equipe', true);
-                    if($equipe != '') echo "<p class='equipe'>" . $equipe . "</p>";
-                } elseif(qtrans_getLanguage()=='nl'){
-                    $equipe = get_post_meta($post->ID, 'wpcf-equipe-nl', true);
-                    if($equipe != '') echo "<p class='equipe'>" . $equipe . "</p>";
-                }
+            <?php
+                $equipe = get_post_meta($post->ID, 'wpcf-equipe', true);
+                if($equipe != '') echo "<p class='equipe'>" . $equipe . "</p>";
             ?>
             <div class="more-details">
                     <?php
                         $prix = get_post_meta($post->ID, 'wpcf-prix', true);
                         if($prix != '') echo " <p>Prix&thinsp;:&nbsp;" . $prix . "</p>";
 
-                        if(qtrans_getLanguage()=='fr') {
-                            $producteur = get_post_meta($post->ID, 'wpcf-production', true);
-                            if($producteur != '') echo "<p>Production&thinsp;:&nbsp;" . $producteur . "</p>";
-                        } elseif(qtrans_getLanguage()=='nl'){
-                            $producteur = get_post_meta($post->ID, 'wpcf-production-nl', true);
-                            if($producteur != '') echo "<p>Productie&thinsp;:&nbsp;" . $producteur . "</p>";
-                        }
+                        $producteur = get_post_meta($post->ID, 'wpcf-production', true);
+                        if($producteur != '') echo "<p>Production&thinsp;:&nbsp;" . $producteur . "</p>";
 
                         $licence = get_post_meta($post->ID, 'wpcf-licence', true);
                         if($licence != '') echo "<p>Licence&thinsp;:&nbsp;" . $licence . "</p>";
@@ -98,18 +88,13 @@
                     <?php echo str_replace("\n", "<br />", $dates); ?>
                 </div>
         </div>
-        
+
         <?php $bio = get_post_meta($post->ID, 'wpcf-bio', true);
             if($bio != ''):
         ?>
         <div class="post">
                 <?php
-                    if(qtrans_getLanguage()=='fr') {
-                        if($bio != '') echo "<p class='bio'>" . $bio . "</p>";
-                    } elseif(qtrans_getLanguage()=='nl'){
-                        $bio_nl = get_post_meta($post->ID, 'wpcf-bio-nl', true);
-                        if($bio_nl != '') echo "<p class='bio'>" . $bio_nl . "</p>";
-                    }
+                    if($bio != '') echo "<p class='bio'>" . $bio . "</p>";
                 ?>
         </div>
             <?php endif; ?>
@@ -126,8 +111,8 @@
                 ?>
         </div>
         <?php endif; ?>
-            
-            
+
+
 <?php endif; ?>
     <?php endif; ?>
     </article><!-- #post -->
