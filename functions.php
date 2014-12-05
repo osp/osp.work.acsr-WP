@@ -60,36 +60,35 @@ function acsr_post_player() {
         $duree = get_post_meta($post->ID, 'wpcf-duree', true);
         $genre = get_post_meta($post->ID, 'wpcf-genre', 'true');
 
-$get_thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
-$thematiques = "";
+        $get_thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
+        $thematiques = "";
         if (($get_thematiques)!=' '):
             foreach($get_thematiques as $keyc => $valc) {
                 $thematiques .= $valc;
             }
         endif;
 
-
-
         $audio_title = the_title('', '', false);
         $args = array( "duree" => $duree, "genre" => $genre, "thematiques" => $thematiques, "annee" => $annee, "artiste" => $artists );
         $qstring = http_build_query($args);
 
         sort($audio);
-        echo '<div id="playlist" class="clip">';
+        $single = count($audio) == 1; // There is only one audio clip
+        echo '<div id="playlist" class="clip' . ($single ? " single" : "") . '">';
         $count = 0;
         foreach($audio as $key => $val) {
             $parsed = explode(' --- ', $val);
             if (count($parsed)!=1) { // if the audio field also includes a title, seperated from the url by ---
                 if ($count==0){
-                    echo '<img class="play" src="' . get_template_directory_uri() . '/images/petit-play.png" style="margin-top: -3px;" alt="&#9654;" /> ';
+                    echo '<img class="play" src="' . get_template_directory_uri() . '/images/' . ($single ? "" : "petit-") . 'play.png" style="margin-top: -3px;" alt="&#9654;" /> ';
                 }
                 echo '<a class="audio" href="';
                 echo $parsed[1] . '&' . $qstring . '" data-link="'.$post->ID .'" title="'. $parsed[0] .'">' . $parsed[0];
                 echo '</a> ';
                 $count ++;
             } else { // if the audio field contains just the url */
-                echo "<a class='audio' href='";
-                echo $val . '&' . $qstring ."' data-link='".$post->ID ."' title='". get_the_title() ."'><img class='play' src='" . get_template_directory_uri() . "/images/petit-play.png' alt='&#9654;' />";
+                echo '<a class="audio" href="';
+                echo $val . '&' . $qstring .'" data-link="' . $post->ID . '" title="' . get_the_title() . '"><img class="play" src="' . get_template_directory_uri() . '/images/' . ($single ? "" : "petit-") . 'play.png" alt="&#9654;" />';
                 echo "</a> ";
             }
         }
