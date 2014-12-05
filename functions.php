@@ -226,43 +226,6 @@ function acsr_scripts_styles() {
     wp_enqueue_script( 'acsr-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true );
 
     /*
-     * Loads our special font CSS file.
-     *
-     * The use of Open Sans by default is localized. For languages that use
-     * characters not supported by the font, the font can be disabled.
-     *
-     * To disable in a child theme, use wp_dequeue_style()
-     * function mytheme_dequeue_fonts() {
-     *     wp_dequeue_style( 'acsr-fonts' );
-     * }
-     * add_action( 'wp_enqueue_scripts', 'mytheme_dequeue_fonts', 11 );
-     */
-
-    /* translators: If there are characters in your language that are not supported
-       by Open Sans, translate this to 'off'. Do not translate into your own language. */
-    if ( 'off' !== _x( 'on', 'Open Sans font: on or off', 'acsr' ) ) {
-        $subsets = 'latin,latin-ext';
-
-        /* translators: To add an additional Open Sans character subset specific to your language, translate
-           this to 'greek', 'cyrillic' or 'vietnamese'. Do not translate into your own language. */
-        $subset = _x( 'no-subset', 'Open Sans font: add new subset (greek, cyrillic, vietnamese)', 'acsr' );
-
-        if ( 'cyrillic' == $subset )
-            $subsets .= ',cyrillic,cyrillic-ext';
-        elseif ( 'greek' == $subset )
-            $subsets .= ',greek,greek-ext';
-        elseif ( 'vietnamese' == $subset )
-            $subsets .= ',vietnamese';
-
-        $protocol = is_ssl() ? 'https' : 'http';
-        $query_args = array(
-            'family' => 'Open+Sans:400italic,700italic,400,700',
-            'subset' => $subsets,
-        );
-        wp_enqueue_style( 'acsr-fonts', add_query_arg( $query_args, "$protocol://fonts.googleapis.com/css" ), array(), null );
-    }
-
-    /*
      * Loads our main stylesheet.
      */
     wp_enqueue_style( 'acsr-style', get_stylesheet_uri() );
