@@ -10,7 +10,7 @@ and radio creations, and is located in Brussels, Belgium.
 Version: 2.0
 License: GNU Affero General Public License v3
 License URI: http://www.gnu.org/licenses/agpl-3.0.html
-Tags: 
+Tags:
 Text Domain: acsr
 */
 
@@ -189,6 +189,15 @@ div.post {
 div#playlist {
     margin: 13px 0;
 }
+div#playlist.single {
+    display: inline-block;
+    position: absolute;
+    text-align: right;
+    margin: 0;
+    right: 0;
+    top: 10px;
+}
+
 a.audio.playing {
     background-color: black;
     color: white;
@@ -210,13 +219,13 @@ div.metadata p{
     width: 75%;
     margin-left:auto;
     margin-right:auto;
-   
+
 }
 
 
 div.metadata p + p {
     margin-top: 0;
-    
+
 }
 
 p.bio {
@@ -492,7 +501,15 @@ body.single-production div.more-details {
 
 body.single-production img.play {
     float: left;
+    margin-top: 3px;
     margin-right: 7px;
+}
+/* the big play button doesn’t get the treatment */
+body.single-production .single img.play {
+    float: inherit;
+    margin-top: inherit;
+    margin-right: inherit;
+    display: inline-block;
 }
 div.prod-desc p{
     font-size: 15px;
@@ -534,7 +551,7 @@ div.resource-content strong {
 /* BLOG STICKY */
 .sticky {
     background-color: #FFAA96 !important;
-}   
+}
 .sticky .news-cat {
     text-align: center;
     font-family: "UniversElseLight", "DejaVu Sans", Helvetica, Arial, Sans-Serif;
@@ -717,8 +734,8 @@ div#nav input[type=submit]:hover {
 
 div#nav nav#menu a#player {
     background: none;
-    display: block; 
-    height: 17px; 
+    display: block;
+    height: 17px;
     width: 135px;
     padding: 0;
     margin-top: 5px;
