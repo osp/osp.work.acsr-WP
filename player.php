@@ -278,7 +278,7 @@ a:hover {
     $audio = str_replace($nom_du_fichier, urlencode($nom_du_fichier), $_GET['audio']); 
 ?>
 
-    <a id='popupplayer' class='popupplayer' href='<?php echo $audio; ?>' title='' style="background: none; display: block; height: 17px; width: 100%; padding: 0; margin-top: 5px; margin-left: 0px;"></a>
+    <!--<a id='popupplayer' class='popupplayer' href='<?php echo $audio; ?>' title='' style="background: none; display: block; height: 17px; width: 100%; padding: 0; margin-top: 5px; margin-left: 0px;"></a>-->
 
 <audio id="newplayer" style ="display: none;" src="<?php echo $audio; ?>" width="120" height="22"></audio>
 
