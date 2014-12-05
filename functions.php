@@ -19,10 +19,6 @@
  *
  */
 
-
-/** TODO: remove the most possible of the 2010 cruft
- */
-
 /**
  * Don’t show the long text that instructs the commenter about available HTML tags:
  */
@@ -102,25 +98,10 @@ function acsr_post_player() {
    $duree = get_post_meta($post->ID, 'wpcf-duree', true);
    if($duree != '') echo " <strong>" . $duree . "</strong>";
 
-   // $post_categories = wp_get_post_categories( $post->ID );
-   //if(!empty($post_categories)){
-   //     foreach($post_categories as $c){
-   //         echo "<strong>" . get_category( $c )->name . "</strong>";
-   //     }
-  // }
-
     if (get_post_meta($post->ID, 'wpcf-genre', true)):
     echo "<strong>Genre :</strong>";
         echo get_post_meta($post->ID, 'wpcf-genre', 'true') . "</p>";
     endif;
-/*$thematiques = get_post_meta($post->ID, 'wpcf-thematiques', true);
-if (!empty($thematiques)) {
-                echo "<strong> Thématiques: </strong>";
-         foreach ( $thematiques as $item) :
-echo "$item; ";
-endforeach;
-
-            }*/
 
 }
 
@@ -185,19 +166,8 @@ function acsr_setup() {
     // Adds RSS feed links to <head> for posts and comments.
     add_theme_support( 'automatic-feed-links' );
 
-    // This theme supports a variety of post formats.
-    add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status' ) );
-
     // This theme uses wp_nav_menu() in one location.
     register_nav_menu( 'primary', __( 'Primary Menu', 'acsr' ) );
-
-    /*
-     * This theme supports custom background color and image, and here
-     * we also set up the default background color.
-     */
-    add_theme_support( 'custom-background', array(
-        'default-color' => 'e6e6e6',
-    ) );
 
     // This theme uses a custom image size for featured images, displayed on "standard" posts.
     add_theme_support( 'post-thumbnails' );
@@ -207,23 +177,9 @@ add_action( 'after_setup_theme', 'acsr_setup' );
 
 /**
  * Enqueues scripts and styles for front-end.
- *
- * @since ACSR 1.0
  */
 function acsr_scripts_styles() {
     global $wp_styles;
-
-    /*
-     * Adds JavaScript to pages with the comment form to support
-     * sites with threaded comments (when in use).
-     */
-    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
-        wp_enqueue_script( 'comment-reply' );
-
-    /*
-     * Adds JavaScript for handling the navigation menu hide-and-show behavior.
-     */
-    wp_enqueue_script( 'acsr-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true );
 
     /*
      * Loads our main stylesheet.
@@ -241,8 +197,6 @@ add_action( 'wp_enqueue_scripts', 'acsr_scripts_styles' );
 /**
  * Creates a nicely formatted and more specific title element text
  * for output in head of document, based on current view.
- *
- * @since ACSR 1.0
  *
  * @param string $title Default title text for current view.
  * @param string $sep Optional separator.
@@ -273,7 +227,6 @@ add_filter( 'wp_title', 'acsr_wp_title', 10, 2 );
 /**
  * Makes our wp_nav_menu() fallback -- wp_page_menu() -- show a home link.
  *
- * @since ACSR 1.0
  */
 function acsr_page_menu_args( $args ) {
     if ( ! isset( $args['show_home'] ) )
@@ -284,8 +237,6 @@ add_filter( 'wp_page_menu_args', 'acsr_page_menu_args' );
 
 /**
  * Registers our main widget area and the front page widget areas.
- *
- * @since ACSR 1.0
  */
 function acsr_widgets_init() {
     register_sidebar( array(
@@ -323,8 +274,6 @@ add_action( 'widgets_init', 'acsr_widgets_init' );
 if ( ! function_exists( 'acsr_content_nav' ) ) :
 /**
  * Displays navigation to next/previous pages when applicable.
- *
- * @since ACSR 1.0
  */
 function acsr_content_nav( $html_id ) {
     global $wp_query;
@@ -349,8 +298,6 @@ if ( ! function_exists( 'acsr_comment' ) ) :
  * simply create your own acsr_comment(), and that function will be used instead.
  *
  * Used as a callback by wp_list_comments() for displaying the comments.
- *
- * @since ACSR 1.0
  */
 function acsr_comment( $comment, $args, $depth ) {
     $GLOBALS['comment'] = $comment;
@@ -405,20 +352,12 @@ function acsr_comment( $comment, $args, $depth ) {
 }
 endif;
 
-
-
-
-
-
-
-
 if ( ! function_exists( 'acsr_entry_meta' ) ) :
 /**
  * Prints HTML with meta information for current post: categories, tags, permalink, author, and date.
  *
  * Create your own acsr_entry_meta() to override in a child theme.
  *
- * @since ACSR 1.0
  */
 
 
@@ -459,8 +398,6 @@ $thelist .= '<a href="'.get_category_link($childcatB->cat_ID).'">';
 
     /**
      * Filter the category or list of categories.
-     *
-     * @since 1.2.0
      *
      * @param array  $thelist   List of categories for the current post.
      * @param string $separator Separator used between the categories.
@@ -510,8 +447,6 @@ endif;
  * 1. White or empty background color to change the layout and spacing.
  * 2. Custom fonts enabled.
  * 3. Single or multiple authors.
- *
- * @since ACSR 1.0
  *
  * @param array Existing class values.
  * @return array Filtered class values.
