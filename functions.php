@@ -79,11 +79,11 @@ function acsr_post_player() {
         foreach($audio as $key => $val) {
             $parsed = explode(' --- ', $val);
             if (count($parsed)!=1) { // if the audio field also includes a title, seperated from the url by ---
+                echo '<a class="audio" href="';
+                echo $parsed[1] . '&' . $qstring . '" data-link="'.$post->ID .'" title="'. $parsed[0] .'">' . $parsed[0];
                 if ($count==0){
                     echo '<img class="play" src="' . get_template_directory_uri() . '/images/' . ($single ? "" : "petit-") . 'play.png" style="margin-top: -3px;" alt="&#9654;" /> ';
                 }
-                echo '<a class="audio" href="';
-                echo $parsed[1] . '&' . $qstring . '" data-link="'.$post->ID .'" title="'. $parsed[0] .'">' . $parsed[0];
                 echo '</a> ';
                 $count ++;
             } else { // if the audio field contains just the url */
