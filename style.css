@@ -677,9 +677,12 @@ div#logo{
     display:block;
 }
 
+div#nav div#logo img {
+    position: relative;
+}
 
 div#nav div#logo img:hover{
-    z-index:3000;
+    z-index: 3000;
 }
 
 div#nav nav#menu {
