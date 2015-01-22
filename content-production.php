@@ -1,6 +1,7 @@
 <?php
 /**
- * The default template for displaying content. Used for both single and index/archive/search.
+ * The template for displaying a production. For now it seems it only works in single view
+ * —for tag view, content.php is used
  *
  */
 ?>
