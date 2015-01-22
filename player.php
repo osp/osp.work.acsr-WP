@@ -8,28 +8,28 @@ $a = split('/wp-content', $_SERVER['REQUEST_URI']);
 $home = "http://" . $_SERVER['HTTP_HOST'] . $a[0];
 ?>
     <!--
-        | | |  |   |  |   |   
-        | | |  |   |  |   |   
-        | | |  |===|  )- -(   
-        |_|_|  |___|  |___|   
-        \   /   ).(    [_]    
-         \-/    \|/     U     
-     hjm  '      '            
+        | | |  |   |  |   |
+        | | |  |   |  |   |
+        | | |  |===|  )- -(
+        |_|_|  |___|  |___|
+        \   /   ).(    [_]
+         \-/    \|/     U
+     hjm  '      '
 
-    Website design and visual identity: OSP (http://osp.constantvzw.org) and Jérôme Degive (http://picapica.be) 
+    Website design and visual identity: OSP (http://osp.constantvzw.org) and Jérôme Degive (http://picapica.be)
     running thanks to free/libre software such as Gnu/Linux, WordPress, Vim, MySQL and many others.
     -->
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
-        
+
     <meta name="description" content="L’acsr est un lieu de sensibilisation à la création sonore radiophonique." />
-          
+
     <meta name="keywords" content="Atelier Création Radio Radiophonique Sonore Expérimental Module acsr Bruxelles rencontres concours phonothèque" />
     <meta name="author" content="acsr" />
-        
+
     <meta name="category" content="Atelier, création, production, diffusion, enseignement, radiophonique" />
-          
+
     <meta name="Publisher" content="acsr" />
     <meta name="copyright" content="acsr" />
     <meta name="robots" content="index,follow" />
@@ -47,10 +47,10 @@ $home = "http://" . $_SERVER['HTTP_HOST'] . $a[0];
     <meta name="contactState" content="Belgique" />
 
     <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
-        
+
     <meta name="dc.title" lang="en" content="acsr" />
     <meta name="dc.description" lang="fr" content="L’acsr est un lieu de sensibilisation à la création sonore radiophonique." />
-          
+
     <meta name="dc.language" content="fr" />
     <meta name="dc.publisher" content="acsr" />
     <meta name="dc.rights" content="2011 tous droits réservés" />
@@ -79,7 +79,7 @@ $home = "http://" . $_SERVER['HTTP_HOST'] . $a[0];
 }
 #audio-artiste,
 #audio-annee,
-#audio-duree, 
+#audio-duree,
 #audio-genre {
     background-color: black;
     color: white;
@@ -120,7 +120,7 @@ $home = "http://" . $_SERVER['HTTP_HOST'] . $a[0];
     background: yellow !important;
 }
 
-.mejs-time-total, 
+.mejs-time-total,
 .mejs-time-total * {
     height: 2px !important;
     outline: 1px solid black;
@@ -160,7 +160,7 @@ var home;
 $(document).ready(function(){
     // Find root uri (useful if deployed in a subdirectory locally):
     home = $("meta[name=Identifier-URL]").attr("content");
-    
+
     var play = true;
     $("img#launcher").hover(
         function(){
@@ -197,15 +197,15 @@ $(document).ready(function(){
            play = true;
         }
     });
-    
+
     var player = new MediaElementPlayer('#newplayer', {features: ['progress']});
     setTimeout(function(){player.play()}, 2000);});
 </script>
 
 <style type="text/css">
 a {
-    background-color: yellow; 
-    color: black; 
+    background-color: yellow;
+    color: black;
     text-decoration: none;
 }
 a:hover {
@@ -224,7 +224,7 @@ a:hover {
         <?php
          $texturelist='';
           //$img_folder is the variable that holds the path to the banner images. Mine is images/tutorials/
-        // see that you don't forget about the "/" at the end 
+        // see that you don't forget about the "/" at the end
          $texture_folder = "images/textures/";
 
           mt_srand((double)microtime()*1000);
@@ -259,13 +259,12 @@ a:hover {
             <img id="logo" src="<?php echo $home; ?>/wp-content/themes/acsr/images/logos/acsr_logo-web.png" alt="l'atelier de création sonore radiophonique" border="0" style="margin-bottom: 18px; width: 100px"/>
         </a></h1>
     </div>
-    
+
     <div id="audio-artiste"><?php echo $_GET['artiste']; ?></div>
     <div id="audio-title"><em><a href="<?php echo $home . '/?page_id=' . $_GET['postID']; ?>" target="_blank" title="<?php echo $_GET['title']; ?>"><?php echo $_GET['title']; ?></a></em></div>
     <div id="audio-annee"><?php echo $_GET['annee']; ?></div>
     <div id="audio-duree"><?php echo $_GET['duree']; ?></div>
     <div id="audio-genre"><?php echo $_GET['genre']; ?></div>
-<div id="audio-thematiques"><?php echo $_GET['thematiques']; ?></div>
 
 
     <div>
@@ -275,7 +274,7 @@ a:hover {
 
 <?php
     $nom_du_fichier = array_pop(explode('/', $_GET['audio']));
-    $audio = str_replace($nom_du_fichier, urlencode($nom_du_fichier), $_GET['audio']); 
+    $audio = str_replace($nom_du_fichier, urlencode($nom_du_fichier), $_GET['audio']);
 ?>
 
     <!--<a id='popupplayer' class='popupplayer' href='<?php echo $audio; ?>' title='' style="background: none; display: block; height: 17px; width: 100%; padding: 0; margin-top: 5px; margin-left: 0px;"></a>-->
